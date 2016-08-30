@@ -1,0 +1,71 @@
+<ruleset>
+	<!--
+  This file is part of the DITA validator project.
+  See the accompanying LICENSE file for applicable licenses.
+	-->
+	<level id="fatal">
+		 <!-- Fatal rules will fail validation (cannot be overriden)-->
+		<rule>appendices-href-missing</rule>
+		<rule>chapter-href-missing</rule>
+		<rule>coderef-href-ref-file-not-found</rule>
+		<rule>colsep-invalid</rule>
+		<rule>colspec-colnum-not-unique</rule>
+		<rule>conref-external-file-not-found</rule>
+		<rule>conref-external-id-mismatch</rule>
+		<rule>conref-external-id-not-found</rule>
+		<rule>conref-external-path-not-found</rule>
+		<rule>conref-external-path-mismatch</rule>
+		<rule>conref-internal-id-not-found</rule>
+		<rule>conref-internal-path-mismatch</rule>
+		<rule>conref-internal-path-not-found</rule>
+		<rule>href-file-not-found</rule>
+		<rule>id-not-unique</rule>
+		<rule>image-href-ref-file-not-found</rule>
+		<rule>list-all-li-filtered</rule>
+		<rule>notices-href-missing</rule>
+		<rule>rowsep-invalid</rule>
+		<rule>table-all-rows-filtered</rule>
+		<rule>tgroup-cols-colspec-mismatch</rule>
+		<rule>tgroup-cols-entry-mismatch</rule>
+		<rule>topicref-href-missing</rule>
+		<rule>xref-external-file-not-found</rule>
+		<rule>xref-external-id-not-found</rule>
+		<rule>xref-external-path-not-found</rule>
+		<rule>xref-internal-id-not-found</rule>
+		<rule>xref-internal-path-not-found</rule>
+	</level>
+	<level id="error">
+		<!-- Error rules will fail validation (can be overriden)-->
+		<rule>conref-not-lower-case</rule>
+		<rule>fig-id-invalid</rule>
+		<rule>fig-id-missing</rule>
+		<rule>file-not-lower-case</rule>
+		<rule>href-not-lower-case</rule>
+		<rule>id-not-lower-case</rule>
+		<rule>image-file-type-not-supported</rule>
+		<rule>section-id-missing</rule>
+		<rule>section-title-missing</rule>
+		<rule>table-id-invalid</rule>
+		<rule>xref-no-format</rule>
+		<rule>xref-www-format-invalid</rule>
+		<rule>xref-www-scope-invalid</rule>
+	</level>
+	<level id="warning">
+		<!-- Warning rules will display a warning on validation (can be overriden)-->
+		<rule>blacklisted-word</rule>
+		<rule>codeblock-outputclass-missing</rule>
+		<rule>codeblock-scale-missing</rule>
+		<rule>comment-fixme</rule>
+		<rule>comment-todo</rule>
+		<rule>fig-title-missing</rule>
+		<rule>incorrect-capitalization</rule>
+		<rule>running-text-fixme</rule>
+		<rule>running-text-lorem-ipsum</rule>
+		<rule>running-text-todo</rule>
+		<rule>topic-file-mismatch</rule>
+	</level>
+	<level id="inactive">
+		 <!-- Inactive rules will never be applied -->
+		<rule>table-id-missing</rule>
+	</level>
+</ruleset>

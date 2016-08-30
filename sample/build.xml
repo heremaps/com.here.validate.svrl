@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project basedir="../.." default="build" name="validator.build">
+
+
+	<!--
+		Properties to find the path to dita-ot and the path to the
+		DITA document to build
+	-->
+	<dirname property="dita.dir" file="${ant.file.validator.build}/../../.."/>
+	<dirname property="build.file.dir" file="${ant.file.validator.build}"/>
+	<property name="args.input" value="${build.file.dir}/document.ditamap"/>
+
+
+	<!--
+		Minimal classpath to invoke DITA OT via ANT.
+	-->
+	<path id="dita.ot.classpath">
+		<pathelement location="${dita.dir}"/>
+		<pathelement location="${dita.dir}/lib/ant-1.9.4.jar"/>
+		<pathelement location="${dita.dir}/lib/saxon-9.1.0.8-dom.jar"/>
+		<pathelement location="${dita.dir}/lib/ant-apache-resolver-1.9.4.jar"/>
+		<pathelement location="${dita.dir}/lib/dost-configuration.jar"/>
+		<pathelement location="${dita.dir}/lib/saxon-9.1.0.8.jar"/>
+		<pathelement location="${dita.dir}/lib/ant-launcher.jar"/>
+		<pathelement location="${dita.dir}/lib/dost.jar"/>
+		<pathelement location="${dita.dir}/lib/xercesImpl-2.11.0.jar"/>
+		<pathelement location="${dita.dir}/lib/commons-codec-1.9.jar"/>
+		<pathelement location="${dita.dir}/lib/icu4j-54.1.jar"/>
+		<pathelement location="${dita.dir}/lib/xml-apis-1.4.01.jar"/>
+		<pathelement location="${dita.dir}/lib/commons-io-2.4.jar"/>
+		<pathelement location="${dita.dir}/lib/xml-resolver-1.2.jar"/>
+		<pathelement location="${dita.dir}/resources"/>
+	</path>
+
+
+	<!--
+		We will not ignore any rules by default. Alter this as necessary.
+	-->
+	<property name="args.validate.ignore.rules" value=""/>
+
+
+	<!--
+		Default target to validate and build HTML and PDF documents
+	-->
+	<target name="build" depends="validate,html,pdf" />
+
+	<!--
+		Target to build an HTML document
+	-->
+	<target name="html">
+		 <java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
+				<arg value="-Dargs.input=${args.input}"/>
+				<arg value="-Ddita.dir=${dita.dir}"/>
+				<arg value="-buildfile"/>
+				<arg value="${dita.dir}/build.xml"/>
+				<arg value="-Dgenerate-debug-attributes=false"/>
+				<arg value="-Doutput.dir=out/html"/>
+				<arg value="-Dtranstype=html5"/>
+			</java>
+	</target>
+
+	<!--
+		Target to build a PDF document
+	-->
+	<target name="pdf">
+		<java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
+				<arg value="-Dargs.input=${args.input}"/>
+				<arg value="-Ddita.dir=${dita.dir}"/>
+				<arg value="-buildfile"/>
+				<arg value="${dita.dir}/build.xml"/>
+				<arg value="-Dgenerate-debug-attributes=false"/>
+				<arg value="-Doutput.dir=out/pdf"/>
+				<arg value="-Dtranstype=pdf"/>
+			</java>
+	</target>
+
+
+	<!--
+		Target to validate a document
+	-->
+	<target name="validate">
+
+		<java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
+				<arg value="-Dargs.input=${args.input}"/>
+				<arg value="-Ddita.dir=${dita.dir}"/>
+				<arg value="-buildfile"/>
+				<arg value="${dita.dir}/build.xml"/>
+				<arg value="-Dgenerate-debug-attributes=false"/>
+				<arg value="-Doutput.dir=out/svrl"/>
+				<arg value="-Dtranstype=svrl-echo"/>
+
+				<!-- validation transform specific parameters -->
+				<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
+				<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |ID|IoT|JSON|Java|Javadoc|JavaScript|XML"/>
+				<arg value="-Dargs.validate.mode=default" />
+
+				<!-- Run the transform quietly to avoid verbose output. -->
+				<arg value="-S"/>
+				<arg value="-q"/>
+
+			</java>
+	</target>
+
+</project>

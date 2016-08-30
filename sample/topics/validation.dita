@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="validation">
+	<title>Introduction</title>
+	<body>
+			<p>
+				This document is used to test validator rules with both  positive and negative test cases.
+			</p>
+      <p>
+        A complete list of rules covered by the DITA validator can be found in the <xref href="./validation-error-messages.dita" format="dita">error table</xref>.
+        The following <codeph>&lt;chapters&gt;</codeph> contain a set of test DITA <codeph>&lt;topics&gt;</codeph>. Each  demonstrating a broken validation rule.
+      </p>
+      <p>
+        The <codeph>&lt;topic&gt;</codeph> files are sorted as follows:
+      </p>
+      <ul>
+        <li> The base validation DITA-OT plugin (<codeph>com.here.validate.svrl</codeph>) &#x2013; this  <codeph>&lt;chapter&gt;</codeph> contains a set of common validator rules applicable all users.
+        The rules are grouped thematically according to the name of the associated
+          <codeph>&lt;active-pattern&gt;</codeph> within the XSL stylesheets of the plugin and then
+            are listed alphabetically by <codeph>rule-id</codeph> within the group. The following types of validation rules are supported:
+             <ul>
+              <li><codeph>style</codeph> &#x2013; Style rules enforce a standardized look
+              and feel across DITA elements and ensure a better SEO and consistency. Alteration or removal of these rules should not effect ability of DITA-OT
+              to create a valid document.
+
+              </li>
+                <li><codeph>structure</codeph> &#x2013; Structure rules offer an error
+                reporting mechanism against fatal changes which would result in an invalid DITA document.  If these rules are altered or removed, errors will not be caught up-front and  DITA-OT will not be able to build a valid document. Examples include a <codeph>conref</codeph> link to a non-existent topic or an attempt to create a  <codeph>table</codeph> containing no <codeph>row</codeph> elements.
+
+              </li>
+                <li><codeph>content</codeph> &#x2013; These rules check the text within the DITA elements themselves, for example spelling and grammatical errors.
+
+              </li>
+          </ul>
+        </li>
+        <li> A sample extended plugin (<codeph>com.here.validate.svrl.overrides</codeph>) &#x2013; This  <codeph>&lt;chapter&gt;</codeph> shows how to modify, relax or remove existing validator rules and create additional custom validator rules.
+          The custom rules are listed alphabetically by <codeph>rule-id</codeph>.
+        </li>
+      </ul>
+	</body>
+</topic>

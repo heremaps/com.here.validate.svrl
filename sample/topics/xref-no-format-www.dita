@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-no-format-www">
+	<title>xref-no-format - WWW link</title>
+	<body>
+		<p>
+			&lt;xref&gt; Any xref referencing a URL should have a format property
+		</p>
+     <section id="good">
+      <title>Good xrefs</title>
+			<p><xref format="html" href="http://maps.here.com" scope="external">Sample conformant link http://maps.here.com .</xref></p>
+			<p><xref format="html" href="https://maps.here.com:443" scope="external">Sample conformant www link.</xref></p>
+    </section>
+    <section id="bad">
+      <title>Bad xrefs</title>
+			<p><xref href="http://maps.here.com" scope="external">Sample non-conformant link http://maps.here.com .</xref></p>
+			<p><xref href="https://maps.here.com:443" scope="external">Sample conformant www link.</xref></p>
+    </section>
+	</body>
+</topic>

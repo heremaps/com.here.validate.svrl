@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd">
+<bookmap>
+	<booktitle>
+		<mainbooktitle>DITA Validator Overrides</mainbooktitle>
+		<booktitlealt>Test Document</booktitlealt>
+		<booktitlealt>
+			<ph>Version 1.0</ph>
+		</booktitlealt>
+	</booktitle>
+	<bookmeta>
+		<data>FINAL</data>
+		<data>&#xA0;</data>
+	</bookmeta>
+	<frontmatter>
+		<booklists>
+			<toc linking="targetonly"/>
+		</booklists>
+	</frontmatter>
+	<chapter format="dita" type="topic" navtitle="Introduction">
+		<topicref format="dita" type="topic" href="topics/validation.dita"/>
+		<topicref format="dita" type="topic" href="topics/validation-error-messages.dita"/>
+	</chapter>
+	<chapter navtitle="com.here.validate.svrl">
+
+		<topicref navtitle="common-style-rules">
+			<topicref format="dita" type="topic" href="topics/colsep-invalid.dita"/>
+			<topicref format="dita" type="topic" href="topics/conref-not-lower-case.dita"/>
+			<topicref format="dita" type="topic" href="topics/fig-id-invalid.dita"/>
+			<topicref format="dita" type="topic" href="topics/href-not-lower-case-image.dita"/>
+			<topicref format="dita" type="topic" href="topics/href-not-lower-case-xref.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-dl.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-ol.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-paragraph.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-row.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-section.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-sl.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-topic.dita"/>
+			<topicref format="dita" type="topic" href="topics/id-not-lower-case-ul.dita"/>
+			<!--id-not-unique-bad breaks the build -->
+			<topicref format="dita" type="topic" href="topics/id-not-unique.dita"/>
+
+
+			<topicref format="dita" type="topic" href="topics/rowsep-invalid.dita"/>
+			<topicref format="dita" type="topic" href="topics/table-id-invalid.dita"/>
+		</topicref>
+		<topicref navtitle="codeblock-style-rules">
+			<topicref format="dita" type="topic" href="topics/codeblock-outputclass-missing.dita"/>
+			<topicref format="dita" type="topic" href="topics/codeblock-scale-missing.dita"/>
+		</topicref>
+		<topicref navtitle="codeblock-structure-rules">
+			<!-- coderef-href-ref-file-not-found -->
+		</topicref>
+		<topicref navtitle="common-content-rules">
+			<topicref format="dita" type="topic" href="topics/comment-fixme.dita"/>
+			<topicref format="dita" type="topic" href="topics/comment-todo.dita"/>
+			<topicref format="dita" type="topic" href="topics/incorrect-spelling.dita"/>
+			<topicref format="dita" type="topic" href="topics/incorrect-capitilzation.dita"/>
+			<topicref format="dita" type="topic" href="topics/running-text-fixme.dita"/>
+			<topicref format="dita" type="topic" href="topics/running-text-lorem-ipsum.dita"/>
+			<topicref format="dita" type="topic" href="topics/running-text-todo.dita"/>
+		</topicref>
+		<topicref navtitle="common-structure-rules">
+			<!-- conref-external-path-not-found-bad breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-external-file-not-found.dita"/>
+			<!-- conref-external-id-not-found-no-exists breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-external-id-not-found.dita"/>
+			<!-- conref-external-id-mismatch-bad breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-external-id-mismatch.dita"/>
+			<!-- conref-external-path-not-found-bad breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-external-path-not-found.dita"/>
+			<!-- conref-external-path-mismatch-bad breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-external-path-mismatch.dita"/>
+			<!-- conref-internal-id-not-found-no-exists breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-internal-id-not-found.dita"/>
+			<!-- conref-internal-path-not-found-bad breaks the build -->
+			<topicref format="dita" type="topic" href="topics/conref-internal-path-not-found.dita"/>
+		</topicref>
+		<topicref navtitle="fop-structure-rules">
+			<topicref format="dita" type="topic" href="topics/colspec-colnum-not-unique.dita"/>
+			<topicref format="dita" type="topic" href="topics/list-all-li-filtered.dita"/>
+			<topicref format="dita" type="topic" href="topics/table-all-rows-filtered.dita"/>
+			<topicref format="dita" type="topic" href="topics/tgroup-cols-colspec-mismatch.dita"/>
+			<topicref format="dita" type="topic" href="topics/tgroup-cols-entry-mismatch.dita"/>
+		</topicref>
+		<topicref navtitle="topic-style-rules">
+			<topicref format="dita" type="topic" href="topics/FILE-NOT-LOWER-CASE.dita"/>
+			<topicref format="dita" type="topic" href="topics/topic-id-missing.dita"/>
+		</topicref>
+
+
+		<topicref navtitle="image-style-rules">
+			<topicref format="dita" type="topic" href="topics/image-file-type-not-supported.dita"/>
+		</topicref>
+		<topicref navtitle="image-structure-rules">
+			<topicref format="dita" type="topic" href="topics/image-file-not-found.dita"/>
+		</topicref>
+
+
+		<topicref navtitle="section-style-rules">
+			<topicref format="dita" type="topic" href="topics/section-id-missing.dita"/>
+		</topicref>
+		<topicref navtitle="xref-style-rules">
+			<topicref format="dita" type="topic" href="topics/xref-no-format-internal.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-no-format-other.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-no-format-www.dita"/>
+		</topicref>
+		<topicref navtitle="xref-structure-rules">
+			<topicref format="dita" type="topic" href="topics/xref-external-file-not-found.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-external-id-not-found.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-external-path-not-found.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-internal-id-not-found.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-internal-path-not-found.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-www-format-invalid.dita"/>
+			<topicref format="dita" type="topic" href="topics/xref-www-scope-invalid.dita"/>
+		</topicref>
+	</chapter>
+	<chapter navtitle="com.here.validate.svrl.overrides">
+		<!-- element-blacklisted-concept breaks the build -->
+		<!-- element-blacklisted-task breaks the build -->
+		<topicref format="dita" type="topic" href="topics/element-blacklisted.dita"/>
+		<topicref format="dita" type="topic" href="topics/id-blacklisted.dita"/>
+		<topicref format="dita" type="topic" href="topics/image-product-filtered-not-included.dita"/>
+	</chapter>
+
+
+	<chapter href="topics/includes.dita" processing-role="resource-only"/>
+</bookmap>

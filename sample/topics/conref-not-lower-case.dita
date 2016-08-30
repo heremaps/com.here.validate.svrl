@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="conref-not-lower-case">
+	<title>conref-not-lower-case</title>
+	<body>
+		<p>
+			For a conref to an external file, the file must be named in lowercase, a-z only, words separated by hyphens
+		</p>
+     <section id="good">
+      <title>Good xref</title>
+
+      <p conref="./conref-internal-id-not-found.dita#href"/>
+
+    </section>
+    <section id="bad">
+      <title>Bad xref</title>
+      <p conref="./FILE-NOT-LOWER-CASE.dita#href"/>
+    </section>
+	</body>
+</topic>

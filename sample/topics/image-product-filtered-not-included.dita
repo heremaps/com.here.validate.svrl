@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="image-product-filtered-not-included">
+	<title>image-product-filtered-not-included</title>
+	<body>
+		<p>
+		&lt;image&gt; - Images filtered by product should be placed in an includes file
+		</p>
+
+    <section id="includes">
+      <!-- the ID above is usually reserved for inclusion in other topics-->
+      <title>Good image</title>
+      <fig id="fig-good" conref="includes.dita#includes/fig-good"/>
+    </section>
+  <section id="bad-images">
+    <title>Bad images</title>
+      <fig id="fig-bad">
+        <title>Before the Change</title>
+        <image product="hlp" href="../graphics/something-before.png" platform="pdfonly" width="100"/>
+        <image product="hlp"  href="../graphics/something-before.png" platform="htmlonly"/>
+      </fig>
+    </section>
+  </body>
+</topic>

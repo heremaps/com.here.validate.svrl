@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of the DITA Validator project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<langlist>
+  <lang filename="de.xml" xml:lang="de"/>
+  <lang filename="en.xml" xml:lang="en"/>
+  <lang filename="en.xml" xml:lang="en-us"/>
+  <lang filename="fr.xml" xml:lang="fr"/>
+  <lang filename="kr.xml" xml:lang="kr"/>
+</langlist>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of the DITA Validator project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<plugin id="com.here.validate.svrl">
+	<!--
+		Define package details.
+	-->
+	<feature extension="package.version" value="1.0.0"/>
+
+	<!--
+		Add new value to list of valid transformation type names.
+
+		See also: http://www.dita-ot.org/2.2/dev_ref/plugin-newtranstype.html
+	-->
+	<feature extension="dita.conductor.transtype.check" value="svrl"/>
+	<feature extension="dita.conductor.transtype.check" value="svrl-echo"/>
+	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
+
+	<transtype name="svrl" abstract="false" desc="Schematron Validation Report Language">
+		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
+		<param name="svrl.filter.file" desc="Specifies the location of the XSL file used to echo output" type="file"/>
+		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
+		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
+		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
+
+	</transtype>
+	<transtype name="svrl-echo" abstract="false" desc="Filters SVRL validation and echoes the results to Standard output (stdout)">
+		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
+		<param name="svrl.filter.file" desc="Specifies the location of the XSL file used to echo output" type="file"/>
+		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
+		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
+		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
+		<param name="args.validate.mode" type="enum" desc="Validation reporting mode">
+			<val desc="Outputs errors and warnings. Fails on errors and warnings.">strict</val>
+			<val desc="Outputs errors and warnings. Fails on errors only" default="true">default</val>
+			<val desc="Outputs errors only. Fails on Errors only">lax</val>
+			<val desc="Report all errors at warning level. Never fail">report-only</val>
+		</param>
+	</transtype>
+
+
+	<!-- extensions -->
+
+	<!--
+		When the plug-in is integrated (using ant -f integrator.xml), the
+		imports from the com.here.pdf/build.xml are copied into
+		dita_ot/build.xml (the main DITA OT document build script).
+
+		This makes targets in com.here.pdf/build.xml such as
+		com.here.pdf/build_template.xml available
+		to any other processing.
+
+		See also: http://www.dita-ot.org/2.2/dev_ref/plugin-anttarget.html
+	-->
+	<feature extension="dita.conductor.target.relative" value="integrator.xml" type="file"/>
+
+
+
+	<template file="build_template.xml" type="file"/>
+</plugin>

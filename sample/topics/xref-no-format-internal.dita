@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-no-format-internal">
+  <title>xref-no-format - internal link </title>
+  <body>
+    <p>
+      &lt;xref&gt; Any file reference should have a format property
+    </p>
+    <section id="good">
+      <title>Good xref</title>
+      <p><xref format="dita" href="id-not-unique.dita">Sample conformant link to the Rule 19 topic.</xref></p>
+      <p><xref format="dita" href="id-not-unique.dita#good">Sample conformant link to the Rule 19 topic's "good" section.</xref></p>
+      <p><xref format="dita" href="id-not-unique.dita#good/p1">Sample conformant link to the Rule 19 topic's "good" section p1 subelement.</xref></p>
+    </section>
+    <section id="bad">
+      <title>Bad xref</title>
+      <p><xref href="id-not-unique.dita">Sample non-conformant link to the Rule 19 topic.</xref></p>
+      <p><xref href="id-not-unique.dita#good">Sample non-conformant link to the Rule 19 topic's "good" section.</xref></p>
+      <p><xref href="id-not-unique.dita#good/p1">Sample non-conformant link to the Rule 19 topic's "good" section p1 subelement.</xref></p>
+    </section>
+  </body>
+</topic>

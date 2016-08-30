@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="tgroup-cols-entry-mismatch">
+	<title>tgroup-cols-entry-mismatch</title>
+	<body>
+		<p>
+			{tgroup} mismatch - cols="x" but y {entry} elements found {table}.
+		</p>
+    <section id="good">
+      <title>Good Table</title>
+
+
+       <table id="table-good">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+
+      <table id="table-good-too-few" >
+        <tgroup cols="3">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <colspec colname="c2" colnum="2" colwidth="336pt"/>
+          <colspec colname="c3" colnum="3" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </section>
+    <section id="bad">
+      <title>Bad ids</title>
+        <p>
+          <b>Failing test will break the build</b> - see tgroup-cols-entry-mismatch-bad.dita
+        </p>
+    </section>
+	</body>
+</topic>

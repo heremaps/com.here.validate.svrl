@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-no-format-other">
+	<title>xref-no-format - Other link </title>
+	<body>
+		<p>
+			&lt;xref&gt; Any other element using a href should have a format property
+		</p>
+     <section id="good">
+      <title>Good xrefs</title>
+			<p><xref format="dita" href="#bad">Sample conformant link to this topic's "bad" section.</xref></p>
+			<p><xref format="mailto" href="mailto:apf@here.com" scope="external">Sample conformant mailto: link.</xref></p>
+    </section>
+    <section id="bad">
+      <title>Bad xrefs</title>
+			<p><xref href="#good">Sample non-conformant link this topic's "good" section.</xref></p>
+			<p><xref href="mailto:apf@here.com" scope="external">Sample non-conformant mailto: link.</xref></p>
+    </section>
+	</body>
+</topic>

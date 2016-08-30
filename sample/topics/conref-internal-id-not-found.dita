@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="conref-internal-id-not-found">
+  <title>conref-internal-id-not-found</title>
+  <body>
+    <p>
+      For a conref within a single file, the <codeph>id</codeph> attribute linked to must exist
+    </p>
+     <section id="good">
+      <title>Good conref</title>
+      <p id="href">
+        Hello World!
+      </p>
+      <p conref="#href"/>
+    </section>
+    <section id="bad">
+      <title>Bad conref</title>
+      <!-- <p id="bad-conref" conref="#no-href"/> -->
+      <p>
+        <b>Failing test will break the build</b> - see conref-internal-id-not-found-no-exists.dita
+      </p>
+    </section>
+  </body>
+</topic>

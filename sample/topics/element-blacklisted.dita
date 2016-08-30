@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="element-blacklisted">
+  <title>element-blacklisted</title>
+  <body>
+    <p>
+       &lt;concept&gt; and  &lt;task&gt; are banned elements.
+       Take a look at the following files:
+       <ul>
+         <li><codeph>element-blacklisted-concept.dita</codeph></li>
+         <li><codeph>element-blacklisted-task.dita</codeph></li>
+       </ul>
+    </p>
+  </body>
+</topic>

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="validation-error-messages">
+	<title>Validator Error Messages</title>
+	<body>
+		<p>
+			The following table lists the validator error messages by message ID.
+		</p>
+		<table frame="topbot" rowsep="1" colsep="1" id="table-validator-error-messages">
+			<title>Validator Error Messages</title>
+			<tgroup cols="3">
+				<colspec colname="c1" colnum="1" colwidth="1.0*"/>
+				<colspec colname="c2" colnum="2" colwidth="2.0*"/>
+				<colspec colname="c3" colnum="3" colwidth="4.0*"/>
+				<thead>
+					<row>
+						<entry>Message ID</entry>
+						<entry>Message</entry>
+						<entry>Corrective Action/Comment</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>a-followed-by-vowel</entry>
+						<entry>In the following text, change 'a' to 'an' where appropriate:</entry>
+						<entry>
+							<p>
+								In English, the general guideline is that the indefinite article in front of count nouns that begin
+								with a vowel sound should be 'an'. The rule also applies to acronyms.
+								For a good general discussion of the guidelines,
+								see <xref format="html" href="https://owl.english.purdue.edu/owl/resource/540/01/" scope="external"></xref>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>an-followed-by-consonant</entry>
+						<entry>In the following text, change 'an' to 'a' where appropriate:</entry>
+						<entry>
+							<p>
+								In English, the general guideline is that the indefinite article in front of count nouns that begin
+								with a consonant sound should be 'a'. The rule also applies to acronyms.
+								For a good general discussion of the guidelines,
+								see <xref format="html" href="https://owl.english.purdue.edu/owl/resource/540/01/" scope="external"></xref>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>chapter-href-missing</entry>
+						<entry>Always provide an href attribute in &lt;chapter&gt; elements.</entry>
+						<entry>
+							When you add a <codeph>&lt;chapter&gt;</codeph> element to an <codeph>ditamap</codeph>, you must specify a
+							<codeph>href="{file_name}"</codeph> key/value pair that defines the content that appears on the chapter page
+							in the PDF (and on the chapter landing page in HTML).
+							Alternatively, you can define the following two attributes: <codeph>navtitle="{navtitle_name}" lockitle="yes"</codeph>.
+							This approach has the effect of adding a title but not content on the chapter page/node.
+							For more information on the <codeph>&lt;chapter&gt;</codeph> element, see <xref format="html"
+								href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/chapter.html" scope="external">&lt;chapter&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>codeblock-outputclass-missing</entry>
+						<entry>
+							<!-- ignore-rule:incorrect-capitalization -->
+							Always provide an outputclass attribute in &lt;codeblock&gt; elements (for example, add outputclass="language-javascript").</entry>
+						<entry>
+							This <codeph>outputclass</codeph> attribute is used for decorating the HTML output to make code easier to read.
+							If the content in the <codeph>&lt;codeblock&gt;</codeph> element is JSON use the key value pair
+							<codeph>outputclass="language-javascript"</codeph>.
+							For more information on the <codeph>&lt;codeblock&gt;</codeph> element, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/codeblock.html" scope="external">&lt;codeblock&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>codeblock-scale-missing</entry>
+						<entry>Always provide a scale attribute in &lt;@NAME&gt; elements (for example, add scale="80").</entry>
+						<entry>
+							This <codeph>scale</codeph> attribute reduces the size of the code text in the output to make it easier to
+							read (the values are percent). We recommend you set the scale to 80 percent.
+							For more information on the <codeph>&lt;codeblock&gt;</codeph> element, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/codeblock.html" scope="external">&lt;codeblock&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>coderef-href-ref-file-not-found</entry>
+						<entry>The linked source file does not exist. Check the related folder for the missing file and make sure the file name is correct.</entry>
+						<entry>
+							The <codeph>&lt;coderef&gt;</codeph> element is generally used for importing a source file when the
+							validator builds the document. When you get this error, the reference cannot be resolved.
+							Note that DITA does not allow you to reference files outside the root folder of the document.
+							By default, these files should be in the <codeph>source</codeph> folder under the document root folder.
+							For more information on the <codeph>&lt;coderef&gt;</codeph> element, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/codeblock.html" scope="external">&lt;codeblock&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>colspec-colnum-not-unique</entry>
+						<entry>The key/value pair colnum="{number}" is not unique. Make sure there are no duplicates.</entry>
+						<entry>
+							In order for the validator to render table content properly, these key/value pairs must be unique.
+							For instance, the following codeblock illustrates well-formated DITA that complies with this requirement.
+<codeblock outputclass="language-xml" scale="80">
+	&lt;colspec colnum="1"/&gt;
+	&lt;colspec colnum="2"/&gt;
+	&lt;colspec colnum="3"/&gt;
+</codeblock>
+							<p>
+								For more information on the <codeph>&lt;table&gt;</codeph> element, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/table.html" scope="external">&lt;table&gt;</xref>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-external-file-not-found</entry>
+						<entry>The linked file does not exist. Check the related folder for the missing file and make sure the file name is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the referenced file cannot be resolved. Note that DITA does not allow you to reference files
+								outside the root folder of the document. By default, this kind of content should be in the
+								<codeph>includes.dita</codeph> file. Note that the standard naming and location conventions may vary depending
+								on whether the count is generated from code comments.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-external-id-mismatch</entry>
+						<entry>
+							The conref source &lt;{name}&gt; and the destination &lt;{name}&gt; are not the same type.
+							Check to make sure the referenced elements are the same.
+						</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the referenced ID in the source file specified in the <codeph>conref</codeph>
+								attribute is an ID for an element that is of a different type than the element with the
+								<codeph>conref</codeph> attribute. DITA requires that <codeph>conref</codeph> attributes
+								point at the same kind of element. For instance,
+								<codeph>&lt;p conref="includes.dita#includes/submission-note"&gt;</codeph>
+								needs to reference an element in the <codeph>includes.dita</codeph> file that is formatted as
+								follows <codeph>&lt;p id="submission-note"&gt;CONTENT&lt;/p&gt;</codeph>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-external-id-not-found</entry>
+						<entry>The referenced ID does not exist in the source file. Make sure the ID value specified is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the referenced ID in the source file specified in the <codeph>conref</codeph>
+								attribute cannot be resolved. For instance, if you define the <codeph>conref</codeph> attribute as follows
+								<codeph>&lt;p conref="includes.dita#includes/submission-note"&gt;</codeph> and you get this error, then
+								the <codeph>includes.dita</codeph> file does not have a <codeph>&lt;p&gt;</codeph> whose <codeph>id</codeph>
+								is set to <codeph>id="submission-note"</codeph>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-external-path-not-found</entry>
+						<entry>The referenced path does not exist. Make sure the path is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the source file specified in the <codeph>conref</codeph>
+								attribute cannot be resolved. For instance, if you define the <codeph>conref</codeph> attribute as follows
+								<codeph>&lt;p conref="includes.dita#includes/submission-note"&gt;</codeph> and you get this error, then
+								the validator cannot find the <codeph>includes.dita</codeph> file. Note that DITA does
+								not allow you to reference files outside the root folder of the document.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-external-path-mismatch</entry>
+						<entry>The conref source &lt;{name}&gt; and the destination &lt;{name}&gt; are not the same type. Make sure the path is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the referenced ID in the source file specified in the <codeph>conref</codeph>
+								attribute is an ID for an element that is of a different type than the element with the
+								<codeph>conref</codeph> attribute. DITA requires that <codeph>conref</codeph> attributes
+								point at the same kind of element. For instance,
+								<codeph>&lt;p conref="includes.dita#includes/submission-note"&gt;</codeph>
+								needs to reference an element in the <codeph>includes.dita</codeph> file that is formatted as
+								follows <codeph>&lt;p id="submission-note"&gt;CONTENT&lt;/p&gt;</codeph>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-internal-id-not-found</entry>
+						<entry>The referenced ID does not exist in this file. Make sure the ID value specified is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the referenced ID specified in the <codeph>conref</codeph>
+								attribute cannot be resolved. For instance, if you define the <codeph>conref</codeph> attribute as follows
+								<codeph>&lt;p conref="submission-note"&gt;</codeph> and you get this error, then
+								the source file does not have a <codeph>&lt;p&gt;</codeph> whose <codeph>id</codeph>
+								is set to <codeph>id="submission-note"</codeph>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-internal-path-mismatch</entry>
+						<entry>The conref source &lt;{name}&gt; and the destination &lt;{name}&gt; are not the same type. Make sure the path is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the referenced ID specified in the <codeph>conref</codeph>
+								attribute is an ID for an element that is of a different type than the element with the
+								<codeph>conref</codeph> attribute. DITA requires that <codeph>conref</codeph> attributes
+								point at the same kind of element. For instance,
+								<codeph>&lt;p conref="submission-note"&gt;</codeph>
+								needs to reference an element that is formatted as follows
+								<codeph>&lt;p id="submission-note"&gt;CONTENT&lt;/p&gt;</codeph>.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-internal-path-not-found</entry>
+						<entry>The referenced path does not exist in this file. Make sure the path is correct.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the value specified in the <codeph>conref</codeph>
+								attribute cannot be resolved. For instance, if you define the <codeph>conref</codeph> attribute as follows
+								<codeph>&lt;p conref="&lt;file_name&gt;#submission-note"&gt;</codeph> and you get this error, then
+								the validator cannot resolve the path.
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>conref-not-lower-case</entry>
+						<entry>The specification of conref="{name}" is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</entry>
+						<entry>
+							<p>
+								The <codeph>conref</codeph> attribute is used for importing documentation segements reused across the document
+								when the validator builds the document. For more information on using the
+								<codeph>conref</codeph> attribute, see
+								<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/conref.html" scope="external">conref</xref>.
+							</p>
+							<p>
+								When you get this error, the source file specified in the <codeph>conref</codeph>
+								attribute references a file with an invalid name.
+								For instance, if you define the <codeph>conref</codeph> attribute as follows
+								<codeph>&lt;p conref="&lt;InvalidFileName&gt;#invalid-file-name/submission-note"&gt;</codeph>
+								the file name does not comply with <keyword keyref="brand-name"/> file naming guidelines.
+								<ul>
+									<li> Only use lower case letters in a file name.</li>
+									<li> If a file name contains multiple words, use a hyphen to separate them, for example,
+											<codeph>overview-map.dita</codeph> or <codeph>request-map-report.dita</codeph>. </li>
+									<li> The file type (and file extension) for all DITA XML files in the repository must be
+											<i>.dita</i> or <i>.ditamap</i>. </li>
+									<li> Base the file name on the main topic title. If the title is <codeph>Naming
+						          Conventions</codeph> then the topic ID should be <codeph>naming-conventions</codeph> and
+						        the file name should be <codeph>naming-conventions.dita</codeph>.</li>
+									<li> Do not include arbitrary strings to indicate the contents of the chapter, topic
+										type, etc. </li>
+									<li> Do not include computer-generated text such as <codeph>topic-2</codeph> or
+											<codeph>GUID-1234-5678-1234</codeph>. </li>
+									<li> Do not use non-standard acronyms, for instance, <codeph>border-xing</codeph>
+										instead of <codeph>border-crossing</codeph>.</li>
+								</ul>
+
+							</p>
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<!-- ignore-rule:running-text-fixme,comment-fixme -->
+							comment-fixme
+						</entry>
+						<entry><!-- ignore-rule:running-text-fixme,comment-fixme -->
+							Found 'FIXME' comments within the &lt;{name}&gt; element - fix as requested and delete the comment.</entry>
+						<entry>
+							Replace the draft content with the correct information.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<!-- ignore-rule:running-text-todo,comment-todo -->
+							comment-todo
+						</entry>
+						<entry>
+							<!-- ignore-rule:running-text-todo,comment-todo -->
+							Found 'TODO' within the following text of the &lt;{name}&gt; element - fix as requested and delete the comment.</entry>
+						<entry>
+							Replace the draft content with the correct information.
+						</entry>
+					</row>
+
+					<row>
+						<entry>element-blacklisted</entry>
+						<entry>
+							The &lt;{element_name}&gt; element is not compliant with <keyword keyref="brand-name"/> DITA documentation standards.
+							Check the Documentation Platform User Guide.
+						</entry>
+						<entry>
+							While the DITA open standard supports a large number of elements, the validator only supports a
+							subset of these elements in order to make the documents more consistent. Replace the rejected element with a supported
+							element.
+						</entry>
+					</row>
+					<row>
+						<entry>fig-id-invalid</entry>
+						<entry>ID values must start with 'fig-' in all &lt;fig&gt; elements.</entry>
+						<entry>
+							In order to assist with search engine optimization (SEO) of content,
+							all <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/fig.html" scope="external">&lt;figure&gt;</xref> elements must have an ID.
+						</entry>
+					</row>
+
+					<row>
+						<entry>file-not-lower-case</entry>
+						<entry>Found file '{name}' with invalid name, allowed characters in file names are: lowercase, a-z only, words separated by hyphens.</entry>
+						<entry>
+							In order to assist with search engine optimization (SEO) of content,
+							file names must be lower case.
+							Fix the name as appropriate.
+						</entry>
+					</row>
+					<row>
+						<entry>href-not-lower-case</entry>
+						<entry>The value provided in href="{name}" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.</entry>
+						<entry>
+							The file specified in the <codeph>href</codeph> attribute does not comply with the file naming conventions. Fix the name as appropriate.
+						</entry>
+					</row>
+					<row>
+						<entry>href-file-not-found</entry>
+						<entry>The file specified in href="{name}" does not exist. Check the related folder for the missing file and make sure the file name is correct.</entry>
+						<entry>
+							The validator cannot find the file specified in the <codeph>href</codeph> attribute.
+							Make sure the file is in the indicated path.
+							Note that DITA does not allow you to reference files outside the root folder of the document.
+						</entry>
+					</row>
+					<row>
+						<entry>id-blacklisted</entry>
+						<entry>ID values must not contain the word 'content'. Change the ID value.</entry>
+						<entry>
+							Some of the delivery channels that <keyword keyref="brand-name"/> uses to deliver content to customers require that
+							this content not contain certain blacklisted words in order for the channel to accept the content.
+							Change the word content to another ID.
+							For more information on element IDs, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html" scope="external">id</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>id-not-lower-case</entry>
+						<entry>The ID value in id="@ID" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.</entry>
+						<entry>
+							In order to assist with search engine optimization (SEO) of content,
+							IDs must comply with the ID conventions.
+							Fix the name as appropriate.
+
+							<ul>
+									<li> Only use lower case letters in a file name.</li>
+									<li> If a file name contains multiple words, use a hyphen to separate them, for example,
+											<codeph>overview-map.dita</codeph> or <codeph>request-map-report.dita</codeph>. </li>
+									<li> The file type (and file extension) for all DITA XML files in the repository must be
+											<i>.dita</i> or <i>.ditamap</i>. </li>
+									<li> Base the file name on the main topic title. If the title is <codeph>Naming
+						          Conventions</codeph> then the topic ID should be <codeph>naming-conventions</codeph> and
+						        the file name should be <codeph>naming-conventions.dita</codeph>.</li>
+									<li> Do not include arbitrary strings to indicate the contents of the chapter, topic
+										type, etc. </li>
+									<li> Do not include computer-generated text such as <codeph>topic-2</codeph> or
+											<codeph>GUID-1234-5678-1234</codeph>. </li>
+								</ul>
+							For more information on element IDs, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html" scope="external">id</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>id-not-unique</entry>
+						<entry>Found a duplicate ID with value '{name}', ID values must be unique within a file. Change the ID value.</entry>
+						<entry>
+							DITA requires that all IDs within a file must be unique. Change the ID value.
+							For more information on element IDs, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html" scope="external">id</xref>.
+						</entry>
+					</row>
+
+					<row>
+						<entry>incorrect-spelling</entry>
+						<entry>The word '{word}' is a spelling mistake in the following text:</entry>
+						<entry>
+							<!-- ignore-rule:sentence-capitalization-->
+							The indicated word is not spelled correctly. Fix the spelling.
+							<note type="note">
+								<keyword keyref="brand-name"/> developer documentation follows US English spelling conventions.
+							</note>
+						</entry>
+					</row>
+					<row>
+						<entry>incorrect-capitalization</entry>
+						<entry>The word '{word}' is incorrectly capitalized in the following text:</entry>
+						<entry>
+							The indicated word is not capitalized correctly. Fix the capitalization.
+						</entry>
+					</row>
+					<row>
+						<entry>image-file-type-not-supported</entry>
+						<entry>The value provided in href="{name}" specifies an unsupported file format (only *.jpg, *.jpeg or *.png are allowed). Change the format of the linked file.</entry>
+						<entry>
+							The validator ensures that only *.jpg, *.jpeg or *.png format files are used in
+							<keyword keyref="brand-name"/> developer document. Convert the image format to the correct format.
+						</entry>
+					</row>
+					<row>
+						<entry>image-href-ref-file-not-found</entry>
+						<entry>The linked image file does not exist. Check the graphics folder for the missing file and make sure the link and file name specified are correct.</entry>
+						<entry>
+							The validator cannot find the file specified in the <codeph>href</codeph> attribute.
+							Check the path to ensure the file is there.
+						</entry>
+					</row>
+					<row>
+						<entry>image-product-filtered-not-included</entry>
+						<entry>Found &lt;{element_name} product="{product_variant_name}"&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Add additional product attributes for the missing variants.</entry>
+						<entry>
+							The specified variant creation attributes result in a variant without an image. Specify an additional variant attribute to ensure the image
+							appears in all variants.
+							For more information on creating variants, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/common/about-ditaval.html" scope="external">ditavals</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>list-all-li-filtered</entry>
+						<entry>
+							Found only &lt;li product="{product_variant_name}"&gt; elements in &lt;{element_name}&gt;.
+							This results in an empty &lt;{element_name}&gt; for other variants.
+							Either add additional product attributes for the missing variants or add &lt;{element_name} product="{product_variant_name}"&gt;
+							to the appropriate list elements.
+						</entry>
+						<entry>
+							The specified variant creation attributes result in a variant with a list without list items.
+							Specify an additional variant attribute to ensure the list has items in all variants or remove the list entirely by
+							specifiying the appropriate attributes.
+							For more information on creating variants, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/common/about-ditaval.html" scope="external">ditavals</xref>.
+							For information on list items, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/li.html" scope="external">&lt;li&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<!-- ignore-rule:running-text-fixme,comment-fixme-->
+							running-text-fixme
+						</entry>
+						<entry>
+							<!-- ignore-rule:running-text-fixme,comment-fixme -->
+							Found 'FIXME' comments in the following text in this &lt;{name}&gt; element - fix as requested and delete the comment.</entry>
+						<entry>
+							Replace the draft content with the correct information.
+						</entry>
+					</row>
+					<row>
+						<entry>
+								<!-- ignore-rule:running-text-lorem-ipsum -->
+								running-text-lorem-ipsum
+							</entry>
+						<entry>Found dummy text in this &lt;{name}&gt; element, remove or replace with valid content.</entry>
+						<entry>
+							<!-- ignore-rule:running-text-lorem-ipsum -->
+							Replace the standard lorem ipsum filler text with the correct information.
+						</entry>
+					</row>
+
+					<row>
+						<entry>
+							<!-- ignore-rule:running-text-todo,comment-todo -->
+							running-text-todo</entry>
+						<entry>
+							<!-- ignore-rule:running-text-todo,comment-todo -->
+							Found 'TODO' comments in the following text in this &lt;{name}&gt; element - fix as requested and delete the comment.</entry>
+						<entry>
+							Replace the draft content with the correct information.
+						</entry>
+					</row>
+					<row>
+						<entry>section-id-missing</entry>
+						<entry>Always provide an <codeph>id</codeph> attribute in &lt;section&gt; elements.</entry>
+						<entry>
+							In order to assist with search engine optimization (SEO),
+							all <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/section.html" scope="external">&lt;section&gt;</xref> elements must have an ID.
+						</entry>
+					</row>
+					<row>
+						<entry>table-id-invalid</entry>
+						<entry>ID values must start with 'table-' in &lt;table&gt; elements.</entry>
+						<entry>
+							If you add an ID to a table, start the ID with the word 'table-'.
+							For more information on tables, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/table.html" scope="external">&lt;table&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>table-all-rows-filtered</entry>
+						<entry>
+							Found only &lt;row product="{product_variant_name}"&gt; elements in &lt;tbody&gt;.
+							This results in an empty &lt;tbody&gt; for other variants.
+							Either add additional product attributes for the missing variants or add &lt;table product="{product_variant_name}"&gt; to the appropriate elements.
+						</entry>
+						<entry>
+							The specified variant creation attributes result in a variant with a table without rows,
+							which results in a broken PDF build.
+							Specify an additional variant attribute to ensure the table has rows in all variants or
+							remove the table entirely by
+							specifiying the appropriate attributes.
+							For more information on creating variants, see <xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/common/about-ditaval.html" scope="external">ditavals</xref>.
+							For more information on tables, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/table.html" scope="external">&lt;table&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>tgroup-cols-colspec-mismatch</entry>
+						<entry>
+							The number of {name} &lt;colspec&gt; elements defined do not match the parent &lt;tgroup cols="{number}"&gt; attribute.
+							Make sure the number of &lt;colspec&gt; elements corresponds with the cols value.
+						</entry>
+						<entry>
+							In order to generate PDFs correctly, the number of &lt;colspec&gt; elements must match the number in
+							the &lt;tgroup cols="{number}"&gt; attribute.
+							For more information on tables, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/table.html" scope="external">&lt;table&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>tgroup-cols-entry-mismatch</entry>
+						<entry>
+							The number of {name} &lt;entry&gt; elements found do not match the parent &lt;tgroup cols="{number}"&gt; attribute.
+							Make sure the number of &lt;entry&gt; elements corresponds with the cols value.
+						</entry>
+						<entry>
+							In order to generate PDFs correctly, the number of &lt;entry&gt; elements in a
+							<codeph>&lt;row&gt;</codeph> element must match the number in
+							the &lt;tgroup cols="{number}"&gt; attribute.
+							For more information on tables, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/table.html" scope="external">&lt;table&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>topic-file-mismatch</entry>
+						<entry>
+							The value specified in id="{name}" does not match the file name: {file_name}.
+							Make sure the ID value and the file name are the same.
+						</entry>
+						<entry>
+							In order to assist with search engine optimization (SEO) of content, the ID for &lt;topic&gt; elements must be the same
+							as the file name, which also ends up by the name of the HTML file.
+							For more information on topics, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/topic.html" scope="external">&lt;topic&gt;</xref>.
+							For more information on element IDS, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html" scope="external">id</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>topicref-href-missing</entry>
+						<entry>Always provide an href attribute in &lt;{topicref}&gt; elements.</entry>
+						<entry>
+							DITA uses the <codeph>href</codeph> attribute to specify connections between
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/topicref.html" scope="external"><codeph>&lt;topicref&gt;</codeph></xref>
+							elements and a file.
+							Add an <codeph>href</codeph> attribute to the element and specify the appropriate value.
+							For more information on <codeph>&lt;topicref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/topicref.html" scope="external">&lt;topicref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-external-file-not-found</entry>
+						<entry>
+							The file specified in &lt;xref href="{name}"&gt; does not exist.
+							Check the related folder for the missing file and make sure the link and file name specified are correct.
+						</entry>
+						<entry>
+							When you get this error, the referenced file cannot be resolved. Note that DITA does not allow you to reference files
+							outside the root folder of the document. Make sure the path exists.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-external-id-not-found</entry>
+						<entry>The referenced ID in &lt;xref href="{name}"&gt; does not exist. Make sure the ID value specified is correct.</entry>
+						<entry>
+							When you get this error, the validator cannot resolve the ID
+							in the target file. Note that DITA does not allow you to reference files
+							outside the root folder of the document. Make sure the file exists and contains the ID.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-external-path-not-found</entry>
+						<entry>The referenced path in &lt;xref href="{name}"&gt; does not exist. Make sure the path specified is correct.</entry>
+						<entry>
+							When you get this error, the validator cannot resolve the ID
+							in the target file. Note that DITA does not allow you to reference files
+							outside the root folder of the document. Make sure the file exists and contains the ID.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-internal-id-not-found</entry>
+						<entry>The referenced ID in &lt;xref href="{name}"&gt; does not exist. Make sure the ID value specified is correct.</entry>
+						<entry>
+							When you get this error, the validator cannot resolve the ID
+							in the file. Make sure the file contains the ID.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-internal-path-not-found</entry>
+						<entry>The referenced path in &lt;xref href="{name}"&gt; does not exist. Make sure the path is correct.</entry>
+						<entry>
+							When you get this error, the validator cannot resolve the provided path
+							in the file. Make sure the file contains the path.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-no-format</entry>
+						<entry>Always provide a format attribute in &lt;xref&gt; elements, (for example, format="dita" or format="html").</entry>
+						<entry>
+							Specify a value for the <codeph>format</codeph> attribute for <codeph>&lt;xref&gt;</codeph> elements.
+							Examples of valid values include <codeph>dita</codeph>, <codeph>html</codeph>, and
+							<codeph>pdf</codeph>.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-www-format-invalid</entry>
+						<entry>
+							&lt;xref href="{name}" format="dita"&gt;
+							The specified value points to an external file and cannot have the attribute key/value pair format="dita".
+							Change the format value as appropriate (for example, format="html").
+						</entry>
+						<entry>
+							Specify a value for the <codeph>format</codeph> attribute for <codeph>&lt;xref&gt;</codeph> elements.
+							Examples of valid values include <codeph>dita</codeph>, <codeph>html</codeph>, and
+							<codeph>pdf</codeph>.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+					<row>
+						<entry>xref-www-scope-invalid</entry>
+						<entry>&lt;xref href="{name}"&gt; The specified value points to an external file. Specify the attribute key/value pair scope="external".</entry>
+						<entry>
+							The <codeph>href</codeph> attribute specifies a web page or similar target, which means
+							the <codeph>scope</codeph> attribute must have the value <codeph>external</codeph>.
+							Change the value as required.
+							For more information on <codeph>&lt;xref&gt;</codeph> elements, see
+							<xref format="html" href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html" scope="external">&lt;xref&gt;</xref>.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+</topic>

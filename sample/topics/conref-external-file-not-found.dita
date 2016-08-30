@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="conref-external-file-not-found">
+  <title>conref-external-file-not-found</title>
+  <body>
+    <p>
+      For a conref to an external file, the file linked to must exist
+    </p>
+     <section id="good">
+      <title>Good conref</title>
+      <p conref="./conref-internal-id-not-found.dita#href"/>
+
+    </section>
+    <section id="bad">
+      <title>Bad conref</title>
+      <!--p conref="./unknown-file.dita#href"/-->
+      <p>
+        <b>Failing test will break the build</b> - see conref-external-file-not-found-bad.dita
+      </p>
+    </section>
+  </body>
+</topic>

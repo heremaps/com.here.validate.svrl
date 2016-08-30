@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id=" topic-id-missing-no-id">
+	<title>topic-id-missing</title>
+	<body>
+		<p>
+			 &lt;topic&gt; must have an <codeph>id</codeph> attribute
+		</p>
+
+    <p>
+      <b>Invalid</b> This rule is caught by DITA 2.2 directly.
+    </p>
+
+	</body>
+</topic>

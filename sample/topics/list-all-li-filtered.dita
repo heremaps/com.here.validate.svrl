@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="list-all-li-filtered">
+  <title>list-all-li-filtered</title>
+  <body>
+    <p>
+      &lt;ul&gt; If an element contains filtered sub elements, they must not be all of the filter type.
+    </p>
+     <section id="good">
+      <title>Good lists</title>
+
+      <codeph>&lt;ul list&gt;</codeph>
+      <ul>
+        <li product="hlp">Red</li>
+        <li>Orange</li>
+      </ul>
+
+      <codeph>&lt;ol list&gt;</codeph>
+      <ol>
+        <li product="hlp">Green</li>
+        <li>Apple</li>
+      </ol>
+
+    </section>
+    <section id="bad">
+      <title>Bad lists</title>
+
+      <codeph>&lt;ul list&gt;</codeph>
+      <ul>
+        <li product="hlp">Red</li>
+        <li product="hlp">Orange</li>
+      </ul>
+
+      <codeph>&lt;ol list&gt;</codeph>
+      <ol>
+        <li product="hlp">Green</li>
+        <li product="hlp">Apple</li>
+      </ol>
+    </section>
+  </body>
+</topic>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="colsep-invalid">
+	<title>colsep-invalid</title>
+  <body>
+    <p>
+      &lt;table&gt; 'colsep' attribute can be only 0 or 1
+    </p>
+    <section id="table-with-good-colsep">
+      <title>Good Table</title>
+      <table id="table-good" colsep="1">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </section>
+    <section id="table-with-bad-colsep">
+      <title>Bad Table</title>
+        <table id="table-bad" colsep="0.1">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </body>
+</topic>
