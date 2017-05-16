@@ -167,10 +167,10 @@ Error: Errors detected during validation
 ```
 
 
-###	Validating a document from the using ant
+### Validating a document using Ant
 
 
-An ant build file is supplied in the same directory as the sample document. The main target can be seen below:
+An Ant build file is supplied in the same directory as the sample document. The main target can be seen below:
 
 
 ```xml
@@ -311,7 +311,7 @@ Validator Error Messages
 
 The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/heremaps/com.here.validate.svrl.overrides) is used.
 
-###Content Validation
+### Content Validation
 
 |Message ID|Message|Corrective Action/Comment|
 |----------|-------|-------------------------|
@@ -325,7 +325,7 @@ The following tables list the validator error messages by type and message ID. B
 
 
 
-###Style Validation
+### Style Validation
 
 
 |Message ID|Message|Corrective Action/Comment|
@@ -346,7 +346,7 @@ The following tables list the validator error messages by type and message ID. B
 |topic-file-mismatch|The value specified in id="\{name\}" does not match the file name: \{file\_name\}. Make sure the `id` value and the file name are the same.|In order to assist with search engine optimization \(SEO\) of content, the `id` for `<topic>` elements must be the same as the file name, which also ends up by the name of the HTML file. For more information on topics, see [topic](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/topic.html). For more information on element 'id`s', see [id](http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html).|
 |xref-no-format|Always provide a format attribute in `<xref>` elements, \(for example, format="dita" or format="html"\).|Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
 
-###Structure Validation
+### Structure Validation
 
 |Message ID|Message|Corrective Action/Comment|
 |----------|-------|-------------------------|
