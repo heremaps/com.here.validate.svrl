@@ -7,6 +7,8 @@
 	<!--
 		Define package details.
 	-->
+	<feature extension="package.support.name" value="APF team"/>
+	<feature extension="package.support.email" value="I_APF_SUPPORT@here.com"/>
 	<feature extension="package.version" value="1.1.0"/>
 
 	<!--
@@ -26,7 +28,6 @@
 		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
 		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
 		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
-
 	</transtype>
 	<transtype name="svrl-echo" abstract="false" desc="Filters SVRL validation and echoes the results to Standard output (stdout)">
 		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
@@ -41,6 +42,10 @@
 			<val desc="Outputs errors and warnings. Fails on errors only" default="true">default</val>
 			<val desc="Outputs errors only. Fails on Errors only">lax</val>
 			<val desc="Report all errors at warning level. Never fail">report-only</val>
+		</param>
+		<param name="args.validate.color" desc="Whether to colorize the validation output" type="enum">
+			<val desc="Output highlights errors and warnings using ANSI color codes">true</val>
+			<val desc="Output does not highlight errors and warnings" default="true">false</val>
 		</param>
 	</transtype>
 

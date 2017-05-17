@@ -4,6 +4,31 @@
 	See the accompanying LICENSE file for applicable licenses.
 -->
 <project name="com.here.validate.svrl" xmlns:dita="http://dita-ot.sourceforge.net">
+	<!--
+		Java-based add ansi color tags to output.
+
+		@param input - The string to colorize
+		@param output - Ansi  colorised strings
+	-->
+	<scriptdef name="ansi-color" language="javascript">
+		<attribute name="input"/>
+		<attribute name="output"/>
+		<![CDATA[
+			escape = String.fromCharCode(27);
+			lf = String.fromCharCode(10);
+
+			input = attributes.get("input");
+
+			input = input.replaceAll( "\\[FATAL" , escape + "[31m[FATAL");
+			input = input.replaceAll( "\\[ERROR" , escape + "[31m[ERROR");
+			input = input.replaceAll( "\\[WARN" , escape + "[33m[WARN");
+			input = input.replaceAll( "\\[INFO" , escape + "[34m[INFO");
+			input = input.replaceAll( "\\n" , escape + "[0m" + lf);
+
+			output = attributes.get("output");
+			project.setProperty(output, input);
+		]]>
+	</scriptdef>
 
 
 
@@ -18,9 +43,9 @@
 			<tempfile property="error.ruleset" deleteonexit="true"/>
 			<tempfile property="warning.ruleset" deleteonexit="true"/>
 
-			<delete failonerror="false" file="${fatal.ruleset}" />
-			<delete failonerror="false" file="${error.ruleset}" />
-			<delete failonerror="false" file="${warning.ruleset}" />
+			<delete failonerror="false" file="${fatal.ruleset}"/>
+			<delete failonerror="false" file="${error.ruleset}"/>
+			<delete failonerror="false" file="${warning.ruleset}"/>
 
 
 			<xslt style="${com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl"
@@ -108,6 +133,10 @@
 		</condition>
 		<condition property="com.here.validate.svrl.output.rule-id" value="false">
 			<isfalse value="${args.validate.output.rule-id}"/>
+		</condition>
+
+		<condition property="com.here.validate.svrl.color">
+			<istrue value="${args.validate.color}"/>
 		</condition>
 
 		<property name="args.validate.mode" value="default"/>
@@ -275,6 +304,7 @@
 
 
 
+
 	<target if="svrl.errors.detected" name="fail-build">
 		<!--
 			Fail build if we are ask to do so failOnError==true and log contains ERROR or FATAL
@@ -288,15 +318,13 @@
 	<target name="run-filter">
 		<echo level="info" message="Processing Schematron Results"/>
 		<echo level="info"/>
-
 		<!--
-			Create	a temporary file used recording all validation results
+			Create two temporary files used for recording all validation results
+			and a count of the number of errors/warnings found.
 		-->
-		<tempfile property="result.txt" suffix=".txt" destdir="${com.here.validate.svrl.tmp.dir}" deleteonexit="true"/>
 		<tempfile property="output.txt" suffix=".txt" destdir="${com.here.validate.svrl.tmp.dir}" deleteonexit="true"/>
-		<!--
-			Parse results.svrl and print failed assertions and reports to the console
-		-->
+		<tempfile property="result.txt" suffix=".txt" destdir="${com.here.validate.svrl.tmp.dir}" deleteonexit="true"/>
+		
 		<xslt basedir="${svrl.dir}" style="${svrl.filter.file}" in="${output.dir}/${com.here.validate.svrl.filename.root}.svrl" out="${output.txt}" classpathref="dost.class.path">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
 			<param name="MODE" expression="${com.here.validate.svrl.mode}" />
@@ -308,21 +336,41 @@
 
 		<loadfile property="svrl.console.output" srcfile="${output.txt}" failonerror="true"/>
 		<loadfile property="svrl.errors.count" srcfile="${result.txt}" failonerror="true"/>
-
-		<echo level="warning" message="${svrl.console.output}"/>
-		
-	
-		<condition property="svrl.errors.detected">
-			<not>
-				<equals arg1="${svrl.errors.count}" arg2="0"/>
-			</not>
-		</condition>
-
 	</target>
 
+	<!--
+		Parse results.svrl and print failed assertions and reports to the console
+	-->
+	<target name="svrl-output-color-result" if="com.here.validate.svrl.color">
+		<ansi-color input="${svrl.console.output}" output="ansi.color.message" />
+		<echo taskname="dita-ot" level="warning" message="${ansi.color.message}"/>
+	</target>
 
-	<target name="svrl-filter" depends="run-filter, fail-build"/>
+	<target name="svrl-output-result" unless="com.here.validate.svrl.color">
+		<echo taskname="dita-ot" level="warning" message="${svrl.console.output}"/>
+	</target>
 
+	<!--
+		Fail build if we are ask to do so and log contains ERROR or FATAL
+
+		In the statement below we tell <fail> to analyze file ${svrl.errors.count},
+		and fail the build if predefined strings are found
+	-->
+	<target name="svrl-failure-check">
+		<fail message="Errors detected during validation">
+			<condition>
+				<not>
+					<equals arg1="${svrl.errors.count}" arg2="0"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
+
+	<!--
+		Runs a filter XSLT transform on a merged SVRL file to retrieve human-readable results
+	-->
+	<target name="svrl-filter" depends="run-filter,svrl-output-result,svrl-output-color-result,svrl-failure-check,fail-build"/>
+		
 	<!--
 		Ant target executed to create an SVRL file
 	-->

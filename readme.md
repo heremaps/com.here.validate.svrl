@@ -166,6 +166,12 @@ Additionally, if an error occurs, the command will fail
 Error: Errors detected during validation
 ```
 
+Optionally, the output can be highlighed using ANSI color codes by adding the `args.validate.color` parameter
+
+```bash
+PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
+```
+
 
 ### Validating a document using Ant
 
@@ -207,6 +213,7 @@ An Ant build file is supplied in the same directory as the sample document. The 
 - `args.validate.blacklist` - Comma separated list of words not to be present in the running text
 - `args.validate.cachefile` - Specifies the location of cache file to be used. Validation will only run across altered files if this parameter is present
 - `args.validate.check.case` - Comma separated list of words which have a specified capitalization
+- `args.validate.color` - When set, errors and warnings are highlighted using ANSI color codes
 - `args.validate.mode` - Validation reporting mode. The following values are supported:
 	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
 	- `default` - Outputs both warnings and errors. Fails on errors only
