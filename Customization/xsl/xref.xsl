@@ -34,7 +34,7 @@
 											 <xref> Any file reference should have a format property
 											 <xref> Any other element using a href should have a format property
 		-->
-		<xsl:if test="not(@format)">
+		<xsl:if test="not(@format) and not(@keyref)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">xref-no-format</xsl:with-param>
 				<xsl:with-param name="test">not(@format)</xsl:with-param>
@@ -80,7 +80,7 @@
 		<!--
 				xref-external-file-not-found - <xref> For an href to an another file within the document, the file linked to must exist
 		-->
-		<xsl:if test="$isFileRef and not($isFileRefAndFileExists)">
+		<xsl:if test="$isFileRef and not($isFileRefAndFileExists) and not(@keyref)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">xref-external-file-not-found</xsl:with-param>
 				<xsl:with-param name="test">not($isFileRefAndFileExists)</xsl:with-param>
