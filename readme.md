@@ -212,7 +212,9 @@ An Ant build file is supplied in the same directory as the sample document. The 
 	- `default` - Outputs both warnings and errors. Fails on errors only
 	- `lax`		- Ignores all warnings and outputs errors only. Fails on Errors only
 - `svrl.customization.dir` - Specifies the customization directory
-- `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output
+- `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity levels will be used.
+- `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not present, the default echo output format will be used.
+
 
 
 Adding New Validator Rules
@@ -230,6 +232,14 @@ The severity of a validator rule can be altered by amending entries in the `cfg/
 * **ERROR** - Error rules will fail validation. Errors can be overridden as described above.
 * **WARNING** - Warning rules will display a warning on validation, but do not fail the validation. Warnings can also be individually overridden.
 * **INACTIVE** - Inactive rules are not applied.
+
+
+A custom ruleset file can be passed into the plug-in using the `svrl.ruleset.file` parameter
+
+
+```bash
+PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dsvrl.ruleset.file=PATH_TO_CUSTOM/ruleset.xml
+```
 
 
 Ignoring Validator Rules

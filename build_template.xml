@@ -83,6 +83,11 @@
 		<tempfile property="svrl.cache.file" deleteonexit="true"/>
 		<property name="args.validate.cachefile" value="${svrl.cache.file}"/>
 		<!--
+			Use the default severity for each rule unless an override has been set.
+		-->
+		<property name="svrl.ruleset.file" value="${com.here.validate.svrl.dir}/cfg/ruleset/default.xml"/>
+		
+		<!--
 			The property args.input.dir should hold the folder for the document e.g
 			de_guide, release_notes etc. This will allow the validator to scan all *.dita
 			files belonging to a document.
@@ -119,7 +124,6 @@
 		<copy todir="${com.here.validate.svrl.tmp.dir}/dita">
 			<fileset dir="${args.input.dir}"/>
 		</copy>
-		<property name="args.validate.ruleset" value="default"/>
 	</target>
 
 	<target name="strip-doctype" if="is_windows">
@@ -171,7 +175,7 @@
 		<echo level="info" message="Running Schematron Ruleset"/>
 		<echo level="info"/>
 
-		<get-validation-rulesets file="${svrl.customization.dir}/../cfg/ruleset/${args.validate.ruleset}.xml"
+		<get-validation-rulesets file="${svrl.ruleset.file}"
 			 fatal="ruleset.fatal" error="ruleset.error" warning="ruleset.warning"/>
 
 		<!--
