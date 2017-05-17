@@ -78,6 +78,10 @@
 		<property name="svrl.customization.dir" value="${com.here.validate.svrl.dir}/xsl"/>
 		<property name="svrl.filter.file" value="${com.here.validate.svrl.dir}/xsl/schematron-output.xsl"/>
 		<property name="svrl.result.file" value="${com.here.validate.svrl.dir}/xsl/schematron-result.xsl"/>
+
+		<!-- Create a dummy cache file to use if cache parameter is not set -->
+		<tempfile property="svrl.cache.file" deleteonexit="true"/>
+		<property name="args.validate.cachefile" value="${svrl.cache.file}"/>
 		<!--
 			The property args.input.dir should hold the folder for the document e.g
 			de_guide, release_notes etc. This will allow the validator to scan all *.dita
@@ -143,6 +147,9 @@
 	<target name="validate-against-doctype" unless="is_windows">
 		<!--
 			Ensure that all *.dita files found within the ${args.input.dir} are valid XML
+
+			For efficiency, run DTD Validation against modified files only, if requested.
+			Do not update the cache yet.
 		-->
 		<echo level="info" message="Running DTD validation"/>
 		<echo level="info"/>
@@ -150,6 +157,9 @@
 			<xmlcatalog refid="dita.catalog"/>
 			<fileset dir="${args.input.dir}">
 				<include name="**/*.dita"/>
+				<modified update="false">
+					<param name="cache.cachefile" value="${args.validate.cachefile}"/>
+				</modified>
 			</fileset>
 		</xmlvalidate>
 	</target>
@@ -182,6 +192,7 @@
 				<!-- Enable DTD validation whilst transforming -->
 				<attribute name="http://saxon.sf.net/feature/validation" value="false"/>
 			</factory>
+			<!-- Common parameters for the schematron template from the base plug-in -->
 			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
 			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
 			<param name="SOURCE" expression="${com.here.validate.svrl.tmp.dir}/dita"/>
@@ -197,8 +208,10 @@
 
 		<!--
 			Apply the XSLT defined in the ${args.input.dir} directory. This create SVRL files from the *.dita and fires the Validator ruleset.
+
+			For efficiency, run XSLT Validation against modified files only, if requested.
 		-->
-		<xslt extension=".svrl" failOnError="false" style="${svrl.customization.dir}/dita2svrl.xsl" destdir="${com.here.validate.svrl.tmp.dir}/svrl/dita" useImplicitFileset="false" classpathref="dost.class.path">
+		<xslt extension=".svrl" failOnError="false" style="${svrl.customization.dir}/dita2svrl.xsl" destdir="${com.here.validate.svrl.tmp.dir}/svrl/dita" useImplicitFileset="false" classpathref="dost.class.path"  failOnNoResources="false">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
@@ -213,9 +226,11 @@
 				<!-- Enable DTD validation whilst transforming -->
 				<attribute name="http://saxon.sf.net/feature/validation" value="false"/>
 			</factory>
-			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
+			<!-- Parameters for the textual-rules template from the base plug-in -->
 			<param name="BLACKLIST" expression="${args.validate.blacklist}"/>
 			<param name="CHECK_CASE" expression="${args.validate.check.case}"/>
+			<!-- Common parameters for the schematron template from the base plug-in -->
+			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
 			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
 			<param name="SOURCE" expression="${com.here.validate.svrl.tmp.dir}/dita"/>
 			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
@@ -224,6 +239,10 @@
 			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
 			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita">
 				<include name="**/*.dita"/>
+				<modified update="true">
+					<param name="cache.cachefile" value="${args.validate.cachefile}"/>
+				</modified>
+
 			</fileset>
 		</xslt>
 
@@ -250,10 +269,19 @@
 	</target>
 
 
+
+
+	<target if="svrl.errors.detected" name="fail-build">
+		<!--
+			Fail build if we are ask to do so failOnError==true and log contains ERROR or FATAL
+		-->
+		<delete file="${args.validate.cachefile}"/>
+		<fail message="Errors detected during validation"/>
+	</target>
 	<!--
 		Runs a filter XSLT transform on a merged SVRL file to retrieve human-readable results
 	-->
-	<target name="svrl-filter">
+	<target name="run-filter">
 		<echo level="info" message="Processing Schematron Results"/>
 		<echo level="info"/>
 
@@ -278,22 +306,18 @@
 		<loadfile property="svrl.errors.count" srcfile="${result.txt}" failonerror="true"/>
 
 		<echo level="warning" message="${svrl.console.output}"/>
-		<!--
-			Fail build if we are ask to do so failOnError==true and log contains ERROR or FATAL
+		
+	
+		<condition property="svrl.errors.detected">
+			<not>
+				<equals arg1="${svrl.errors.count}" arg2="0"/>
+			</not>
+		</condition>
 
-			In the statement below we tell <fail> to analyze file ${messages.txt},
-			and fail the build if predefined strings are found
-		-->
-		<fail message="Errors detected during validation">
-			<condition>
-				<not>
-					<equals arg1="${svrl.errors.count}" arg2="0"/>
-				</not>
-			</condition>
-		</fail>
 	</target>
 
 
+	<target name="svrl-filter" depends="run-filter, fail-build"/>
 
 	<!--
 		Ant target executed to create an SVRL file

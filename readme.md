@@ -205,6 +205,7 @@ An Ant build file is supplied in the same directory as the sample document. The 
 
 - `args.validate.ignore.rules` - Comma separated list of rules not to be enforced
 - `args.validate.blacklist` - Comma separated list of words not to be present in the running text
+- `args.validate.cachefile` - Specifies the location of cache file to be used. Validation will only run across altered files if this parameter is present
 - `args.validate.check.case` - Comma separated list of words which have a specified capitalization
 - `args.validate.mode` - Validation reporting mode. The following values are supported:
 	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
