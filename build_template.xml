@@ -120,7 +120,7 @@
 		<property name="args.input.dir" value="${args.input}/.."/>
 		<property name="args.validate.ignore.rules" value=""/>
 		<property name="args.validate.blacklist" value="(kilo)?metre|colour|teh|seperate"/>
-		<property name="args.validate.check.case" value="Bluetooth|HTTP[S]? |ID|IoT|JSON|Java|Javadoc|JavaScript|XML|HTML"/>
+		<property name="args.validate.check.case" value="Bluetooth|HTTP|HTTPS|ID|IoT|JSON|Java|Javadoc|JavaScript|XML|HTML"/>
 
 		<!-- Default value if no value is passed is 'true' -->
 		<condition property="com.here.validate.svrl.output.rule-id" value="true">

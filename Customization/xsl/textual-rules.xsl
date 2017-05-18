@@ -51,9 +51,10 @@
 
       <xsl:for-each select="$case-checked-words">
         <xsl:variable name="case-checked-word-regex">(^|\W)<xsl:value-of select="."/>($|\W)</xsl:variable>
-        <xsl:variable name="case-checked-word-preceded-by-char">(\.|\\|/)<xsl:value-of select="."/></xsl:variable>
+        <xsl:variable name="case-checked-word-prefixed">(\.|\\|/)<xsl:value-of select="."/></xsl:variable>
+        <xsl:variable name="case-checked-word-postfixed"><xsl:value-of select="."/>:</xsl:variable>
 
-        <xsl:if test="matches($running-text,$case-checked-word-regex,'i') and not(matches($running-text,$case-checked-word-regex)) and not(matches($running-text,$case-checked-word-preceded-by-char,'i'))">
+        <xsl:if test="matches($running-text,$case-checked-word-regex,'i') and not(matches($running-text,$case-checked-word-regex)) and not(matches($running-text,$case-checked-word-prefixed,'i')) and not(matches($running-text,$case-checked-word-postfixed,'i'))">
             <xsl:apply-templates mode="failed-assert-with-node" select="$running-text-node">
               <xsl:with-param name="rule-id">incorrect-capitalization</xsl:with-param>
               <xsl:with-param name="test">matches($running-text,$case-checked-word-regex,'i') and not(matches($running-text,$case-checked-word-regex))</xsl:with-param>
