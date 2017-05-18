@@ -76,7 +76,7 @@ Installation
 -  Run the plug-in installation command:
 
 ```bash
-dita -install https://github.com/heremaps/com.here.validate.svrl/archive/v1.0.0.zip
+dita -install https://github.com/heremaps/com.here.validate.svrl/archive/v1.1.0.zip
 ```
 
 The `dita` command line tool requires no additional configuration.
@@ -213,7 +213,7 @@ An Ant build file is supplied in the same directory as the sample document. The 
 - `args.validate.blacklist` - Comma separated list of words not to be present in the running text
 - `args.validate.cachefile` - Specifies the location of cache file to be used. Validation will only run across altered files if this parameter is present
 - `args.validate.check.case` - Comma separated list of words which have a specified capitalization
-- `args.validate.color` - When set, errors and warnings are highlighted using ANSI color codes
+- `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
 - `args.validate.mode` - Validation reporting mode. The following values are supported:
 	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
 	- `default` - Outputs both warnings and errors. Fails on errors only
