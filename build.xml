@@ -112,7 +112,7 @@
 		<property name="args.input.dir" value="${args.input}/.."/>
 		<property name="args.validate.ignore.rules" value=""/>
 		<property name="args.validate.blacklist" value="(kilo)?metre|colour|teh|seperate"/>
-		<property name="args.validate.check.case" value="Bluetooth|HTTP[S]? |ID|IoT|JSON|Java|Javadoc|JavaScript|XML|HTML"/>
+		<property name="args.validate.check.case" value="Bluetooth|HTTP|HTTPS|ID|IoT|JSON|Java|Javadoc|JavaScript|XML|HTML"/>
 
 		<!-- Default value if no value is passed is 'true' -->
 		<condition property="com.here.validate.svrl.output.rule-id" value="true">
@@ -132,7 +132,7 @@
 		</condition>
 
 		<property name="args.validate.mode" value="default"/>
-		<property name="com.here.validate.svrl.mode" value="${args.validate.mode}" />
+		<property name="com.here.validate.svrl.mode" value="${args.validate.mode}"/>
 
 		<condition property="is_windows">
 			<os family="windows"/>
@@ -150,19 +150,19 @@
 	<target name="strip-doctype" if="is_windows">
 		<!-- Windows only -->
 		<replaceregexp match=".*(&lt;!ENTITY).+" replace="" flags="g">
-			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita" >
+			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita">
 				<include name="**/*.dita"/>
 				<include name="**/*.ditamap"/>
 			</fileset>
 		</replaceregexp>
-		<replaceregexp match="(&lt;!DOCTYPE).+\n*\]?>" replace="">
-			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita" >
+		<replaceregexp match="(&lt;!DOCTYPE).+\n*\]?&gt;" replace="">
+			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita">
 				<include name="**/*.dita"/>
 				<include name="**/*.ditamap"/>
 			</fileset>
 		</replaceregexp>
 		<replaceregexp match="(&lt;!DOCTYPE).+\n*.*.dtd&quot;.*&gt;" replace="">
-			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita" >
+			<fileset dir="${com.here.validate.svrl.tmp.dir}/dita">
 				<include name="**/*.dita"/>
 				<include name="**/*.ditamap"/>
 			</fileset>
@@ -178,7 +178,7 @@
 		-->
 		<echo level="info" message="Running DTD validation"/>
 		<echo level="info"/>
-		<xmlvalidate failonerror="true" lenient="no" warn="yes" >
+		<xmlvalidate failonerror="true" lenient="no" warn="yes">
 			<xmlcatalog refid="dita.catalog"/>
 			<fileset dir="${args.input.dir}">
 				<include name="**/*.dita"/>
@@ -192,17 +192,16 @@
 	<!--
 		Creates a set of SVRL files based on the rule set.
 	-->
-	<target name="svrl-process" depends="svrl-pre-process, strip-doctype, validate-against-doctype" >
+	<target name="svrl-process" depends="svrl-pre-process, strip-doctype, validate-against-doctype">
 		<echo level="info" message="Running Schematron Ruleset"/>
 		<echo level="info"/>
 
-		<get-validation-rulesets file="${svrl.ruleset.file}"
-			 fatal="ruleset.fatal" error="ruleset.error" warning="ruleset.warning"/>
+		<get-validation-rulesets file="${svrl.ruleset.file}" fatal="ruleset.fatal" error="ruleset.error" warning="ruleset.warning"/>
 
 		<!--
 			Apply the XSLT defined over the root ditamap This create SVRL files from the *.ditamap and fires the associated Validator ruleset.
 		-->
-		<xslt extension=".svrl" style="${svrl.customization.dir}/ditamap2svrl.xsl" destdir="${com.here.validate.svrl.tmp.dir}/svrl/ditamap" useImplicitFileset="false" classpathref="dost.class.path" >
+		<xslt extension=".svrl" style="${svrl.customization.dir}/ditamap2svrl.xsl" destdir="${com.here.validate.svrl.tmp.dir}/svrl/ditamap" useImplicitFileset="false" classpathref="dost.class.path">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
@@ -221,7 +220,7 @@
 			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
 			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
 			<param name="SOURCE" expression="${com.here.validate.svrl.tmp.dir}/dita"/>
-			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
+			<param name="DEFAULTLANG" expression="${document.language}" if="document.language"/>
 			<param name="FATAL_RULESET" expression="${ruleset.fatal}"/>
 			<param name="ERROR_RULESET" expression="${ruleset.error}"/>
 			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
@@ -236,7 +235,7 @@
 
 			For efficiency, run XSLT Validation against modified files only, if requested.
 		-->
-		<xslt extension=".svrl" failOnError="false" style="${svrl.customization.dir}/dita2svrl.xsl" destdir="${com.here.validate.svrl.tmp.dir}/svrl/dita" useImplicitFileset="false" classpathref="dost.class.path"  failOnNoResources="false">
+		<xslt extension=".svrl" failOnError="false" style="${svrl.customization.dir}/dita2svrl.xsl" destdir="${com.here.validate.svrl.tmp.dir}/svrl/dita" useImplicitFileset="false" classpathref="dost.class.path" failOnNoResources="false">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
@@ -258,7 +257,7 @@
 			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
 			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
 			<param name="SOURCE" expression="${com.here.validate.svrl.tmp.dir}/dita"/>
-			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
+			<param name="DEFAULTLANG" expression="${document.language}" if="document.language"/>
 			<param name="FATAL_RULESET" expression="${ruleset.fatal}"/>
 			<param name="ERROR_RULESET" expression="${ruleset.error}"/>
 			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
@@ -319,11 +318,11 @@
 		
 		<xslt basedir="${svrl.dir}" style="${svrl.filter.file}" in="${output.dir}/${com.here.validate.svrl.filename.root}.svrl" out="${output.txt}" classpathref="dost.class.path">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
-			<param name="MODE" expression="${com.here.validate.svrl.mode}" />
+			<param name="MODE" expression="${com.here.validate.svrl.mode}"/>
 		</xslt>
 		<xslt basedir="${svrl.dir}" style="${svrl.result.file}" in="${output.dir}/${com.here.validate.svrl.filename.root}.svrl" out="${result.txt}" classpathref="dost.class.path">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
-			<param name="MODE" expression="${com.here.validate.svrl.mode}" />
+			<param name="MODE" expression="${com.here.validate.svrl.mode}"/>
 		</xslt>
 
 		<loadfile property="svrl.console.output" srcfile="${output.txt}" failonerror="true"/>
@@ -334,7 +333,7 @@
 		Parse results.svrl and print failed assertions and reports to the console
 	-->
 	<target name="svrl-output-color-result" if="com.here.validate.svrl.color">
-		<ansi-color input="${svrl.console.output}" output="ansi.color.message" />
+		<ansi-color input="${svrl.console.output}" output="ansi.color.message"/>
 		<echo taskname="dita-ot" level="warning" message="${ansi.color.message}"/>
 	</target>
 
