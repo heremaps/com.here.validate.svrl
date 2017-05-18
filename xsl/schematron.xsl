@@ -19,7 +19,14 @@
 	<xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
 	<xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
 
-
+	<!-- These come from the base plug-in -->
+	<xsl:param name="DEFAULTLANG">en-us</xsl:param>
+	<xsl:param name="IGNORE_RULES" as="xs:string" select="''"/>
+	<xsl:param name="OUTPUT_RULE-ID" select="'true'" as="xs:string"/>
+	<xsl:param name="SOURCE" as="xs:string"/>
+	<xsl:param name="FATAL_RULESET">a^</xsl:param>
+	<xsl:param name="ERROR_RULESET">a^</xsl:param>
+	<xsl:param name="WARNING_RULESET">a^</xsl:param>
 
 	<xsl:variable name="msgprefix">DOTX</xsl:variable>
 
