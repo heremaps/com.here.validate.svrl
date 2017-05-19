@@ -305,6 +305,50 @@ Some rules such as **FIXME** and **TODO** in the running text need to be double 
 </p>
 ```
 
+### Ignoring all warnings within a block
+
+A block of DITA can be excluded from firing all rules at **WARNING** level by adding the comment `ignore-all-warnings` to the block. This is especially useful to avoid false positive TODO warnings for text which is in Spanish.
+
+```xml
+<!--
+	We want to display the Spanish text below which would usually
+	result in a series of warnings for the word TODOS
+-->
+<section xml:lang="es-es" id="legal-es">
+	<!-- ignore-all-warnings -->
+	<title>Avisos legales</title>
+	<p>
+		© 2017 <keyword keyref="brand-name"/> Global B.V. Todos los derechos reservados.
+	</p>
+	<p>
+		Este material, incluidos la documentación y los programas informáticos relacionados, está protegido por derechos de autor controlados
+		por <keyword keyref="brand-name"/>. Todos los derechos están reservados. La copia, incluidos la reproducción, almacenamiento,
+		adaptación o traducción de una parte o de todo este material requiere el consentimiento por escrito de <keyword keyref="brand-name"/>.
+		Este material también contiene información confidencial, que no se puede revelar a otras personas sin el consentimiento previo y
+		por escrito de <keyword keyref="brand-name"/>.
+	</p>
+<section>
+```
+
+### Ignoring all errors within a block
+
+A block of DITA can be excluded from firing all rules at **ERROR** level by adding the comment `ignore-all-errors` to the block. This is useful to avoid issues with generated DITA files which are parsable DITA, but which may not satisfy in-house validation style rules.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- THIS TOPIC IS GENERATED -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="generated-topic" other-props="generated">
+	<!-- ignore-all-warnings, ignore-all-errors -->
+	<title>Topic title</title>
+	<body>
+		Generated Content goes here...
+	</body>
+</topic>
+```
+
+Rules set at **FATAL** level cannot be ignored.
+
 
 Sample Document
 ---------------

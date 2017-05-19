@@ -118,7 +118,7 @@
 					</failed-assert>
 			</xsl:when>
 			<xsl:when test="matches ($rule-id, $ERROR_RULESET)">
-				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])">
+				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-errors')])">
 					<failed-assert>
 						<xsl:attribute name="location"><xsl:value-of select="$document-uri"/></xsl:attribute>
 						<xsl:attribute name="role">error</xsl:attribute>
@@ -160,7 +160,7 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="matches ($rule-id, $WARNING_RULESET)">
-				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])">
+				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-warnings')])">
 					<failed-assert>
 						<xsl:attribute name="location"><xsl:value-of select="$document-uri"/></xsl:attribute>
 						<xsl:attribute name="role">warning</xsl:attribute>
