@@ -1,105 +1,95 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
-<project basedir="../.." default="build" name="validator.build">
-
-
+<project default="build" name="validator.build" basedir=".">
 	<!--
 		Properties to find the path to dita-ot and the path to the
 		DITA document to build
 	-->
 	<dirname property="dita.dir" file="${ant.file.validator.build}/../../.."/>
+	<property name="dita.exec" value="${dita.dir}/bin/dita"/>
+
 	<dirname property="build.file.dir" file="${ant.file.validator.build}"/>
 	<property name="args.input" value="${build.file.dir}/document.ditamap"/>
-
-
-	<!--
-		Minimal classpath to invoke DITA OT via ANT.
-	-->
-	<path id="dita.ot.classpath">
-		<pathelement location="${dita.dir}"/>
-		<pathelement location="${dita.dir}/lib/ant-1.9.4.jar"/>
-		<pathelement location="${dita.dir}/lib/saxon-9.1.0.8-dom.jar"/>
-		<pathelement location="${dita.dir}/lib/ant-apache-resolver-1.9.4.jar"/>
-		<pathelement location="${dita.dir}/lib/dost-configuration.jar"/>
-		<pathelement location="${dita.dir}/lib/saxon-9.1.0.8.jar"/>
-		<pathelement location="${dita.dir}/lib/ant-launcher.jar"/>
-		<pathelement location="${dita.dir}/lib/dost.jar"/>
-		<pathelement location="${dita.dir}/lib/xercesImpl-2.11.0.jar"/>
-		<pathelement location="${dita.dir}/lib/commons-codec-1.9.jar"/>
-		<pathelement location="${dita.dir}/lib/icu4j-54.1.jar"/>
-		<pathelement location="${dita.dir}/lib/xml-apis-1.4.01.jar"/>
-		<pathelement location="${dita.dir}/lib/commons-io-2.4.jar"/>
-		<pathelement location="${dita.dir}/lib/xml-resolver-1.2.jar"/>
-		<pathelement location="${dita.dir}/resources"/>
-	</path>
-
-
-	<!--
-		We will not ignore any rules by default. Alter this as necessary.
-	-->
-	<property name="args.validate.ignore.rules" value=""/>
-
 
 	<!--
 		Default target to validate and build HTML and PDF documents
 	-->
-	<target name="build" depends="validate,html,pdf" />
+	<target name="build" depends="validate,html,pdf" description="validate document then build HTML and PDF"/>
 
 	<!--
 		Target to build an HTML document
 	-->
-	<target name="html">
-		 <java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
-				<arg value="-Dargs.input=${args.input}"/>
-				<arg value="-Ddita.dir=${dita.dir}"/>
-				<arg value="-buildfile"/>
-				<arg value="${dita.dir}/build.xml"/>
-				<arg value="-Dgenerate-debug-attributes=false"/>
-				<arg value="-Doutput.dir=out/html"/>
-				<arg value="-Dtranstype=html5"/>
-			</java>
+	<target name="html" description="build an HTML document">
+		<!-- For Unix run the DITA executable-->
+		<exec executable="${dita.exec}" failonerror="false" osfamily="unix" >
+			<arg value="-input"/>
+			<arg value="${args.input}"/>
+			<arg value="-output"/>
+			<arg value="${dita.dir}/out/html"/>
+			<arg value="-format"/>
+			<arg value="html5"/>
+			<!-- HTML plugin specific parameters -->
+			<arg value="-Dargs.artlbl=no"/>
+			<arg value="-Dargs.csspath=css"/>
+			<arg value="-Dargs.xhtml.classattr=no"/>
+			<arg value="-Dargs.xhtml.toc=toc"/>
+		</exec>
+		<!-- For Windows run from a DOS command -->
+		<exec executable="cmd" dir="${dita.dir}/bin" failonerror="false" osfamily="windows" outputproperty="dita.ot.output">
+			<arg value="/C"/>
+			<arg value="dita -input ${args.input} -output ${dita.dir}/out/html -format html5 -Dargs.grammar.cache=yes -Dgenerate-debug-attributes=false -Dargs.artlbl=no -Dargs.csspath=css -Dargs.xhtml.classattr=no -Dargs.xhtml.toc=toc"/>
+		</exec>
 	</target>
 
 	<!--
 		Target to build a PDF document
 	-->
-	<target name="pdf">
-		<java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
-				<arg value="-Dargs.input=${args.input}"/>
-				<arg value="-Ddita.dir=${dita.dir}"/>
-				<arg value="-buildfile"/>
-				<arg value="${dita.dir}/build.xml"/>
-				<arg value="-Dgenerate-debug-attributes=false"/>
-				<arg value="-Doutput.dir=out/pdf"/>
-				<arg value="-Dtranstype=pdf"/>
-			</java>
+	<target name="pdf" description="build a PDF document">
+		<!-- For Unix run the DITA executable-->
+		<exec executable="${dita.exec}" osfamily="unix" failonerror="true">
+
+			<arg value="-input"/>
+			<arg value="${args.input}"/>
+			<arg value="-output"/>
+			<arg value="${dita.dir}/out/pdf"/>
+			<arg value="-format"/>
+			<arg value="pdf"/>
+			<!-- PDF plugin specific parameters -->
+
+			<arg value="-Dargs.artlbl=no"/>
+			<arg value="-Dpdf.formatter=fop"/>
+		</exec>
+
+		<!-- For Windows run from a DOS command -->
+		<exec executable="cmd" dir="${dita.dir}/bin" osfamily="windows" failonerror="true">
+			<arg value="/C"/>
+			<arg value="dita -input ${args.input} -output ${dita.dir}/out/pdf -format pdf -Dargs.artlbl=no -Dpdf.formatter=fop" />
+		</exec>
 	</target>
 
 
 	<!--
 		Target to validate a document
 	-->
-	<target name="validate">
-
-		<java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
-				<arg value="-Dargs.input=${args.input}"/>
-				<arg value="-Ddita.dir=${dita.dir}"/>
-				<arg value="-buildfile"/>
-				<arg value="${dita.dir}/build.xml"/>
-				<arg value="-Dgenerate-debug-attributes=false"/>
-				<arg value="-Doutput.dir=out/svrl"/>
-				<arg value="-Dtranstype=svrl-echo"/>
-
-				<!-- validation transform specific parameters -->
-				<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
-				<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |ID|IoT|JSON|Java|Javadoc|JavaScript|XML"/>
-				<arg value="-Dargs.validate.mode=default" />
-
-				<!-- Run the transform quietly to avoid verbose output. -->
-				<arg value="-S"/>
-				<arg value="-q"/>
-
-			</java>
+	<target name="validate" description="validate a document">
+		<exec executable="${dita.exec}" osfamily="unix" failonerror="true">
+			<arg value="-input"/>
+			<arg value="${args.input}"/>
+			<arg value="-output"/>
+			<arg value="${dita.dir}/out/svrl"/>
+			<arg value="-format"/>
+			<arg value="svrl-echo"/>
+			<!-- validation transform specific parameters -->
+			<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
+			<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
+			<arg value="-Dargs.validate.color=true"/>
+		</exec>
+		<!-- For Windows run from a DOS command -->
+		<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
+			<arg value="/C"/>
+			<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl-echo -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
+		</exec>
+			
 	</target>
 
 </project>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of the Spelling and Grammar Checker project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<project name="com.here.validate.svrl.xslt" default="run-svrl">
+
+	<!--
+		Ant target to allow direct invocation of the valiadator transforms, this means we can use an alternative classpath.
+	-->
+	<target name="run-svrl">
+		
+		<xmlcatalog id="dita.catalog">
+  			<catalogpath path="${dita.dir}/catalog-dita.xml"/>
+   		</xmlcatalog>
+
+		<!--
+			Apply the XSLT defined over the root ditamap This create SVRL files from the *.ditamap and fires the associated Validator ruleset.
+		-->
+		<xslt extension=".svrl" style="${svrl.customization.dir}/ditamap2svrl.xsl" destdir="${dita.temp.dir}/svrl/ditamap" useImplicitFileset="false" classpath="${dita.plugin.com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" >
+			<xmlcatalog refid="dita.catalog"/>
+			<factory name="net.sf.saxon.TransformerFactoryImpl">
+				<!--
+					Setting several options of Saxon XSLT engine to enable some additional functionality,
+					see for more details:
+					http://www.saxonica.com/html/documentation/configuration/config-features.html
+				-->
+				<attribute name="http://saxon.sf.net/feature/allow-external-functions" value="true"/>
+				<!-- Enable keeping track of line numbers whilst transforming -->
+				<attribute name="http://saxon.sf.net/feature/linenumbering" value="true"/>
+				<attribute name="http://saxon.sf.net/feature/sourceParserClass" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+				<!-- Enable DTD validation whilst transforming -->
+				<attribute name="http://saxon.sf.net/feature/validation" value="false"/>
+			</factory>
+			<!-- Common parameters for the schematron template from the base plug-in -->
+			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
+			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
+			<param name="SOURCE" expression="${dita.temp.dir}/dita"/>
+			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
+			<param name="FATAL_RULESET" expression="${ruleset.fatal}"/>
+			<param name="ERROR_RULESET" expression="${ruleset.error}"/>
+			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
+			<fileset dir="${dita.temp.dir}/dita">
+				<include name="**/*.ditamap"/>
+			</fileset>
+		</xslt>
+
+		<!--
+			Apply the XSLT defined in the ${args.input.dir} directory. This create SVRL files from the *.dita and fires the Validator ruleset.
+
+			For efficiency, run XSLT Validation against modified files only, if requested.
+		-->
+		<xslt extension=".svrl" failOnError="false" style="${svrl.customization.dir}/dita2svrl.xsl" destdir="${dita.temp.dir}/svrl/dita" useImplicitFileset="false" classpath="${com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar"  failOnNoResources="false">
+			<xmlcatalog refid="dita.catalog"/>
+			<factory name="net.sf.saxon.TransformerFactoryImpl">
+				<!--
+					Setting several options of Saxon XSLT engine to enable some additional functionality,
+					see for more details:
+					http://www.saxonica.com/html/documentation/configuration/config-features.html
+				-->
+				<attribute name="http://saxon.sf.net/feature/allow-external-functions" value="true"/>
+				<!-- Enable keeping track of line numbers whilst transforming -->
+				<attribute name="http://saxon.sf.net/feature/linenumbering" value="true"/>
+				<attribute name="http://saxon.sf.net/feature/sourceParserClass" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+				<!-- Enable DTD validation whilst transforming -->
+				<attribute name="http://saxon.sf.net/feature/validation" value="false"/>
+			</factory>
+			<!-- Parameters for the textual-rules template from the base plug-in -->
+			<param name="BLACKLIST" expression="${args.validate.blacklist}"/>
+			<param name="CHECK_CASE" expression="${args.validate.check.case}"/>
+			<!-- Common parameters for the schematron template from the base plug-in -->
+			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
+			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
+			<param name="SOURCE" expression="${dita.temp.dir}/dita"/>
+			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
+			<param name="FATAL_RULESET" expression="${ruleset.fatal}"/>
+			<param name="ERROR_RULESET" expression="${ruleset.error}"/>
+			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
+			<fileset dir="${dita.temp.dir}/dita">
+				<include name="**/*.dita"/>
+				<modified update="true">
+					<param name="cache.cachefile" value="${args.validate.cachefile}"/>
+				</modified>
+
+			</fileset>
+		</xslt>
+	</target>
+
+</project>

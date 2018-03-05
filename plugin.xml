@@ -7,7 +7,9 @@
 	<!--
 		Define package details.
 	-->
-	<feature extension="package.version" value="1.0.0"/>
+	<feature extension="package.support.name" value="APF team"/>
+	<feature extension="package.support.email" value="I_APF_SUPPORT@here.com"/>
+	<feature extension="package.version" value="1.1.0"/>
 
 	<!--
 		Add new value to list of valid transformation type names.
@@ -17,18 +19,22 @@
 	<feature extension="dita.conductor.transtype.check" value="svrl"/>
 	<feature extension="dita.conductor.transtype.check" value="svrl-echo"/>
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
+	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
 
 	<transtype name="svrl" abstract="false" desc="Schematron Validation Report Language">
 		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
+		<param name="svrl.ruleset.file" desc="Specifies the ruleset file to use." type="file"/>
 		<param name="svrl.filter.file" desc="Specifies the location of the XSL file used to echo output" type="file"/>
+		<param name="args.validate.cachefile" desc="Specifies the location a cache file to be used" type="file"/>
 		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
 		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
 		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
-
 	</transtype>
 	<transtype name="svrl-echo" abstract="false" desc="Filters SVRL validation and echoes the results to Standard output (stdout)">
 		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
+		<param name="svrl.ruleset.file" desc="Specifies the ruleset file to use." type="file"/>
 		<param name="svrl.filter.file" desc="Specifies the location of the XSL file used to echo output" type="file"/>
+		<param name="args.validate.cachefile" desc="Specifies the location a cache file to be used" type="file"/>
 		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
 		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
 		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
@@ -38,25 +44,13 @@
 			<val desc="Outputs errors only. Fails on Errors only">lax</val>
 			<val desc="Report all errors at warning level. Never fail">report-only</val>
 		</param>
+		<param name="args.validate.color" desc="Whether to colorize the validation output" type="enum">
+			<val desc="Output highlights errors and warnings using ANSI color codes"  default="true">true</val>
+			<val desc="Output does not highlight errors and warnings">false</val>
+		</param>
 	</transtype>
 
 
-	<!-- extensions -->
-
-	<!--
-		When the plug-in is integrated (using ant -f integrator.xml), the
-		imports from the com.here.pdf/build.xml are copied into
-		dita_ot/build.xml (the main DITA OT document build script).
-
-		This makes targets in com.here.pdf/build.xml such as
-		com.here.pdf/build_template.xml available
-		to any other processing.
-
-		See also: http://www.dita-ot.org/2.2/dev_ref/plugin-anttarget.html
-	-->
-	<feature extension="dita.conductor.target.relative" value="integrator.xml" type="file"/>
-
-
-
-	<template file="build_template.xml" type="file"/>
+	<feature extension="ant.import" file="build_dita2svrl.xml"/>
+	<template file="build_dita2svrl_template.xml"/>
 </plugin>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  This file is part of the DITA Unit Test project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<messages>
+  <message id="SVRL001F" type="FATAL">
+    <reason>%1</reason>
+    <response></response>
+  </message>
+  <message id="SVRL002I" type="INFO">
+    <reason>%1</reason>
+    <response></response>
+  </message>
+</messages>

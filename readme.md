@@ -1,7 +1,7 @@
 DITA Validator for DITA-OT
 ==========================
 
-Copyright (c) 2016 HERE Europe B.V.
+Copyright (c) 2018 HERE Europe B.V.
  
 See the [LICENSE](LICENSE) file in the root of this project for license details.
 
@@ -49,7 +49,7 @@ Prerequisites
 
 ### Requirements
 
-The validator has been tested against [DITA-OT 2.2.x](http://www.dita-ot.org/download). It is recommended that you upgrade to the latest version. Running the validator plug-in against earlier versions of DITA-OT will not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use `getMessage`
+The validator has been tested against [DITA-OT 3.0.x](http://www.dita-ot.org/download). It is recommended that you upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use `getMessage`. The validator can be run safely against DITA-OT 2.x - it also does not need to specially invoke the older Saxon XSLT processor.
 
 ### Installing DITA-OT
 
@@ -76,14 +76,13 @@ Installation
 -  Run the plug-in installation command:
 
 ```bash
-dita -install https://github.com/heremaps/com.here.validate.svrl/archive/v1.0.0.zip
+dita -install https://github.com/heremaps/com.here.validate.svrl/archive/v1.1.0.zip
 ```
 
 The `dita` command line tool requires no additional configuration.
 
 Usage
 -----
-
 
 ### Validating a document from the Command line
 
@@ -94,12 +93,6 @@ A test document can be found within the plug-in at `PATH_TO_DITA_OT/plugins/com.
 To create an SVRL file use the `svrl` transform.
 
 -  From a terminal prompt move to the directory holding the document to validate
-
--  Clean the output directory (named "`out`" in the examples below), to ensure that the result from an old validation run is not present.
-
-```bash
-rm -rf ./out
-```
 
 -  SVRL file creation (`svrl`) can be run like any other DITA-OT transform:
 
@@ -133,85 +126,90 @@ Once the command has run, an SVRL file is created
 
 To echo results to the command line use the `svrl-echo` transform.
 
--  Clean the output directory, to ensure that the result from an old validation run is not present.
-
-```bash
-rm -rf ./out
-```
-
 -  Document validation (`svrl-echo`) can be run like any other DITA-OT transform:
 
 ```bash
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap
 ```
+
 Once the command has run, all errors and warnings are echoed to the command line
 
 ```bash
-[echo] [WARN]	 [/out/temp/dita/topics/comment-fixme.dita]
-[echo]	 Line 15: section[id="bad"] - [comment-fixme]
-[echo] Found 'FIXME' comments within the <section> element - fix as requested and delete the comment.
-[echo]
-[echo]	FIXME 61) This comment requires action
-[echo]
-[echo] Found 0 Errors 1 Warnings
+[WARN]	 [/out/temp/dita/topics/comment-fixme.dita]
+ Line 15: section[id="bad"] - [comment-fixme]
+Found 'FIXME' comments within the <section> element - fix as requested and delete the comment.
+
+FIXME 61) This comment requires action
+
+Found 0 Errors 1 Warnings
 ```
+
 Additionally, if an error occurs, the command will fail
 
 ```bash
-[echo] [ERROR]	[/document.ditamap]
-[echo]	 Line 89: topicref - [href-not-lower-case]
-[echo] The value provided in href="topics/FILE-NOT-LOWER-CASE.dita" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.
-[echo]
-[echo] Found 1 Errors 0 Warnings
-Error: Errors detected during validation
+[ERROR]	[/document.ditamap]
+ Line 89: topicref - [href-not-lower-case]
+The value provided in href="topics/FILE-NOT-LOWER-CASE.dita" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.
+
+Found 1 Errors 0 Warnings
+Error: [SVRL001F][FATAL] Errors detected during validation
+```
+
+Optionally, the output can be highlighed using ANSI color codes by adding the `args.validate.color` parameter
+
+```bash
+PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
 ```
 
 
-### Validating a document using Ant
+### Validating a document using ANT
 
 
-An Ant build file is supplied in the same directory as the sample document. The main target can be seen below:
+An ANT build file is supplied in the same directory as the sample document. The main target can be seen below:
 
 
 ```xml
 <dirname property="dita.dir" file="PATH_TO_DITA_OT"/>
+<property name="dita.exec" value="${dita.dir}/bin/dita"/>
 <property name="args.input" value="PATH_TO_DITA_DOCUMENT/document.ditamap"/>
-<path id="dita.ot.classpath">
-	... etc..
-</path>
-<target name="validate">
-	<java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="dita.ot.classpath">
-		<arg value="-Dargs.input=${args.input}"/>
-		<arg value="-Ddita.dir=${dita.dir}"/>
-		<arg value="-buildfile"/>
-		<arg value="${dita.dir}/build.xml"/>
-		<arg value="-Dgenerate-debug-attributes=false"/>
-		<arg value="-Doutput.dir=out/svrl"/>
-		<arg value="-Dtranstype=svrl-echo"/>
+
+<target name="validate" description="validate a document">
+	<exec executable="${dita.exec}" osfamily="unix" failonerror="true">
+		<arg value="-input"/>
+		<arg value="${args.input}"/>
+		<arg value="-output"/>
+		<arg value="${dita.dir}/out/svrl"/>
+		<arg value="-format"/>
+		<arg value="svrl-echo"/>
+		<!-- validation transform specific parameters -->
 		<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
-		<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |ID|IoT|JSON|Java|Javadoc|JavaScript|XML"/>
-		<arg value="-Dargs.validate.mode=default" />
-		<arg value="-S"/>
-		<arg value="-q"/>
-	</java>
+		<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
+		<arg value="-Dargs.validate.color=true"/>
+	</exec>
+	<!-- For Windows run from a DOS command -->
+	<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
+		<arg value="/C"/>
+		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl-echo -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
+	</exec>	
 </target>
 ```
 
 
-
-
 ### Parameter Reference
-
 
 - `args.validate.ignore.rules` - Comma separated list of rules not to be enforced
 - `args.validate.blacklist` - Comma separated list of words not to be present in the running text
+- `args.validate.cachefile` - Specifies the location of cache file to be used. Validation will only run across altered files if this parameter is present
 - `args.validate.check.case` - Comma separated list of words which have a specified capitalization
+- `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
 - `args.validate.mode` - Validation reporting mode. The following values are supported:
 	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
 	- `default` - Outputs both warnings and errors. Fails on errors only
 	- `lax`		- Ignores all warnings and outputs errors only. Fails on Errors only
 - `svrl.customization.dir` - Specifies the customization directory
-- `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output
+- `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity levels will be used.
+- `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not present, the default echo output format will be used.
+
 
 
 Adding New Validator Rules
@@ -229,6 +227,14 @@ The severity of a validator rule can be altered by amending entries in the `cfg/
 * **ERROR** - Error rules will fail validation. Errors can be overridden as described above.
 * **WARNING** - Warning rules will display a warning on validation, but do not fail the validation. Warnings can also be individually overridden.
 * **INACTIVE** - Inactive rules are not applied.
+
+
+A custom ruleset file can be passed into the plug-in using the `svrl.ruleset.file` parameter
+
+
+```bash
+PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dsvrl.ruleset.file=PATH_TO_CUSTOM/ruleset.xml
+```
 
 
 Ignoring Validator Rules
@@ -286,6 +292,50 @@ Some rules such as **FIXME** and **TODO** in the running text need to be double 
 	FIXME is usually banned in the running text.
 </p>
 ```
+
+### Ignoring all warnings within a block
+
+A block of DITA can be excluded from firing all rules at **WARNING** level by adding the comment `ignore-all-warnings` to the block. This is especially useful to avoid false positive TODO warnings for text which is in Spanish.
+
+```xml
+<!--
+	We want to display the Spanish text below which would usually
+	result in a series of warnings for the word TODOS
+-->
+<section xml:lang="es-es" id="legal-es">
+	<!-- ignore-all-warnings -->
+	<title>Avisos legales</title>
+	<p>
+		© 2017 <keyword keyref="brand-name"/> Global B.V. Todos los derechos reservados.
+	</p>
+	<p>
+		Este material, incluidos la documentación y los programas informáticos relacionados, está protegido por derechos de autor controlados
+		por <keyword keyref="brand-name"/>. Todos los derechos están reservados. La copia, incluidos la reproducción, almacenamiento,
+		adaptación o traducción de una parte o de todo este material requiere el consentimiento por escrito de <keyword keyref="brand-name"/>.
+		Este material también contiene información confidencial, que no se puede revelar a otras personas sin el consentimiento previo y
+		por escrito de <keyword keyref="brand-name"/>.
+	</p>
+<section>
+```
+
+### Ignoring all errors within a block
+
+A block of DITA can be excluded from firing all rules at **ERROR** level by adding the comment `ignore-all-errors` to the block. This is useful to avoid issues with generated DITA files which are parsable DITA, but which may not satisfy in-house validation style rules.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- THIS TOPIC IS GENERATED -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="generated-topic" other-props="generated">
+	<!-- ignore-all-warnings, ignore-all-errors -->
+	<title>Topic title</title>
+	<body>
+		Generated Content goes here...
+	</body>
+</topic>
+```
+
+Rules set at **FATAL** level cannot be ignored.
 
 
 Sample Document

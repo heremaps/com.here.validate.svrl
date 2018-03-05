@@ -19,7 +19,14 @@
 	<xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
 	<xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
 
-
+	<!-- These come from the base plug-in -->
+	<xsl:param name="DEFAULTLANG">en-us</xsl:param>
+	<xsl:param name="IGNORE_RULES" as="xs:string" select="''"/>
+	<xsl:param name="OUTPUT_RULE-ID" select="'true'" as="xs:string"/>
+	<xsl:param name="SOURCE" as="xs:string"/>
+	<xsl:param name="FATAL_RULESET">a^</xsl:param>
+	<xsl:param name="ERROR_RULESET">a^</xsl:param>
+	<xsl:param name="WARNING_RULESET">a^</xsl:param>
 
 	<xsl:variable name="msgprefix">DOTX</xsl:variable>
 
@@ -111,7 +118,7 @@
 					</failed-assert>
 			</xsl:when>
 			<xsl:when test="matches ($rule-id, $ERROR_RULESET)">
-				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])">
+				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-errors')])">
 					<failed-assert>
 						<xsl:attribute name="location"><xsl:value-of select="$document-uri"/></xsl:attribute>
 						<xsl:attribute name="role">error</xsl:attribute>
@@ -153,7 +160,7 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="matches ($rule-id, $WARNING_RULESET)">
-				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])">
+				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-warnings')])">
 					<failed-assert>
 						<xsl:attribute name="location"><xsl:value-of select="$document-uri"/></xsl:attribute>
 						<xsl:attribute name="role">warning</xsl:attribute>
