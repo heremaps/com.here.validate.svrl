@@ -65,7 +65,7 @@ The required dependencies are installed to a local Maven repository in your home
 
 -  Run the Gradle distribution task to generate the plug-in distribution package:
 
-```bash
+```console
 ./gradlew dist
 ```
 
@@ -78,8 +78,8 @@ Installation
 
 -  Run the plug-in installation command:
 
-```bash
-dita -install https://github.com/heremaps/com.here.validate.svrl/archive/v1.1.0.zip
+```console
+dita -install https://github.com/jason-fox/com.here.validate.svrl/archive/master.zip
 ```
 
 The `dita` command line tool requires no additional configuration.
@@ -99,7 +99,7 @@ To create an SVRL file use the `svrl` transform.
 
 -  SVRL file creation (`svrl`) can be run like any other DITA-OT transform:
 
-```bash
+```console
 PATH_TO_DITA_OT/bin/dita -f svrl -o out -i document.ditamap
 ```
 
@@ -131,13 +131,13 @@ To echo results to the command line use the `svrl-echo` transform.
 
 -  Document validation (`svrl-echo`) can be run like any other DITA-OT transform:
 
-```bash
+```console
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap
 ```
 
 Once the command has run, all errors and warnings are echoed to the command line
 
-```bash
+```console
 [WARN]	 [/out/temp/dita/topics/comment-fixme.dita]
  Line 15: section[id="bad"] - [comment-fixme]
 Found 'FIXME' comments within the <section> element - fix as requested and delete the comment.
@@ -149,7 +149,7 @@ Found 0 Errors 1 Warnings
 
 Additionally, if an error occurs, the command will fail
 
-```bash
+```console
 [ERROR]	[/document.ditamap]
  Line 89: topicref - [href-not-lower-case]
 The value provided in href="topics/FILE-NOT-LOWER-CASE.dita" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.
@@ -160,7 +160,7 @@ Error: [SVRL001F][FATAL] Errors detected during validation
 
 Optionally, the output can be highlighed using ANSI color codes by adding the `args.validate.color` parameter
 
-```bash
+```console
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
 ```
 
@@ -218,7 +218,7 @@ An ANT build file is supplied in the same directory as the sample document. The 
 Adding New Validator Rules
 --------------------------
 
-This DITA-OT plug-in contains a common ruleset of general validator rules. The ruleset has been designed to be applicable to all documents created by all users. To add new custom rules (which only apply to your specific use case) you should create a separate custom validator plug-in which extends the base validator. See the sample [Extended DITA Validator](https://github.com/heremaps/com.here.validate.svrl.overrides) as an example of how to do this.
+This DITA-OT plug-in contains a common ruleset of general validator rules. The ruleset has been designed to be applicable to all documents created by all users. To add new custom rules (which only apply to your specific use case) you should create a separate custom validator plug-in which extends the base validator. See the sample [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) as an example of how to do this.
 
 Altering the severity of a validator rule
 -----------------------------------------
@@ -235,7 +235,7 @@ The severity of a validator rule can be altered by amending entries in the `cfg/
 A custom ruleset file can be passed into the plug-in using the `svrl.ruleset.file` parameter
 
 
-```bash
+```console
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dsvrl.ruleset.file=PATH_TO_CUSTOM/ruleset.xml
 ```
 
@@ -247,7 +247,7 @@ Ignoring Validator Rules
 
 Rules can be made inactive by altering the severity (see above).  Alternatively a rule can be commented out in the XSL.
 
-To completely remove rules which do not apply to your document set, you can create a customized DITA-OT plug-in which extends the base validator. See the [Extended DITA Validator](https://github.com/heremaps/com.here.validate.svrl.overrides) as an example of how to do this.
+To completely remove rules which do not apply to your document set, you can create a customized DITA-OT plug-in which extends the base validator. See the [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) as an example of how to do this.
 
 
 ### Ignoring a validator rule throughout a document
@@ -256,7 +256,7 @@ Individual rules can be ignored by adding the `args.validate.ignore.rules` param
 
 For example to ignore the `table-id-missing` validation rule within a document you would run:
 
-```bash
+```console
 PATH_TO_DITA_OT/dita -f svrl-echo -i document.ditamap -Dargs.validate.ignore.rules=table-id-missing
 ```
 
@@ -350,19 +350,19 @@ A complete list of rules covered by the DITA validator can be found below. The f
 
 The `<topic>` files are sorted as follows:
 
--	 The [base plug-in](https://github.com/heremaps/com.here.validate.svrl) \(`com.here.validate.svrl`\) – this `<chapter>` contains a set of common validator rules applicable to all users. The rules are grouped thematically according to the name of the associated `<active-pattern>` within the XSL stylesheets of the plug-in and then are listed alphabetically by `rule-id` within the group. The following types of validation rules are supported:
+-	 The [base plug-in](https://github.com/jason-fox/com.here.validate.svrl) \(`com.here.validate.svrl`\) – this `<chapter>` contains a set of common validator rules applicable to all users. The rules are grouped thematically according to the name of the associated `<active-pattern>` within the XSL stylesheets of the plug-in and then are listed alphabetically by `rule-id` within the group. The following types of validation rules are supported:
 	-	 `style` – Style rules enforce a standardized look and feel across DITA elements and ensure a better SEO and consistency. Alteration or removal of these rules should not affect the ability of DITA-OT to create a valid document.
 	-	 `structure` – Structure rules offer an error reporting mechanism against fatal changes which would result in an invalid DITA document. If these rules are altered or removed, errors will not be caught up-front and DITA-OT will not be able to build a valid document. Examples include a `conref` link to a non-existent topic or an attempt to create a `table` containing no `row` elements.
 	-	 `content` – These rules check the text within the DITA elements themselves, for example blacklisted words.
--	 The [extended plug-in](https://github.com/heremaps/com.here.validate.svrl.overrides) \(`com.here.validate.svrl.overrides`\) – This `<chapter>` shows how to modify, relax or remove existing validator rules and create additional custom validator rules. The custom rules are listed alphabetically by `rule-id`.
+-	 The [extended plug-in](https://github.com/jason-fox/com.here.validate.svrl.overrides) \(`com.here.validate.svrl.overrides`\) – This `<chapter>` shows how to modify, relax or remove existing validator rules and create additional custom validator rules. The custom rules are listed alphabetically by `rule-id`.
 
-Note that **extended** rules will only be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/heremaps/com.here.validate.svrl.overrides) is used.
+Note that **extended** rules will only be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
 
 Validator Error Messages
 ------------------------
 
-The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/heremaps/com.here.validate.svrl.overrides) is used.
+The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
 ### Content Validation
 
