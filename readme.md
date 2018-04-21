@@ -5,6 +5,9 @@ Copyright (c) 2018 HERE Europe B.V.
  
 See the [LICENSE](LICENSE) file in the root of this project for license details.
 
+[![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
+[![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
 Introduction
 ------------
 

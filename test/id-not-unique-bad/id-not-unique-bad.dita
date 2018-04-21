@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="id-not-unique-bad">
+	<title>id-not-unique</title>
+	<body>
+		<p>
+			  'id' attributes must be unique within  a file
+		</p>
+     <section id="good">
+      <title>Good IDs</title>
+       <p id="p1">
+        Morbi nec aliquet libero, ac condimentum tortor. Ut ultrices orci placerat elit rutrum ullamcorper. Etiam vulputate ante eget turpis iaculis, vel fermentum diam porttitor. Morbi pretium tempor nisi, at convallis sem tincidunt ut. Maecenas vitae purus malesuada, elementum dolor ac, porta nisi. Fusce ut dolor in nunc imperdiet lobortis a quis purus. Aliquam nec nibh in ex gravida venenatis vitae in ex. Duis non dui at est aliquam pretium. Sed et egestas tellus. Cras quis condimentum est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi gravida vel dolor ac posuere. Nam vel posuere orci. Nunc eros velit, mattis a ligula nec, finibus aliquam enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+       <p id="p2">
+        Morbi nec aliquet libero, ac condimentum tortor. Ut ultrices orci placerat elit rutrum ullamcorper. Etiam vulputate ante eget turpis iaculis, vel fermentum diam porttitor. Morbi pretium tempor nisi, at convallis sem tincidunt ut. Maecenas vitae purus malesuada, elementum dolor ac, porta nisi. Fusce ut dolor in nunc imperdiet lobortis a quis purus. Aliquam nec nibh in ex gravida venenatis vitae in ex. Duis non dui at est aliquam pretium. Sed et egestas tellus. Cras quis condimentum est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi gravida vel dolor ac posuere. Nam vel posuere orci. Nunc eros velit, mattis a ligula nec, finibus aliquam enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+
+    </section>
+    <section id="bad">
+      <title>Bad IDs</title>
+       <p id="not-unique">
+        Morbi nec aliquet libero, ac condimentum tortor. Ut ultrices orci placerat elit rutrum ullamcorper. Etiam vulputate ante eget turpis iaculis, vel fermentum diam porttitor. Morbi pretium tempor nisi, at convallis sem tincidunt ut. Maecenas vitae purus malesuada, elementum dolor ac, porta nisi. Fusce ut dolor in nunc imperdiet lobortis a quis purus. Aliquam nec nibh in ex gravida venenatis vitae in ex. Duis non dui at est aliquam pretium. Sed et egestas tellus. Cras quis condimentum est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi gravida vel dolor ac posuere. Nam vel posuere orci. Nunc eros velit, mattis a ligula nec, finibus aliquam enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+       <p id="not-unique">
+        Morbi nec aliquet libero, ac condimentum tortor. Ut ultrices orci placerat elit rutrum ullamcorper. Etiam vulputate ante eget turpis iaculis, vel fermentum diam porttitor. Morbi pretium tempor nisi, at convallis sem tincidunt ut. Maecenas vitae purus malesuada, elementum dolor ac, porta nisi. Fusce ut dolor in nunc imperdiet lobortis a quis purus. Aliquam nec nibh in ex gravida venenatis vitae in ex. Duis non dui at est aliquam pretium. Sed et egestas tellus. Cras quis condimentum est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi gravida vel dolor ac posuere. Nam vel posuere orci. Nunc eros velit, mattis a ligula nec, finibus aliquam enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+    </section>
+	</body>
+</topic>

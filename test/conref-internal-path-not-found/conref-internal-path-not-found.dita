@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="conref-internal-path-not-found">
+	<title>32) conref-internal-path-not-found</title>
+	<body>
+		<p>
+			For a conref within a single file, the path linked to must exist
+		</p>
+      <section id="good">
+      <title>Good conref</title>
+      <p id="href">
+        Hello World!
+      </p>
+      <p conref="#conref-internal-path-not-found/href"/>
+
+
+
+    </section>
+    <section id="bad">
+      <title>Bad conref</title>
+        <!-- <p id="bad-conref" conref="#no-topic/href"/> -->
+       <p>
+        <b>Failing test will break the build</b> - see conref-internal-path-not-found-bad.dita
+      </p>
+    </section>
+	</body>
+</topic>

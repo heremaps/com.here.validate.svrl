@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="conref-external-path-not-found-bad">
+  <title>conref-external-path-not-found</title>
+  <body>
+    <p>
+      For a conref within a single file, the path linked to must exist
+    </p>
+      <section id="good">
+      <title>Good conref</title>
+      <p id="href">
+        Hello World!
+      </p>
+      <p conref="conref-internal-path-not-found.dita#conref-internal-path-not-found/href"/>
+
+
+
+    </section>
+    <section id="bad">
+      <title>Bad conref</title>
+        <p id="bad-conref" conref="conref-internal-path-not-found.dita#no-topic/href"/>
+    </section>
+  </body>
+</topic>

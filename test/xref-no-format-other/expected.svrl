@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <active-pattern name="common-content-rules" role="content">
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="common-style-rules" role="style">
+    <fired-rule context="topic[id=&quot;xref-no-format-other&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="body"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="ditamap-structure-rules" role="structure">
+    <fired-rule context="topicref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="section-rules" role="style">
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+  </active-pattern>
+  <active-pattern name="section-rules" role="style">
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+  </active-pattern>
+  <active-pattern name="topic-rules" role="style">
+    <fired-rule context="topic[id=&quot;xref-no-format-other&quot;]"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="structure">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="structure">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="structure">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="structure">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="style">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="style">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="style">
+    <fired-rule context="xref"></fired-rule>
+    <failed-assert location="/xref-no-format-other.dita" role="error">
+      <diagnostic-reference diagnostic="xref-no-format">Line 16: xref - [xref-no-format] 
+Always provide a format attribute in &lt;xref&gt; elements, (for example, format="dita" or format="html").</diagnostic-reference>
+    </failed-assert>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="style">
+    <fired-rule context="xref"></fired-rule>
+    <failed-assert location="/xref-no-format-other.dita" role="error">
+      <diagnostic-reference diagnostic="xref-no-format">Line 17: xref - [xref-no-format] 
+Always provide a format attribute in &lt;xref&gt; elements, (for example, format="dita" or format="html").</diagnostic-reference>
+    </failed-assert>
+  </active-pattern>
+</svrl:schematron-output>
+

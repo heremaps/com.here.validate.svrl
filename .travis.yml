@@ -1,0 +1,13 @@
+language: java
+jdk:
+  - oraclejdk8
+before_script:
+  - zip -r com.here.validate.svrl.zip . -x *.zip* *.git/* *temp/* *out/*
+  - curl -LO 'https://github.com/dita-ot/dita-ot/releases/download/3.0/dita-ot-3.0.zip'
+  - unzip -q dita-ot-3.0.zip
+  - mv dita-ot*/ dita-ot/
+  - chmod +x dita-ot/bin/dita
+  - dita-ot/bin/dita --install https://github.com/jason-fox/fox.jason.unit-test/archive/master.zip
+  - dita-ot/bin/dita --install com.here.validate.svrl.zip 
+script:
+  - dita-ot/bin/dita --input dita-ot/plugins/com.here.validate.svrl -f unit-test -v

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="id-not-lower-case-ol">
+	<title>id-not-lower-case - ol</title>
+	<body>
+		<p>
+			&lt;ol&gt; 'id' attributes must be in the following format - (lowercase, a-z only, words separated by hyphens)
+		</p>
+     <section id="good-id">
+      <title>Good ol</title>
+      <ol id="good">
+        <li>Red</li>
+        <li>Orange</li>
+        <li>Yellow</li>
+        <li>Green</li>
+        <li>Blue</li>
+        <li>Indigo</li>
+        <li>Violet</li>
+      </ol>
+    </section>
+    <section id="bad-id">
+      <title>Bad ol</title>
+      <ol id="bAd">
+        <li>Red</li>
+        <li>Orange</li>
+        <li>Yellow</li>
+        <li>Green</li>
+        <li>Blue</li>
+        <li>Indigo</li>
+        <li>Violet</li>
+      </ol>
+    </section>
+	</body>
+</topic>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="fig-id-invalid">
+	<title>fig-id-invalid</title>
+	<body>
+    <p>
+      &lt;fig&gt; 'id' attributes must be in the following format - (lowercase, a-z only, words separated by hyphens)
+    </p>
+    <section id="good-fig">
+      <title>Good Fig</title>
+       <fig id="fig-good">
+        <title>Before the Change</title>
+        <image href="graphics/something-before.png" platform="pdfonly" width="100"/>
+        <image href="graphics/something-before.png" platform="htmlonly"/>
+      </fig>
+
+    </section>
+    <section id="bad-fig">
+      <title>Bad Fig</title>
+      <fig id="bad">
+        <title>After the Change</title>
+        <image href="graphics/something-after.png" platform="pdfonly" width="100"/>
+        <image href="graphics/something-after.png" platform="htmlonly"/>
+      </fig>
+    </section>
+  </body>
+</topic>

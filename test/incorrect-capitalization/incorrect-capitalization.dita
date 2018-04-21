@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="incorrect-capitalization">
+  <title>incorrect-capitilzation</title>
+  <body>
+    <p>
+     Incorrect capitialization of selected words found in the topic
+    </p>
+     <section id="good">
+      <title>Good Capitalization</title>
+      <p>
+        The acronym, JSON stands for "JavaScript Object Notation". Files frequently use the suffix <codeph>json</codeph>
+      </p>
+      <p>
+        The Bluetooth ID attribute is app_id when using XML or Java.
+      </p>
+       <p>
+        application/javascript and application/xml are fine.
+      </p>
+    </section>
+    <section id="bad">
+      <title>Bad Capitalization</title>
+      <p>
+        The acronym, json stands for "Javascript Object Notation".  Files frequently use the suffix <codeph>json</codeph>
+      </p>
+      <p>
+        The bluetooth id is app_id when using xml or JAVA.
+      </p>
+    </section>
+  </body>
+</topic>

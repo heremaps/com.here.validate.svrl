@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="table-all-rows-filtered">
+	<title>table-all-rows-filtered</title>
+	<body>
+		<p>
+			 &lt;table&gt; If an element contains filtered sub elements, they must not be all of the filter type.
+		</p>
+      <section id="good">
+      <title>Good Table</title>
+
+
+       <table id="table-good">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+            </row>
+            <row product="hlp">
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </section>
+    <section id="bad">
+      <title>Bad Table</title>
+        <table id="table-bad-product" >
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row  product="hlp">
+              <entry>&#xA0;</entry>
+            </row>
+            <row product="hlp">
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+       <table id="table-bad-audience" >
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row  product="internal">
+              <entry>&#xA0;</entry>
+            </row>
+            <row audience="internal">
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+	</body>
+</topic>

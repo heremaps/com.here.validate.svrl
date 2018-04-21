@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="href-not-lower-case-xref">
+	<title>href-not-lower-case - xref</title>
+	<body>
+		<p>
+			&lt;xref&gt; For an href to an external file, the <b>filename</b> must be lowercase, a-z only, words separated by hyphens
+		</p>
+     <section id="good">
+      <title>Good xrefs</title>
+			<p><xref format="image" href="../graphics/sample-jpeg.jpeg">Sample conformant link to an image file.</xref></p>
+			<p><xref format="dita" href="id-not-unique.dita#good">Sample conformant link to topic 19 file's "good" section.</xref></p>
+			<p><xref format="dita" href="id-not-unique.dita#good/p1">Sample conformant link to topic 19 file's "good" section subelement.</xref></p>
+    </section>
+    <section id="bad">
+      <title>Bad xrefs</title>
+			<p><xref format="image" href="../graphics/SAMPLE-JPEG.jpg">Sample non-conformant link to an image file.</xref></p>
+			<p><xref format="dita" href="FILE-NOT-LOWER-CASE.dita#href">Sample non-conformant link to FILE-NOT-LOWER-CASE p element.</xref></p>
+			<p><xref format="dita" href="FILE-NOT-LOWER-CASE.dita#file-not-lower-case/href">Sample non-conformant linkto FILE-NOT-LOWER-CASE p element.</xref></p>
+    </section>
+	</body>
+</topic>

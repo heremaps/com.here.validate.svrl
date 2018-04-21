@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="id-not-lower-case-row">
+	<title>id-not-lower-case - row</title>
+	<body>
+		<p>
+			&lt;row&gt; 'id' attributes must be in the following format - (lowercase, a-z only, words separated by hyphens)
+    </p>
+    <section id="good-id">
+      <title>Good Row</title>
+        <table id="table-good">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row id="good">
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </section>
+    <section id="bad-id">
+      <title>Bad Row</title>
+        <table id="table-bad">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row id="bAd">
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+	</body>
+</topic>

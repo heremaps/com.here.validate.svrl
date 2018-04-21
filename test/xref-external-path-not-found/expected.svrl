@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <active-pattern name="common-content-rules" role="content">
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="b"></fired-rule>
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="b"></fired-rule>
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="common-style-rules" role="style">
+    <fired-rule context="topic[id=&quot;xref-external-path-not-found&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="body"></fired-rule>
+    <fired-rule context="p"></fired-rule>
+    <fired-rule context="b"></fired-rule>
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+    <fired-rule context="title"></fired-rule>
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="ditamap-structure-rules" role="structure">
+    <fired-rule context="topicref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="section-rules" role="style">
+    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
+  </active-pattern>
+  <active-pattern name="section-rules" role="style">
+    <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
+  </active-pattern>
+  <active-pattern name="topic-rules" role="style">
+    <fired-rule context="topic[id=&quot;xref-external-path-not-found&quot;]"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="structure">
+    <fired-rule context="xref"></fired-rule>
+    <failed-assert location="/xref-external-path-not-found.dita" role="fatal">
+      <diagnostic-reference diagnostic="xref-external-file-not-found">Line 11: xref - [xref-external-file-not-found] 
+The file specified in &lt;xref href="id-not-unique.dita#good/p1"&gt; does not exist. Check the related folder for the missing file and make sure the link and file name specified are correct.</diagnostic-reference>
+    </failed-assert>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="structure">
+    <fired-rule context="xref"></fired-rule>
+    <failed-assert location="/xref-external-path-not-found.dita" role="fatal">
+      <diagnostic-reference diagnostic="xref-external-file-not-found">Line 15: xref - [xref-external-file-not-found] 
+The file specified in &lt;xref href="id-not-unique.dita#good/p1-2"&gt; does not exist. Check the related folder for the missing file and make sure the link and file name specified are correct.</diagnostic-reference>
+    </failed-assert>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="style">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+  <active-pattern name="xref-rules" role="style">
+    <fired-rule context="xref"></fired-rule>
+  </active-pattern>
+</svrl:schematron-output>
+

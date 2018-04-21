@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="id-not-lower-case-topic">
+	<title>id-not-lower-case - topic</title>
+	<body>
+		<p>
+			 &lt;topic&gt; must have an 'id' attribute in the following format - (lowercase, a-z only, words separated by hyphens)
+
+		</p>
+	</body>
+  <topic id="good">
+    <title>Good topic</title>
+    <body>
+      <p>
+        Morbi nec aliquet libero, ac condimentum tortor. Ut ultrices orci placerat elit rutrum ullamcorper. Etiam vulputate ante eget turpis iaculis, vel fermentum diam porttitor. Morbi pretium tempor nisi, at convallis sem tincidunt ut. Maecenas vitae purus malesuada, elementum dolor ac, porta nisi. Fusce ut dolor in nunc imperdiet lobortis a quis purus. Aliquam nec nibh in ex gravida venenatis vitae in ex. Duis non dui at est aliquam pretium. Sed et egestas tellus. Cras quis condimentum est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi gravida vel dolor ac posuere. Nam vel posuere orci. Nunc eros velit, mattis a ligula nec, finibus aliquam enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+    </body>
+  </topic>
+  <topic id="BaD">
+    <title>Bad topic</title>
+    <body>
+      <p>
+        Morbi nec aliquet libero, ac condimentum tortor. Ut ultrices orci placerat elit rutrum ullamcorper. Etiam vulputate ante eget turpis iaculis, vel fermentum diam porttitor. Morbi pretium tempor nisi, at convallis sem tincidunt ut. Maecenas vitae purus malesuada, elementum dolor ac, porta nisi. Fusce ut dolor in nunc imperdiet lobortis a quis purus. Aliquam nec nibh in ex gravida venenatis vitae in ex. Duis non dui at est aliquam pretium. Sed et egestas tellus. Cras quis condimentum est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi gravida vel dolor ac posuere. Nam vel posuere orci. Nunc eros velit, mattis a ligula nec, finibus aliquam enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+    </body>
+  </topic>
+</topic>

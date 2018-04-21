@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-internal-id-not-found">
+  <title>xref-internal-id-not-found</title>
+  <body>
+    <p>
+      &lt;xref&gt; For an href within a single file, the <b>ID</b> linked to must exist
+    </p>
+     <section id="good">
+      <title>Good xref</title>
+      <p><xref format="dita" href="#bad">Sample conformant link to this topic's "bad" section.</xref></p>
+    </section>
+    <section id="bad">
+      <title id="some-title">Bad xref</title>
+      <p><xref format="dita" href="#bad-2">Sample conformant link to this topic's non existent "bad-2" section.</xref></p>
+    </section>
+  </body>
+</topic>

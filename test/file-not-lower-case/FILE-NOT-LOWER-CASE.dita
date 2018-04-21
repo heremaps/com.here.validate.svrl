@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="file-not-lower-case">
+  <!-- ignore-rule: topic-file-mismatch -->
+	<title>file-not-lower-case</title>
+	<body>
+		<p>
+			 File name must be compliant with the naming rule (lowercase, a-z only, words separated by hyphens)
+		</p>
+
+
+    <p id="href">
+    	The file containing this text is erroneously named <codeph>FILE-NOT-LOWER-CASE.dita</codeph> (notice the upper-case file name).
+    </p>
+	</body>
+</topic>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="href-not-lower-case-image">
+  <title>href-not-lower-case - image</title>
+  <body>
+    <p>
+      &lt;image&gt; - filename and <codeph>href</codeph> attribute must be lowercase, a-z only, words separated by hyphens
+    </p>
+     <section id="good">
+      <title>Good image</title>
+      <image href="../graphics/sample-jpg.jpg" placement="break"/>
+    </section>
+    <section id="bad">
+      <title>Bad image</title>
+      <image href="../graphics/SAMPLE-JPEG.jpg" placement="break"/>
+    </section>
+  </body>
+</topic>

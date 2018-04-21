@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-www-scope-invalid">
+	<title>xref-www-scope-invalid</title>
+	<body>
+		<p>
+			<!-- ignore-rule:running-text-latin-terms-->
+			&lt;xref&gt; For an href with a protocol (i.e. http://) the scope attribute must be external
+		</p>
+		<section id="good">
+		 <title>Good xrefs</title>
+		 <p><xref format="html" href="https://maps.here.com" scope="external">Sample conformant link to https://maps.here.com .</xref></p>
+		 <p><xref format="html" href="https://maps.here.com:443" scope="external">Sample conformant link to https://maps.here.com:443 .</xref></p>
+		 <p><xref format="mailto" href="mailto:apf@here.com" scope="external">Sample conformant mailto: link.</xref></p>
+	 </section>
+	 <section id="bad">
+		 <title>Bad xrefs</title>
+		 <p><xref format="html" href="https://maps.here.com">Sample non-conformant link to https://maps.here.com .</xref></p>
+		 <p><xref format="html" href="https://maps.here.com:443">Sample non-conformant link to https://maps.here.com:443 .</xref></p>
+		 <p><xref format="mailto" href="mailto:apf@here.com">Sample non-conformant mailto: link.</xref></p>
+	 </section>
+	</body>
+</topic>

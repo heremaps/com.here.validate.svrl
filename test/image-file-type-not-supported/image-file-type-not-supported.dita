@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="image-file-type-not-supported">
+  <title>image-file-type-not-supported</title>
+  <body>
+    <p>
+      &lt;image&gt; - invalid file extension (only *.jpg, *.jpeg or *.png are allowed)
+    </p>
+     <section id="good">
+      <title>Good image file extensions</title>
+      <image href="../graphics/sample-jpg.jpg" placement="break"/>
+      <image href="../graphics/sample-jpeg.jpeg" placement="break"/>
+      <image href="../graphics/something-after.png" placement="break"/>
+    </section>
+    <section id="bad">
+      <title>Bad image file extensions</title>
+      <image href="../graphics/sample-svg.svg" placement="break"/>
+      <image href="../graphics/sample-gif.gif" placement="break"/>
+    </section>
+  </body>
+</topic>

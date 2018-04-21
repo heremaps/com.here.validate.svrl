@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="tgroup-cols-colspec-mismatch">
+	<title>tgroup-cols-colspec-mismatch</title>
+	<body>
+		<p>
+			{tgroup} mismatch - cols attribute does not match the actual number of colspec elements
+		</p>
+
+    <section id="good">
+      <title>Good Table</title>
+
+
+       <table id="table-good">
+        <tgroup cols="1">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+
+      <table id="table-good-too-few" >
+        <tgroup cols="3">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <colspec colname="c2" colnum="2" colwidth="336pt"/>
+          <colspec colname="c3" colnum="3" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </section>
+    <section id="bad">
+      <title>Bad Table</title>
+      <table id="table-bad-too-many" >
+        <tgroup cols="2">
+          <colspec colname="c1" colnum="1" colwidth="336pt"/>
+          <tbody>
+            <row>
+              <entry>&#xA0;</entry>
+              <entry>&#xA0;</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+	</body>
+</topic>

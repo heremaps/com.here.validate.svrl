@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  This file is part of the DITA validator project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<rules>
+	 <!-- Fatal rules will fail validation (cannot be overriden)-->
+	<text>appendices-href-missing</text>
+	<text>chapter-href-missing</text>
+	<text>coderef-href-ref-file-not-found</text>
+	<text>colsep-invalid</text>
+	<text>colspec-colnum-not-unique</text>
+	<text>conref-external-file-not-found</text>
+	<text>conref-external-id-mismatch</text>
+	<text>conref-external-id-not-found</text>
+	<text>conref-external-path-not-found</text>
+	<text>conref-external-path-mismatch</text>
+	<text>conref-internal-id-not-found</text>
+	<text>conref-internal-path-mismatch</text>
+	<text>conref-internal-path-not-found</text>
+	<text>href-file-not-found</text>
+	<text>id-not-unique</text>
+	<text>image-href-ref-file-not-found</text>
+	<text>list-all-li-filtered</text>
+	<text>notices-href-missing</text>
+	<text>rowsep-invalid</text>
+	<text>table-all-rows-filtered</text>
+	<text>tgroup-cols-colspec-mismatch</text>
+	<text>tgroup-cols-entry-mismatch</text>
+	<text>topicref-href-missing</text>
+	<text>xref-external-file-not-found</text>
+	<text>xref-external-id-not-found</text>
+	<text>xref-external-path-not-found</text>
+	<text>xref-internal-id-not-found</text>
+	<text>xref-internal-path-not-found</text>
+	<!-- Error rules will fail validation (can be overriden)-->
+	<text>conref-not-lower-case</text>
+	<text>fig-id-invalid</text>
+	<text>fig-id-missing</text>
+	<text>file-not-lower-case</text>
+	<text>href-not-lower-case</text>
+	<text>id-not-lower-case</text>
+	<text>image-file-type-not-supported</text>
+	<text>section-id-missing</text>
+	<text>section-title-missing</text>
+	<text>table-id-invalid</text>
+	<text>xref-no-format</text>
+	<text>xref-www-format-invalid</text>
+	<text>xref-www-scope-invalid</text>
+	<!-- Warning rules will display a warning on validation (can be overriden)-->
+	<text>blacklisted-word</text>
+	<text>codeblock-outputclass-missing</text>
+	<text>codeblock-scale-missing</text>
+	<text>comment-fixme</text>
+	<text>comment-todo</text>
+	<text>fig-title-missing</text>
+	<text>incorrect-capitalization</text>
+	<text>running-text-fixme</text>
+	<text>running-text-lorem-ipsum</text>
+	<text>running-text-todo</text>
+	<text>topic-file-mismatch</text>
+</rules>

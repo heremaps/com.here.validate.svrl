@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="fig-title-missing">
+	<title>fig-title-missing</title>
+	<body>
+    <p>
+      &lt;fig&gt; elements must always have a &lt;title&gt;
+    </p>
+    <section id="good-fig">
+      <title>Good Fig</title>
+       <fig id="fig-good">
+        <title>Before the Change</title>
+        <image href="graphics/something-before.png" platform="pdfonly" width="100"/>
+        <image href="graphics/something-before.png" platform="htmlonly"/>
+      </fig>
+
+    </section>
+    <section id="bad-fig">
+      <title>Bad Fig</title>
+      <fig id="fig-bad">
+        <image href="graphics/something-after.png" platform="pdfonly" width="100"/>
+        <image href="graphics/something-after.png" platform="htmlonly"/>
+      </fig>
+    </section>
+  </body>
+</topic>

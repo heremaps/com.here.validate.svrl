@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-external-file-not-found">
+  <title>xref-external-file-not-found</title>
+  <body>
+    <p>
+      &lt;xref&gt; For an href to an external file, the <b>file</b> linked to must exist
+    </p>
+     <section id="good">
+      <title>Good xref</title>
+      <xref format="image" href="../graphics/sample-jpg.jpg">Sample conformant link to an image.</xref>
+    </section>
+    <section id="bad">
+      <title>Bad xref</title>
+      <xref format="image" href="../graphics/non existent jpg">Sample non-conformant link to an image that does not exist.</xref>
+    </section>
+  </body>
+</topic>

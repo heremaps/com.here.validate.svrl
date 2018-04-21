@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="xref-external-id-not-found">
+  <title>xref-external-id-not-found</title>
+  <body>
+    <p>
+      &lt;xref&gt; For an href to an external file, the <b>ID</b> linked to must exist
+    </p>
+    <section id="good">
+     <title>Good xref</title>
+     <xref format="dita" href="id-not-unique.dita#good">Sample conformant link to topic 19 file's "good" section.</xref>
+   </section>
+   <section id="bad">
+     <title>Bad xref</title>
+     <xref format="dita" href="id-not-unique.dita#good-or-bad">Sample non-conformant link to topic 19 file's non existent "good-or-bad" section.</xref>
+   </section>
+  </body>
+</topic>

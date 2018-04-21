@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="conref-external-id-not-found">
+  <title>conref-external-id-not-found</title>
+  <body>
+    <p>
+      For a conref to an external file, the <codeph>id</codeph> attribute linked to must exist
+    </p>
+     <section id="good">
+      <title>Good xref</title>
+
+      <p conref="./conref-internal-id-not-found.dita#href"/>
+
+    </section>
+    <section id="bad">
+      <title>Bad xref</title>
+        <!--p conref="./conref-internal-id-not-found.dita#not-an-href"/-->
+        <p>
+        <b>Failing test will break the build</b> - see conref-external-id-not-found-no-exists.dita
+      </p>
+    </section>
+  </body>
+</topic>

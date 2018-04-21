@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="incorrect-spelling">
+  <title>incorrect-spelling</title>
+  <body>
+    <p>
+     Mispelt and banned words found in the topic
+    </p>
+     <section id="good">
+      <title>Good Spelling</title>
+      <p>
+        The acronym, JSON stands for "JavaScript Object Notation".
+        Files frequently use the suffix <codeph>json</codeph>
+      </p>
+    </section>
+    <section id="bad">
+      <title>Bad spelling</title>
+      <p>
+        The acronym, JSON stands for "JavaScript Object Notation".
+        Files frequently use the suffix <codeph>json</codeph>
+      </p>
+    </section>
+  </body>
+</topic>

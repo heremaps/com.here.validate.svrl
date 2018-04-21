@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="unit-test">
+	<import file="../bootstrap.xml"/>
+	<description>
+		Expect that a TODO in the running text is a validation warning
+	</description>
+	<target name="unit-test">
+		<exec-svrl/>
+		<compare-output suffix=".svrl" os="unix"/>
+		<compare-output suffix=".svrl" expectation="expected.svrl.win" os="windows"/>
+	</target>
+</project>
