@@ -10,4 +10,4 @@ before_script:
   - dita-ot/bin/dita --install https://github.com/jason-fox/fox.jason.unit-test/archive/master.zip
   - dita-ot/bin/dita --install com.here.validate.svrl.zip 
 script:
-  - dita-ot/bin/dita --input dita-ot/plugins/com.here.validate.svrl -f unit-test -v
+  - travis_wait 30 dita-ot/bin/dita --input dita-ot/plugins/com.here.validate.svrl -f unit-test -v
