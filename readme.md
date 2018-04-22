@@ -9,17 +9,46 @@ See the [LICENSE](LICENSE) file in the root of this project for license details.
 [![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
 [![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-Introduction
-------------
-
 The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure, style and content checker for DITA documents. The plug-in returns information about the compliance of the document against a **modifiable** series of validator rules. The plug-in also supports standard XML validation
-
 
 The plug-in supports two transtypes - it can either echo results to the command line or return a report in *Schematron Validation Report Language* (`SVRL`) format. More information about SVRL can be found at [www.schematron.com](http://www.schematron.com/validators.html)
 
+Contents
+========
 
-### What Is Valid XML?
+- [Introduction](#introduction)
+  * [What Is Valid XML?](#what-is-valid-xml)
+  * [Validator compliant DITA](#validator-compliant-dita)
+- [Prerequisites](#prerequisites)
+  * [Installing DITA-OT](#installing-dita-ot)
+  * [Installing the Plug-in](#installing-the-plug-in)
+- [Usage](#usage)
+  * [Validating a document from the Command line](#validating-a-document-from-the-command-line)
+    + [Creating an SVRL file](#creating-an-svrl-file)
+    + [Echoing results to the command line](#echoing-results-to-the-command-line)
+    + [Parameter Reference](#parameter-reference)
+  * [Validating a document using ANT](#validating-a-document-using-ant)
+- [Customizing the Validator](#customizing-the-validator)
+  * [Adding New Validator Rules](#adding-new-validator-rules)
+  * [Altering the severity of a validator rule](#altering-the-severity-of-a-validator-rule)
+  * [Ignoring Validator Rules](#ignoring-validator-rules)
+    + [Removing validator rules globally](#removing-validator-rules-globally)
+    + [Ignoring a validator rule throughout a document](#ignoring-a-validator-rule-throughout-a-document)
+    + [Ignoring a specific instance of a validator rule](#ignoring-a-specific-instance-of-a-validator-rule)
+    + [Ignoring all warnings within a block](#ignoring-all-warnings-within-a-block)
+    + [Ignoring all errors within a block](#ignoring-all-errors-within-a-block)
+- [Sample Document](#sample-document)
+- [Validator Error Messages](#validator-error-messages)
+  * [Content Validation](#content-validation)
+  * [Style Validation](#style-validation)
+  * [Structure Validation](#structure-validation)
 
+
+Introduction
+============
+
+What Is Valid XML?
+------------------
 
 For any DITA publication to build successfully, all its files must contain valid DITA markup.
 
@@ -32,8 +61,8 @@ General XML validation rules require that:
 -	A single root element such as `<topic>`, contains all the other elements.
 -	`<topic>` within a DITA document must conform to the `topic.dtd` Document Type Defintion
 
-### Validator compliant DITA
-
+Validator compliant DITA
+------------------------
 
 The DITA Validator extends the concept of XML validation to run a series of structure and style compliance rules.
 Sample rules include:
@@ -49,14 +78,12 @@ Sample rules include:
 
 
 Prerequisites
--------------
+=============
 
-### Requirements
+The validator has been tested against [DITA-OT 3.0.x](http://www.dita-ot.org/download). It is recommended that you upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use `getMessage`. The validator can be run safely against DITA-OT 2.x if the diagnostic message are removed and a `conductor.xml` is added to replace the `ant.import` statements in the `plugin.xml` - it also does not need to specially invoke the older Saxon XSLT processor.
 
-The validator has been tested against [DITA-OT 3.0.x](http://www.dita-ot.org/download). It is recommended that you upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use `getMessage`. The validator can be run safely against DITA-OT 2.x - it also does not need to specially invoke the older Saxon XSLT processor.
-
-### Installing DITA-OT
-
+Installing DITA-OT
+------------------
 
 The DITA Validator is a plug-in for the DITA Open Toolkit.
 
@@ -72,10 +99,8 @@ The required dependencies are installed to a local Maven repository in your home
 
 The distribution ZIP file is generated under `build/distributions`.
 
-Installation
------------
-
-### Installing the Plug-in
+Installing the Plug-in
+----------------------
 
 -  Run the plug-in installation command:
 
@@ -86,13 +111,14 @@ dita -install https://github.com/jason-fox/com.here.validate.svrl/archive/master
 The `dita` command line tool requires no additional configuration.
 
 Usage
------
+=====
 
-### Validating a document from the Command line
+Validating a document from the Command line
+-------------------------------------------
 
 A test document can be found within the plug-in at `PATH_TO_DITA_OT/plugins/com.here.validate.svrl/sample`
 
-#### Creating an SVRL file
+### Creating an SVRL file
 
 To create an SVRL file use the `svrl` transform.
 
@@ -126,7 +152,7 @@ Once the command has run, an SVRL file is created
 </svrl:schematron-output>
 ```
 
-#### Echoing results to the command line
+### Echoing results to the command line
 
 To echo results to the command line use the `svrl-echo` transform.
 
@@ -166,8 +192,25 @@ PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=
 ```
 
 
-### Validating a document using ANT
+### Parameter Reference
 
+- `args.validate.ignore.rules` - Comma separated list of rules not to be enforced
+- `args.validate.blacklist` - Comma separated list of words not to be present in the running text
+- `args.validate.cachefile` - Specifies the location of cache file to be used. Validation will only run across altered files if this parameter is present
+- `args.validate.check.case` - Comma separated list of words which have a specified capitalization
+- `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
+- `args.validate.mode` - Validation reporting mode. The following values are supported:
+	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
+	- `default` - Outputs both warnings and errors. Fails on errors only
+	- `lax`		- Ignores all warnings and outputs errors only. Fails on Errors only
+- `svrl.customization.dir` - Specifies the customization directory
+- `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity levels will be used.
+- `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not present, the default echo output format will be used.
+
+
+
+Validating a document using ANT
+-------------------------------
 
 An ANT build file is supplied in the same directory as the sample document. The main target can be seen below:
 
@@ -199,22 +242,8 @@ An ANT build file is supplied in the same directory as the sample document. The 
 ```
 
 
-### Parameter Reference
-
-- `args.validate.ignore.rules` - Comma separated list of rules not to be enforced
-- `args.validate.blacklist` - Comma separated list of words not to be present in the running text
-- `args.validate.cachefile` - Specifies the location of cache file to be used. Validation will only run across altered files if this parameter is present
-- `args.validate.check.case` - Comma separated list of words which have a specified capitalization
-- `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
-- `args.validate.mode` - Validation reporting mode. The following values are supported:
-	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
-	- `default` - Outputs both warnings and errors. Fails on errors only
-	- `lax`		- Ignores all warnings and outputs errors only. Fails on Errors only
-- `svrl.customization.dir` - Specifies the customization directory
-- `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity levels will be used.
-- `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not present, the default echo output format will be used.
-
-
+Customizing the Validator
+=========================
 
 Adding New Validator Rules
 --------------------------
@@ -223,7 +252,6 @@ This DITA-OT plug-in contains a common ruleset of general validator rules. The r
 
 Altering the severity of a validator rule
 -----------------------------------------
-
 
 The severity of a validator rule can be altered by amending entries in the `cfg/rulesset/default.xml`  file The plug-in supports four severity levels:
 
@@ -343,7 +371,7 @@ Rules set at **FATAL** level cannot be ignored.
 
 
 Sample Document
----------------
+===============
 
 A sample document can be found within the plug-in which can used to test validator rules. The document covers with positive and negative test cases. The sample document contains "broken" DITA which **cannot** be built as a PDF document - please use the `html` transform to read the contents or examine the `*.dita` files directly.
 
@@ -361,11 +389,12 @@ Note that **extended** rules will only be detected if the `overrides` transform 
 
 
 Validator Error Messages
-------------------------
+========================
 
 The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
-### Content Validation
+Content Validation
+------------------
 
 |Message ID|Message|Corrective Action/Comment|
 |----------|-------|-------------------------|
@@ -379,8 +408,8 @@ The following tables list the validator error messages by type and message ID. B
 
 
 
-### Style Validation
-
+Style Validation
+----------------
 
 |Message ID|Message|Corrective Action/Comment|
 |----------|-------|-------------------------|
@@ -400,7 +429,8 @@ The following tables list the validator error messages by type and message ID. B
 |topic-file-mismatch|The value specified in id="\{name\}" does not match the file name: \{file\_name\}. Make sure the `id` value and the file name are the same.|In order to assist with search engine optimization \(SEO\) of content, the `id` for `<topic>` elements must be the same as the file name, which also ends up by the name of the HTML file. For more information on topics, see [topic](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/topic.html). For more information on element 'id`s', see [id](http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html).|
 |xref-no-format|Always provide a format attribute in `<xref>` elements, \(for example, format="dita" or format="html"\).|Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
 
-### Structure Validation
+Structure Validation
+--------------------
 
 |Message ID|Message|Corrective Action/Comment|
 |----------|-------|-------------------------|
