@@ -51,6 +51,7 @@
 	</transtype>
 
 
-	<feature extension="ant.import" file="build_dita2svrl.xml"/>
+	<!--feature extension="ant.import" file="build_dita2svrl.xml"/-->
+	<feature extension="dita.conductor.target.relative" file="conductor.xml"/>
 	<template file="build_dita2svrl_template.xml"/>
 </plugin>
