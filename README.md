@@ -471,11 +471,11 @@ License
 
 [Apache 2.0](LICENSE) © 2018 HERE Europe B.V.
 
+See the [LICENSE](LICENSE) file in the root of this project for license details.
+
 The Program includes the following additional software components which were obtained under license:
 
-#### Mozilla Public license 1.0:
+* Saxon-9.1.0.8.jar - http://saxon.sourceforge.net/  - **Mozilla Public license 1.0**
+* Saxon-9.1.0.8-dom.jar - http://saxon.sourceforge.net/  - **Mozilla Public license 1.0**
 
-* Saxon-9.1.0.8.jar - http://saxon.sourceforge.net/ 
-* Saxon-9.1.0.8-dom.jar - http://saxon.sourceforge.net/ 
 
-See the [LICENSE](LICENSE) file in the root of this project for license details.
