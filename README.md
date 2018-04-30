@@ -1,10 +1,6 @@
 DITA Validator for DITA-OT
 ==========================
 
-Copyright (c) 2018 HERE Europe B.V.
- 
-See the [LICENSE](LICENSE) file in the root of this project for license details.
-
 [![DITA-OT 3.0](https://img.shields.io/badge/DITA--OT-3.0-blue.svg)](http://www.dita-ot.org/3.0/)
 [![DITA-OT 2.5](https://img.shields.io/badge/DITA--OT-2.5-green.svg)](http://www.dita-ot.org/2.5/)
 [![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
@@ -14,13 +10,13 @@ The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure
 
 The plug-in supports two transtypes - it can either echo results to the command line or return a report in *Schematron Validation Report Language* (`SVRL`) format. More information about SVRL can be found at [www.schematron.com](http://www.schematron.com/validators.html)
 
-Contents
-========
+Table of Contents
+=================
 
-- [Introduction](#introduction)
+- [Background](#background)
   * [What Is Valid XML?](#what-is-valid-xml)
   * [Validator compliant DITA](#validator-compliant-dita)
-- [Prerequisites](#prerequisites)
+- [Install](#install)
   * [Installing DITA-OT](#installing-dita-ot)
   * [Installing the Plug-in](#installing-the-plug-in)
 - [Usage](#usage)
@@ -43,10 +39,12 @@ Contents
   * [Content Validation](#content-validation)
   * [Style Validation](#style-validation)
   * [Structure Validation](#structure-validation)
+- [Contribute](#contribute)
+- [License](#license)
 
 
-Introduction
-============
+Background
+==========
 
 What Is Valid XML?
 ------------------
@@ -78,8 +76,8 @@ Sample rules include:
 -	Whether the document will be unable to render as PDF due to empty `<table>` elements
 
 
-Prerequisites
-=============
+Install
+=======
 
 The validator has been tested against [DITA-OT 3.0.x](http://www.dita-ot.org/download). It is recommended that you upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use `getMessage`. The validator can be run safely against DITA-OT 2.x.
 
@@ -462,3 +460,15 @@ Structure Validation
 |xref-internal-path-not-found|The referenced path in `<xref href="...">` does not exist. Make sure the path is correct.|When you get this error, the validator cannot resolve the provided path in the file. Make sure the file contains the path. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
 |xref-www-format-invalid|`<xref href="..." format="dita">` The specified value points to an external file and cannot have the attribute key/value pair format="dita". Change the format value as appropriate \(for example, format="html"\).|Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
 |xref-www-scope-invalid|`<xref href="...">` The specified value points to an external file. Specify the attribute key/value pair scope="external".|The `href` attribute specifies a web page or similar target, which means the `scope` attribute must have the value `external`. Change the value as required. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
+
+Contribute
+==========
+
+PRs accepted.
+
+License
+=======
+
+[Apache 2.0](LICENSE) © 2018 HERE Europe B.V.
+
+See the [LICENSE](LICENSE) file in the root of this project for license details.
