@@ -3,21 +3,18 @@
   This file is part of the Spelling and Grammar Checker project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<project name="com.here.validate.svrl.xslt" default="run-svrl">
-
+<project default="run-svrl" name="com.here.validate.svrl.xslt">
 	<!--
 		Ant target to allow direct invocation of the valiadator transforms, this means we can use an alternative classpath.
 	-->
 	<target name="run-svrl">
-		
 		<xmlcatalog id="dita.catalog">
-  			<catalogpath path="${dita.dir}/catalog-dita.xml"/>
-   		</xmlcatalog>
-
+			<catalogpath path="${dita.dir}/catalog-dita.xml"/>
+		</xmlcatalog>
 		<!--
 			Apply the XSLT defined over the root ditamap This create SVRL files from the *.ditamap and fires the associated Validator ruleset.
 		-->
-		<xslt extension=".svrl" style="${svrl.customization.dir}/ditamap2svrl.xsl" destdir="${dita.temp.dir}/svrl/ditamap" useImplicitFileset="false" classpath="${dita.plugin.com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" >
+		<xslt classpath="${dita.plugin.com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" destdir="${dita.temp.dir}/svrl/ditamap" extension=".svrl" style="${svrl.customization.dir}/ditamap2svrl.xsl" useImplicitFileset="false">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
@@ -33,24 +30,23 @@
 				<attribute name="http://saxon.sf.net/feature/validation" value="false"/>
 			</factory>
 			<!-- Common parameters for the schematron template from the base plug-in -->
-			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
-			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
-			<param name="SOURCE" expression="${dita.temp.dir}/dita"/>
-			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
-			<param name="FATAL_RULESET" expression="${ruleset.fatal}"/>
-			<param name="ERROR_RULESET" expression="${ruleset.error}"/>
-			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
+			<param expression="${args.validate.ignore.rules}" name="IGNORE_RULES"/>
+			<param expression="${com.here.validate.svrl.output.rule-id}" name="OUTPUT_RULE-ID"/>
+			<param expression="${dita.temp.dir}/dita" name="SOURCE"/>
+			<param expression="${document.language}" if="document.language" name="DEFAULTLANG"/>
+			<param expression="${ruleset.fatal}" name="FATAL_RULESET"/>
+			<param expression="${ruleset.error}" name="ERROR_RULESET"/>
+			<param expression="${ruleset.warning}" name="WARNING_RULESET"/>
 			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.ditamap"/>
 			</fileset>
 		</xslt>
-
 		<!--
 			Apply the XSLT defined in the ${args.input.dir} directory. This create SVRL files from the *.dita and fires the Validator ruleset.
 
 			For efficiency, run XSLT Validation against modified files only, if requested.
 		-->
-		<xslt extension=".svrl" failOnError="false" style="${svrl.customization.dir}/dita2svrl.xsl" destdir="${dita.temp.dir}/svrl/dita" useImplicitFileset="false" classpath="${com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar"  failOnNoResources="false">
+		<xslt classpath="${com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" destdir="${dita.temp.dir}/svrl/dita" extension=".svrl" failOnError="false" failOnNoResources="false" style="${svrl.customization.dir}/dita2svrl.xsl" useImplicitFileset="false">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
@@ -66,24 +62,22 @@
 				<attribute name="http://saxon.sf.net/feature/validation" value="false"/>
 			</factory>
 			<!-- Parameters for the textual-rules template from the base plug-in -->
-			<param name="BLACKLIST" expression="${args.validate.blacklist}"/>
-			<param name="CHECK_CASE" expression="${args.validate.check.case}"/>
+			<param expression="${args.validate.blacklist}" name="BLACKLIST"/>
+			<param expression="${args.validate.check.case}" name="CHECK_CASE"/>
 			<!-- Common parameters for the schematron template from the base plug-in -->
-			<param name="IGNORE_RULES" expression="${args.validate.ignore.rules}"/>
-			<param name="OUTPUT_RULE-ID" expression="${com.here.validate.svrl.output.rule-id}"/>
-			<param name="SOURCE" expression="${dita.temp.dir}/dita"/>
-			<param name="DEFAULTLANG" expression="${document.language}" if="document.language" />
-			<param name="FATAL_RULESET" expression="${ruleset.fatal}"/>
-			<param name="ERROR_RULESET" expression="${ruleset.error}"/>
-			<param name="WARNING_RULESET" expression="${ruleset.warning}"/>
+			<param expression="${args.validate.ignore.rules}" name="IGNORE_RULES"/>
+			<param expression="${com.here.validate.svrl.output.rule-id}" name="OUTPUT_RULE-ID"/>
+			<param expression="${dita.temp.dir}/dita" name="SOURCE"/>
+			<param expression="${document.language}" if="document.language" name="DEFAULTLANG"/>
+			<param expression="${ruleset.fatal}" name="FATAL_RULESET"/>
+			<param expression="${ruleset.error}" name="ERROR_RULESET"/>
+			<param expression="${ruleset.warning}" name="WARNING_RULESET"/>
 			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.dita"/>
 				<modified update="true">
 					<param name="cache.cachefile" value="${args.validate.cachefile}"/>
 				</modified>
-
 			</fileset>
 		</xslt>
 	</target>
-
 </project>

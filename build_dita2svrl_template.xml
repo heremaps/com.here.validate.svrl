@@ -4,13 +4,10 @@
 	See the accompanying LICENSE file for applicable licenses.
 -->
 <project name="com.here.validate.svrl" xmlns:dita="http://dita-ot.sourceforge.net">
-	
-
 	<!--
 		Setting up schematron processing. Sets up ant variable defaults
 	-->
-	<target name="svrl.init" depends="build-init">
-
+	<target depends="build-init" name="svrl.init">
 		<!-- This defines the output file -->
 		<dita-ot-fail id="DOTA069F">
 			<condition>
@@ -20,36 +17,30 @@
 			</condition>
 			<param name="1" value="${args.input}"/>
 		</dita-ot-fail>
-
 		<!-- This defines the output file -->
-		<basename property="svrl.filename.root" file="${args.input}" suffix=".ditamap"/>
-
+		<basename file="${args.input}" property="svrl.filename.root" suffix=".ditamap"/>
 		<path id="svrl.classpath">
-    		<fileset dir="${dita.plugin.com.here.validate.svrl.dir}/lib">
-        		<include name="*.jar" />
-    		</fileset>
-    		 <pathelement location="${dita.dir}/lib/ant-launcher.jar"/>
-    		 <pathelement location="${dita.dir}/lib/ant.jar"/>
+			<fileset dir="${dita.plugin.com.here.validate.svrl.dir}/lib">
+				<include name="*.jar"/>
+			</fileset>
+			<pathelement location="${dita.dir}/lib/ant-launcher.jar"/>
+			<pathelement location="${dita.dir}/lib/ant.jar"/>
 		</path>
-
 		<condition property="otversion.legacy">
-  			<matches pattern="^[1|2].*" string="${otversion}"/>
+			<matches pattern="^[1|2].*" string="${otversion}"/>
 		</condition>
 		<typedef file="${dita.plugin.com.here.validate.svrl.dir}/resource/macros.xml"/>
-
 		<!-- Use the default location for the schematron customization if this is not set -->
 		<property name="svrl.customization.dir" value="${dita.plugin.com.here.validate.svrl.dir}/xsl"/>
 		<property name="svrl.filter.file" value="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-output.xsl"/>
 		<property name="svrl.result.file" value="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-result.xsl"/>
-
 		<!-- Create a dummy cache file to use if cache parameter is not set -->
-		<tempfile destdir="${dita.temp.dir}" property="svrl.cache.file" deleteonexit="true"/>
+		<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="svrl.cache.file"/>
 		<property name="args.validate.cachefile" value="${svrl.cache.file}"/>
 		<!--
 			Use the default severity for each rule unless an override has been set.
 		-->
 		<property name="svrl.ruleset.file" value="${dita.plugin.com.here.validate.svrl.dir}/cfg/ruleset/default.xml"/>
-		
 		<!--
 			The property args.input.dir should hold the folder for the document e.g
 			de_guide, release_notes etc. This will allow the validator to scan all *.dita
@@ -59,7 +50,6 @@
 		<property name="args.validate.ignore.rules" value=""/>
 		<property name="args.validate.blacklist" value="(kilo)?metre|colour|teh|seperate"/>
 		<property name="args.validate.check.case" value="Bluetooth|HTTP|HTTPS|IoT|JSON|Java|Javadoc|JavaScript|XML|HTML"/>
-
 		<!-- Default value if no value is passed is 'true' -->
 		<condition property="com.here.validate.svrl.output.rule-id" value="true">
 			<or>
@@ -72,7 +62,6 @@
 		<condition property="com.here.validate.svrl.output.rule-id" value="false">
 			<isfalse value="${args.validate.output.rule-id}"/>
 		</condition>
-
 		<condition property="com.here.validate.svrl.color">
 			<or>
 				<and>
@@ -84,45 +73,41 @@
 				<istrue value="${args.validate.color}"/>
 			</or>
 		</condition>
-
 		<property name="args.validate.mode" value="default"/>
-		<property name="com.here.validate.svrl.mode" value="${args.validate.mode}" />
-
+		<property name="com.here.validate.svrl.mode" value="${args.validate.mode}"/>
 		<condition property="is_windows">
 			<os family="windows"/>
 		</condition>
-
 		<condition property="document.language" value="${default.language}">
-			<not><isset property="document.language"/></not>
+			<not>
+				<isset property="document.language"/>
+			</not>
 		</condition>
-
 		<copy todir="${dita.temp.dir}/dita">
 			<fileset dir="${args.input.dir}"/>
 		</copy>
 	</target>
-
-	<target name="strip-doctype" if="is_windows">
+	<target if="is_windows" name="strip-doctype">
 		<!-- Windows only -->
-		<replaceregexp match=".*(&lt;!ENTITY).+" replace="" flags="g">
-			<fileset dir="${dita.temp.dir}/dita" >
+		<replaceregexp flags="g" match=".*(&lt;!ENTITY).+" replace="">
+			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.dita"/>
 				<include name="**/*.ditamap"/>
 			</fileset>
 		</replaceregexp>
-		<replaceregexp match="(&lt;!DOCTYPE).+\n*\]?>" replace="">
-			<fileset dir="${dita.temp.dir}/dita" >
+		<replaceregexp match="(&lt;!DOCTYPE).+\n*\]?&gt;" replace="">
+			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.dita"/>
 				<include name="**/*.ditamap"/>
 			</fileset>
 		</replaceregexp>
 		<replaceregexp match="(&lt;!DOCTYPE).+\n*.*.dtd&quot;.*&gt;" replace="">
-			<fileset dir="${dita.temp.dir}/dita" >
+			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.dita"/>
 				<include name="**/*.ditamap"/>
 			</fileset>
 		</replaceregexp>
 	</target>
-
 	<!--
 		Ensure that all *.dita files found within the ${args.input.dir} are valid XML
 
@@ -131,7 +116,7 @@
 	-->
 	<target name="validate-against-doctype" unless="is_windows">
 		<svrl-log id="SVRL002I" level="info" message="Running DTD validation"/>
-		<xmlvalidate failonerror="true" lenient="no" warn="yes" >
+		<xmlvalidate failonerror="true" lenient="no" warn="yes">
 			<xmlcatalog refid="dita.catalog"/>
 			<fileset dir="${args.input.dir}">
 				<include name="**/*.dita"/>
@@ -141,26 +126,19 @@
 			</fileset>
 		</xmlvalidate>
 	</target>
-
 	<!--
 		Creates a set of SVRL files based on the rule set.
 	-->
-	<target name="svrl" depends="svrl.init, strip-doctype, validate-against-doctype" >
+	<target depends="svrl.init, strip-doctype, validate-against-doctype" name="svrl">
 		<svrl-log id="SVRL002I" level="info" message="Running Schematron Ruleset"/>
-
-		<get-validation-rulesets file="${svrl.ruleset.file}"
-			 fatal="ruleset.fatal" error="ruleset.error" warning="ruleset.warning"/>
-
-
-		<java classname="org.apache.tools.ant.launch.Launcher" fork="true" failonerror="true" classpathref="svrl.classpath" outputproperty="svrl.output">
+		<get-validation-rulesets error="ruleset.error" fatal="ruleset.fatal" file="${svrl.ruleset.file}" warning="ruleset.warning"/>
+		<java classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="true" fork="true" outputproperty="svrl.output">
 			<arg value="-Ddita.dir=${dita.dir}"/>
 			<arg value="-buildfile"/>
 			<arg value="${dita.plugin.com.here.validate.svrl.dir}/run-svrl.xml"/>
 			<arg value="-Ddita.plugin.com.here.validate.svrl.dir=${dita.plugin.com.here.validate.svrl.dir}"/>
 			<arg value="-Ddita.temp.dir=${dita.temp.dir}"/>
 			<arg value="-Dsvrl.customization.dir=${svrl.customization.dir}"/>
-
-
 			<!-- Parameters for the textual-rules template from the base plug-in -->
 			<arg value="-Dargs.validate.blacklist=${args.validate.blacklist}"/>
 			<arg value="-Dargs.validate.check.case=${args.validate.check.case}"/>
@@ -172,28 +150,24 @@
 			<arg value="-Druleset.warning=${ruleset.warning}"/>
 			<arg value="-Dargs.validate.cachefile=${args.validate.cachefile}"/>
 		</java>
-		<echo taskname="dita-ot" level="verbose" message="${svrl.output}"/>
+		<echo level="verbose" message="${svrl.output}" taskname="dita-ot"/>
 	</target>
-
-
 	<!--
 		Merge validation artifacts e.g. SVRL per DITA file from the previous transformation
 		into one SVRL file
 	 -->
 	<target name="svrl-merge">
 		<svrl-log id="SVRL002I" level="info" message="Merging Schematron Results"/>
-		<xslt style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl" in="${svrl.customization.dir}/dita2svrl.xsl" out="${output.dir}/${svrl.filename.root}.svrl" classpathref="dost.class.path" force="true">
+		<xslt classpathref="dost.class.path" force="true" in="${svrl.customization.dir}/dita2svrl.xsl" out="${output.dir}/${svrl.filename.root}.svrl" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl">
 			<xmlcatalog refid="dita.catalog"/>
-			<param name="in" expression="${dita.temp.dir}/svrl/"/>
+			<param expression="${dita.temp.dir}/svrl/" name="in"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
 		</xslt>
-
 		<!-- Clean up temporary files -->
-		<delete includeemptydirs="true" failonerror="false">
+		<delete failonerror="false" includeemptydirs="true">
 			<fileset dir="${dita.temp.dir}/svrl" includes="**/*"/>
 		</delete>
 	</target>
-
 	<!--
 		Runs a filter XSLT transform on a merged SVRL file to retrieve human-readable results
 	-->
@@ -203,28 +177,24 @@
 			Create two temporary files used for recording all validation results
 			and a count of the number of errors/warnings found.
 		-->
-		<tempfile destdir="${dita.temp.dir}" property="output.txt" suffix=".txt" deleteonexit="true"/>
-		<tempfile destdir="${dita.temp.dir}" property="result.txt" suffix=".txt" deleteonexit="true"/>
-		
-		<xslt basedir="${svrl.dir}" style="${svrl.filter.file}" in="${output.dir}/${svrl.filename.root}.svrl" out="${output.txt}" classpathref="dost.class.path">
+		<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="output.txt" suffix=".txt"/>
+		<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="result.txt" suffix=".txt"/>
+		<xslt basedir="${svrl.dir}" classpathref="dost.class.path" in="${output.dir}/${svrl.filename.root}.svrl" out="${output.txt}" style="${svrl.filter.file}">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
-			<param name="MODE" expression="${com.here.validate.svrl.mode}" />
+			<param expression="${com.here.validate.svrl.mode}" name="MODE"/>
 		</xslt>
-		<xslt basedir="${svrl.dir}" style="${svrl.result.file}" in="${output.dir}/${svrl.filename.root}.svrl" out="${result.txt}" classpathref="dost.class.path">
+		<xslt basedir="${svrl.dir}" classpathref="dost.class.path" in="${output.dir}/${svrl.filename.root}.svrl" out="${result.txt}" style="${svrl.result.file}">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
-			<param name="MODE" expression="${com.here.validate.svrl.mode}" />
+			<param expression="${com.here.validate.svrl.mode}" name="MODE"/>
 		</xslt>
 	</target>
-
 	<!--
 		Parse results.svrl and print failed assertions and reports to the console.
 		Aanalyze file ${svrl.errors.count},and fail set the flag if necessary.
 	-->
-
 	<target name="svrl.echo">
-		<loadfile property="svrl.console.output" srcfile="${output.txt}" failonerror="true"/>
-		<loadfile property="svrl.errors.count" srcfile="${result.txt}" failonerror="true"/>
-		
+		<loadfile failonerror="true" property="svrl.console.output" srcfile="${output.txt}"/>
+		<loadfile failonerror="true" property="svrl.errors.count" srcfile="${result.txt}"/>
 		<svrl-result-echo message="${svrl.console.output}"/>
 		<condition property="svrl.errors.detected">
 			<not>
@@ -232,7 +202,6 @@
 			</not>
 		</condition>
 	</target>
-
 	<!--
 		Bust the cache file and fail the build.
 	-->
@@ -240,20 +209,16 @@
 		<delete file="${args.validate.cachefile}"/>
 		<svrl-failure/>
 	</target>
-
 	<!--
 		Runs a filter XSLT transform on a merged SVRL file to retrieve human-readable results
 	-->
-	<target name="svrl-filter" depends="run-filter,svrl.echo,svrl.report"/>
-		
+	<target depends="run-filter,svrl.echo,svrl.report" name="svrl-filter"/>
 	<!--
 		Ant target executed to create an SVRL file
 	-->
-	<target name="dita2svrl" depends="svrl, svrl-merge"/>
+	<target depends="svrl, svrl-merge" name="dita2svrl"/>
 	<!--
 		Ant target executed when the echo transtype is invoked.
 	-->
-	<target name="dita2svrl-echo" depends="dita2svrl, svrl-filter"/>
-
-
+	<target depends="dita2svrl, svrl-filter" name="dita2svrl-echo"/>
 </project>

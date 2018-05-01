@@ -3,7 +3,6 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-
 <!--
 	Stylesheet that is used to process each *.ditamap file in turn and transform it into
 	Schematron Validation Report Language (SVRL) files
@@ -16,53 +15,36 @@
 
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/index.html
 -->
-<xsl:stylesheet xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	 xmlns:saxon="http://saxon.sf.net/"
-	 xmlns:java="http://www.java.com/"
-	 exclude-result-prefixes="java saxon"
-
-	 version="2.0">
-
-
-
-
+<xsl:stylesheet exclude-result-prefixes="java saxon" version="2.0" xmlns:java="http://www.java.com/" xmlns:saxon="http://saxon.sf.net/" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Import XSL template that holds a function to some basic SVRL generation functions. -->
 	<xsl:import href="schematron.xsl"/>
-
-
-
 	<!-- Start running the rules across all the base node of the *.ditamap -->
 	<xsl:template match="*" mode="ditamap-pattern">
 		<active-pattern name="ditamap-structure-rules" role="structure">
-
 			<!-- Apply Rules across all appendices, chapters, notices and topicrefs only -->
 			<xsl:for-each select="//appendices">
-				<xsl:call-template name="ditamap-structure-rules" />
+				<xsl:call-template name="ditamap-structure-rules"/>
 			</xsl:for-each>
 			<xsl:for-each select="//chapter">
-				<xsl:call-template name="ditamap-structure-rules" />
+				<xsl:call-template name="ditamap-structure-rules"/>
 			</xsl:for-each>
 			<xsl:for-each select="//notices">
-				<xsl:call-template name="ditamap-structure-rules" />
+				<xsl:call-template name="ditamap-structure-rules"/>
 			</xsl:for-each>
 			<xsl:for-each select="//topicref">
-				<xsl:call-template name="ditamap-structure-rules" />
+				<xsl:call-template name="ditamap-structure-rules"/>
 			</xsl:for-each>
 		</active-pattern>
 	</xsl:template>
-
 	<!--
 		Common ditamap structure Rules - missing hrefs and titles for elements
 	-->
-	<xsl:template name="ditamap-structure-rules" match="*">
+	<xsl:template match="*" name="ditamap-structure-rules">
 		<xsl:call-template name="fired-rule"/>
 		<xsl:choose>
 			<!-- Wherever href	exist-->
 			<xsl:when test="@href">
 				<xsl:variable name="file" select="if (contains(@href, '/')) then tokenize(@href, '/')[last()] else @href"/>
-
 				<!--
 					href-not-lower-case - For all elements, @href where it exists, filename must be lower case dash and separated.
 				-->
@@ -72,7 +54,6 @@
 						<xsl:with-param name="test">matches(@href, '[A-Z_]+')</xsl:with-param>
 					</xsl:call-template>
 				</xsl:if>
-
 				<xsl:variable name="filePath" select="resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
 				<xsl:variable name="fileExists" select="java:file-exists($filePath, base-uri())"/>
 				<!--
@@ -81,10 +62,9 @@
 				<xsl:if test="not($fileExists)">
 					<xsl:call-template name="failed-assert">
 						<xsl:with-param name="rule-id">href-file-not-found</xsl:with-param>
-						<xsl:with-param name="test">"not($fileExists)</xsl:with-param>
+						<xsl:with-param name="test">&quot;not($fileExists)</xsl:with-param>
 					</xsl:call-template>
 				</xsl:if>
-
 			</xsl:when>
 			<xsl:otherwise>
 				<!--
@@ -93,7 +73,7 @@
 				<xsl:if test="not(@navtitle)">
 					<xsl:choose>
 						<!--
-							appendices-href-missing - For <appendices> elements, href is mandatory
+							appendices-href-missing - For <appendices>elements, href is mandatory
 						-->
 						<xsl:when test="(name() = 'appendices')">
 							<xsl:call-template name="failed-assert">
@@ -102,7 +82,7 @@
 							</xsl:call-template>
 						</xsl:when>
 						<!--
-							notices-href-missing - For <notices> elements, href is mandatory
+							notices-href-missing - For <notices>elements, href is mandatory
 						-->
 						<xsl:when test="(name() = 'notices')">
 							<xsl:call-template name="failed-assert">
@@ -111,7 +91,7 @@
 							</xsl:call-template>
 						</xsl:when>
 						<!--
-							chapter-href-missing - For <chapter> elements, href is mandatory
+							chapter-href-missing - For <chapter>elements, href is mandatory
 						-->
 						<xsl:when test="(name() = 'chapter')">
 							<xsl:call-template name="failed-assert">
@@ -120,7 +100,7 @@
 							</xsl:call-template>
 						</xsl:when>
 						<!--
-							topicref-href-missing - For <topicref> elements, href is mandatory
+							topicref-href-missing - For <topicref>elements, href is mandatory
 						-->
 						<xsl:when test="(name() = 'topicref')">
 							<xsl:call-template name="failed-assert">
@@ -130,33 +110,22 @@
 						</xsl:when>
 					</xsl:choose>
 				</xsl:if>
-
 			</xsl:otherwise>
 		</xsl:choose>
-
 	</xsl:template>
-
-
 	<!--PROLOG-->
-	<xsl:param name="IGNORE_RULES" as="xs:string"/>
-	<xsl:param name="OUTPUT_RULE-ID" select="true" as="xs:string"/>
-	<xsl:param name="SOURCE" as="xs:string"/>
+	<xsl:param as="xs:string" name="IGNORE_RULES"/>
+	<xsl:param as="xs:string" name="OUTPUT_RULE-ID" select="true"/>
+	<xsl:param as="xs:string" name="SOURCE"/>
 	<xsl:param name="DEFAULTLANG">en-us</xsl:param>
 	<xsl:param name="FATAL_RULESET">a^</xsl:param>
 	<xsl:param name="ERROR_RULESET">a^</xsl:param>
 	<xsl:param name="WARNING_RULESET">a^</xsl:param>
-
-	<xsl:output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" method="xml" omit-xml-declaration="no" standalone="yes" indent="yes"/>
-
-	<xsl:template match="/" >
+	<xsl:output indent="yes" method="xml" omit-xml-declaration="no" standalone="yes" xmlns:svrl="http://purl.oclc.org/dsdl/svrl"/>
+	<xsl:template match="/">
 		<!--SCHEMA SETUP-->
-		<schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" title="Dita Validation" schemaVersion="1.5">
-
+		<schematron-output schemaVersion="1.5" title="Dita Validation" xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
 			<xsl:apply-templates mode="ditamap-pattern"/>
 		</schematron-output>
 	</xsl:template>
-
-
-
-
 </xsl:stylesheet>

@@ -3,29 +3,17 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-
 <!--
 	Stylesheet that merges .svrl results file outputted from validate.xsl into
 	a single .svrl so it can be easily printed to the screen using
 	iso-schematron-svrl-to-message
 -->
-<xsl:stylesheet
-	 version="2.0"
-	 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	 xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-	 xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	 xmlns:saxon="http://saxon.sf.net/"
-	 exclude-result-prefixes="saxon xs">
-
+<xsl:stylesheet exclude-result-prefixes="saxon xs" version="2.0" xmlns:saxon="http://saxon.sf.net/" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Defining that this .xsl generates an indented, UTF8-encoded XML file -->
-	<xsl:output indent="yes" omit-xml-declaration="no" encoding="utf-8" standalone="yes" method="xml"/>
-
+	<xsl:output encoding="utf-8" indent="yes" method="xml" omit-xml-declaration="no" standalone="yes"/>
 	<xsl:param name="in">.</xsl:param>
 	<xsl:param name="extension">svrl</xsl:param>
 	<xsl:param name="out">results.svrl</xsl:param>
-
 	<!--
 		XSLT engine only accept file path that start with 'file:/'
 
@@ -46,16 +34,12 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-
 	<!-- Copies defined xmlns above for this xsl into a variable -->
 	<xsl:variable name="namespaces" select="document('')/*/namespace::*"/>
-
 	<!-- Template to once execute generate-svrl template -->
 	<xsl:template match="/">
 		<xsl:call-template name="generate-svrl"/>
 	</xsl:template>
-
-
 	<!--
 		Template that generates the single .svrl file by copying contents
 		of all .svrl files found in directory specified by $path
@@ -72,5 +56,4 @@
 			</xsl:for-each>
 		</xsl:element>
 	</xsl:template>
-
 </xsl:stylesheet>

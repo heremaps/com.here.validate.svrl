@@ -10,7 +10,6 @@
 	<feature extension="package.support.name" value="APF team"/>
 	<feature extension="package.support.email" value="I_APF_SUPPORT@here.com"/>
 	<feature extension="package.version" value="1.1.0"/>
-
 	<!--
 		Add new value to list of valid transformation type names.
 
@@ -20,37 +19,34 @@
 	<feature extension="dita.conductor.transtype.check" value="svrl-echo"/>
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
 	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
-
-	<transtype name="svrl" abstract="false" desc="Schematron Validation Report Language">
-		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
-		<param name="svrl.ruleset.file" desc="Specifies the ruleset file to use." type="file"/>
-		<param name="svrl.filter.file" desc="Specifies the location of the XSL file used to echo output" type="file"/>
-		<param name="args.validate.cachefile" desc="Specifies the location a cache file to be used" type="file"/>
-		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
-		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
-		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
+	<transtype abstract="false" desc="Schematron Validation Report Language" name="svrl">
+		<param desc="Specifies the customization directory." name="svrl.customization.dir" type="dir"/>
+		<param desc="Specifies the ruleset file to use." name="svrl.ruleset.file" type="file"/>
+		<param desc="Specifies the location of the XSL file used to echo output" name="svrl.filter.file" type="file"/>
+		<param desc="Specifies the location a cache file to be used" name="args.validate.cachefile" type="file"/>
+		<param desc="Comma separated list of rules not to be enforced" name="args.validate.ignore.rules" type="string"/>
+		<param desc="Comma separated list of words not to be present in the running text" name="args.validate.blacklist" type="string"/>
+		<param desc="Comma separated list of words which have a specified capitalization" name="args.validate.check.case" type="string"/>
 	</transtype>
-	<transtype name="svrl-echo" abstract="false" desc="Filters SVRL validation and echoes the results to Standard output (stdout)">
-		<param name="svrl.customization.dir" desc="Specifies the customization directory." type="dir"/>
-		<param name="svrl.ruleset.file" desc="Specifies the ruleset file to use." type="file"/>
-		<param name="svrl.filter.file" desc="Specifies the location of the XSL file used to echo output" type="file"/>
-		<param name="args.validate.cachefile" desc="Specifies the location a cache file to be used" type="file"/>
-		<param name="args.validate.ignore.rules" desc="Comma separated list of rules not to be enforced" type="string"/>
-		<param name="args.validate.blacklist" desc="Comma separated list of words not to be present in the running text" type="string"/>
-		<param name="args.validate.check.case" desc="Comma separated list of words which have a specified capitalization" type="string"/>
-		<param name="args.validate.mode" type="enum" desc="Validation reporting mode">
+	<transtype abstract="false" desc="Filters SVRL validation and echoes the results to Standard output (stdout)" name="svrl-echo">
+		<param desc="Specifies the customization directory." name="svrl.customization.dir" type="dir"/>
+		<param desc="Specifies the ruleset file to use." name="svrl.ruleset.file" type="file"/>
+		<param desc="Specifies the location of the XSL file used to echo output" name="svrl.filter.file" type="file"/>
+		<param desc="Specifies the location a cache file to be used" name="args.validate.cachefile" type="file"/>
+		<param desc="Comma separated list of rules not to be enforced" name="args.validate.ignore.rules" type="string"/>
+		<param desc="Comma separated list of words not to be present in the running text" name="args.validate.blacklist" type="string"/>
+		<param desc="Comma separated list of words which have a specified capitalization" name="args.validate.check.case" type="string"/>
+		<param desc="Validation reporting mode" name="args.validate.mode" type="enum">
 			<val desc="Outputs errors and warnings. Fails on errors and warnings.">strict</val>
-			<val desc="Outputs errors and warnings. Fails on errors only" default="true">default</val>
+			<val default="true" desc="Outputs errors and warnings. Fails on errors only">default</val>
 			<val desc="Outputs errors only. Fails on Errors only">lax</val>
 			<val desc="Report all errors at warning level. Never fail">report-only</val>
 		</param>
-		<param name="args.validate.color" desc="Whether to colorize the validation output" type="enum">
-			<val desc="Output highlights errors and warnings using ANSI color codes"  default="true">true</val>
+		<param desc="Whether to colorize the validation output" name="args.validate.color" type="enum">
+			<val default="true" desc="Output highlights errors and warnings using ANSI color codes">true</val>
 			<val desc="Output does not highlight errors and warnings">false</val>
 		</param>
 	</transtype>
-
-
 	<!--feature extension="ant.import" file="build_dita2svrl.xml"/-->
 	<feature extension="dita.conductor.target.relative" file="conductor.xml"/>
 	<template file="build_dita2svrl_template.xml"/>

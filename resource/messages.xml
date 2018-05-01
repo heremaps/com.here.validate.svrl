@@ -6,10 +6,10 @@
 <messages>
   <message id="SVRL001F" type="FATAL">
     <reason>%1</reason>
-    <response></response>
+    <response/>
   </message>
   <message id="SVRL002I" type="INFO">
     <reason>%1</reason>
-    <response></response>
+    <response/>
   </message>
 </messages>

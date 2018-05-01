@@ -4,14 +4,15 @@
 	See the accompanying LICENSE file for applicable licenses.
 -->
 <antlib xmlns:if="ant:if" xmlns:unless="ant:unless">
+	<!--
+		Extract a list of rules to apply at each level
 
-
-
-
-
-
+		@param fatal - The property to hold the list of fatals
+		@param error - The property to hold the list of errors
+		@param warning - The property to hold the list of warnings
+	-->
 	<macrodef name="get-validation-rulesets">
-		<attribute name="file" default="${svrl.customization.dir}/../cfg/ruleset/${args.validate.ruleset}.xml"/>
+		<attribute default="${svrl.customization.dir}/../cfg/ruleset/${args.validate.ruleset}.xml" name="file"/>
 		<attribute name="fatal"/>
 		<attribute name="error"/>
 		<attribute name="warning"/>
@@ -19,42 +20,29 @@
 			<local name="fatal.ruleset"/>
 			<local name="error.ruleset"/>
 			<local name="warning.ruleset"/>
-
-			<tempfile destdir="${dita.temp.dir}" property="fatal.ruleset" deleteonexit="true"/>
-			<tempfile destdir="${dita.temp.dir}" property="error.ruleset" deleteonexit="true"/>
-			<tempfile destdir="${dita.temp.dir}" property="warning.ruleset" deleteonexit="true"/>
-
-			<xslt style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl"
-				 in="@{file}" out="${fatal.ruleset}"
-				 classpathref="dost.class.path">
-				<param name="LEVEL" expression="fatal"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fatal.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="error.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="warning.ruleset"/>
+			<xslt classpathref="dost.class.path" in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+				<param expression="fatal" name="LEVEL"/>
 			</xslt>
-			<xslt style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl"
-				 in="@{file}" out="${error.ruleset}"
-				 classpathref="dost.class.path">
-				<param name="LEVEL" expression="error"/>
+			<xslt classpathref="dost.class.path" in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+				<param expression="error" name="LEVEL"/>
 			</xslt>
-			<xslt style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl"
-				 in="@{file}" out="${warning.ruleset}"
-				 classpathref="dost.class.path">
-					<param name="LEVEL" expression="warning"/>
+			<xslt classpathref="dost.class.path" in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+				<param expression="warning" name="LEVEL"/>
 			</xslt>
-
-			<loadfile property="@{fatal}" srcfile="${fatal.ruleset}" failonerror="true"/>
-			<loadfile property="@{error}" srcfile="${error.ruleset}" failonerror="true"/>
-			<loadfile property="@{warning}" srcfile="${warning.ruleset}" failonerror="true"/>
-
+			<loadfile failonerror="true" property="@{fatal}" srcfile="${fatal.ruleset}"/>
+			<loadfile failonerror="true" property="@{error}" srcfile="${error.ruleset}"/>
+			<loadfile failonerror="true" property="@{warning}" srcfile="${warning.ruleset}"/>
 		</sequential>
-
 	</macrodef>
-
-
-		<!--
+	<!--
 		Add ansi color tags to output if requested.
 
 		@param message - The string to colorize
 	-->
-	<scriptdef name="svrl-result-echo" language="javascript">
+	<scriptdef language="javascript" name="svrl-result-echo">
 		<attribute name="message"/>
 		<![CDATA[
 			var escape = String.fromCharCode(27);
@@ -74,19 +62,26 @@
 			project.log(input, 1);
 		]]>
 	</scriptdef>
-	
-
-
+	<!--
+		Fail the validation. This has been extracted to ensure
+		messages can be displayed easily under DITA-OT 2.x
+	-->
 	<macrodef name="svrl-failure">
 		<sequential>
-			<dita-ot-fail id="SVRL001F"  unless:set="otversion.legacy">
+			<dita-ot-fail id="SVRL001F" unless:set="otversion.legacy">
 				<param name="1" value="Errors detected during validation"/>
 			</dita-ot-fail>
-			<fail taskname="SVRL001F" message="Errors detected during validation" if:set="otversion.legacy"/>
+			<fail if:set="otversion.legacy" message="Errors detected during validation" taskname="SVRL001F"/>
 		</sequential>
 	</macrodef>
+	<!--
+		Write something to the message log. This has been extracted to ensure
+		messages can be displayed easily under DITA-OT 2.x
 
-
+		@param id - the ID of the resource string
+		@param message - the text of the message
+		@param level - the logging level (e.g. warning) 
+	-->
 	<macrodef name="svrl-log">
 		<attribute name="id"/>
 		<attribute name="message"/>
@@ -95,7 +90,7 @@
 			<dita-ot-echo id="@{id}" unless:set="otversion.legacy">
 				<param name="1" value="@{message}"/>
 			</dita-ot-echo>
-			<echo taskname="@{id}" level="@{level}" message="@{message}" if:set="otversion.legacy"/>
+			<echo if:set="otversion.legacy" level="@{level}" message="@{message}" taskname="@{id}"/>
 		</sequential>
 	</macrodef>
 </antlib>

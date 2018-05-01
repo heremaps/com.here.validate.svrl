@@ -4,7 +4,7 @@
   See the accompanying LICENSE file for applicable licenses.
 	-->
 	<level id="fatal">
-		 <!-- Fatal rules will fail validation (cannot be overriden)-->
+		<!-- Fatal rules will fail validation (cannot be overriden)-->
 		<rule>appendices-href-missing</rule>
 		<rule>chapter-href-missing</rule>
 		<rule>coderef-href-ref-file-not-found</rule>
@@ -65,7 +65,7 @@
 		<rule>topic-file-mismatch</rule>
 	</level>
 	<level id="inactive">
-		 <!-- Inactive rules will never be applied -->
+		<!-- Inactive rules will never be applied -->
 		<rule>table-id-missing</rule>
 	</level>
 </ruleset>

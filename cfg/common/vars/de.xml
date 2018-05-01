@@ -5,12 +5,14 @@
 -->
 <vars>
 	<variable id="appendices-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer ein href-Attribut an.</variable>
-		<variable id="blacklisted-word">Das Wort 'PARAM1' ist falsch geschrieben in folgendem Text: &#xA;&#xA;PARAM2.</variable>
+	<variable id="blacklisted-word">Das Wort 'PARAM1' ist falsch geschrieben in folgendem Text: 
+
+PARAM2.</variable>
 	<variable id="chapter-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer ein href-Attribut an.</variable>
-	<variable id="codeblock-outputclass-missing">Geben Sie in &lt;codeblock&gt;-Elementen immer ein outputclass;-Attribut an, zum Beispiel: outputclass;="language-javascript".</variable>
-	<variable id="codeblock-scale-missing">Geben Sie in &lt;@NAME&gt;-Elementen immer ein scale-Attribut an, zum Beispiel: scale="80.</variable>
+	<variable id="codeblock-outputclass-missing">Geben Sie in &lt;codeblock&gt;-Elementen immer ein outputclass;-Attribut an, zum Beispiel: outputclass;=&quot;language-javascript&quot;.</variable>
+	<variable id="codeblock-scale-missing">Geben Sie in &lt;@NAME&gt;-Elementen immer ein scale-Attribut an, zum Beispiel: scale=&quot;80.</variable>
 	<variable id="coderef-href-ref-file-not-found">Die verknüpfte Quelldatei ist nicht vorhanden. überprüfen Sie das entsprechende Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie Verzeichnispfad und Dateiname korrekt geschrieben haben</variable>
-	<variable id="colspec-colnum-not-unique">Nicht eindeutige Spaltenspezifikation: colnum="PARAM1" kommt mehr als einmal in dieser Tabelle vor. Stellen Sie sicher dass alle colnum-Werte eindeutig sind.</variable>
+	<variable id="colspec-colnum-not-unique">Nicht eindeutige Spaltenspezifikation: colnum=&quot;PARAM1&quot; kommt mehr als einmal in dieser Tabelle vor. Stellen Sie sicher dass alle colnum-Werte eindeutig sind.</variable>
 	<variable id="colsep-invalid">Geben Sie in allen &lt;@NAME&gt; Elementen für colsep Werte entweder 0 oder 1 ein.</variable>
 	<variable id="conref-external-file-not-found">Die verknüpfte Datei ist nicht vorhanden. Überprüfen Sie das entsprechende Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie Verzeichnispfad und Dateiname korrekt geschrieben haben.</variable>
 	<variable id="conref-external-id-mismatch">Die conref-Quelldatei &lt;PARAM2&gt; und ihre Zieldatei &lt;@NAME&gt; haben nicht das gleiche Dateiformat. Stellen Sie sicher, dass die referenzierten Elemente gleich sind.</variable>
@@ -20,43 +22,54 @@
 	<variable id="conref-internal-id-not-found">Die referenzierte ID ist in der verknüpften Datei nicht vorhanden. Stellen Sie sicher, dass Sie den ID-Wert korrekt angegeben haben.</variable>
 	<variable id="conref-internal-path-mismatch">Die conref-Quelldatei &lt;PARAM1&gt; und ihre Zieldatei &lt;@NAME&gt; haben nicht das gleiche Dateiformat.</variable>
 	<variable id="conref-internal-path-not-found">Der verknüpfte Pfad ist in der Datei nicht vorhanden. überprüfen Sie den Pfad auf Korrektheit.</variable>
-	<variable id="conref-not-lower-case">conref="@CONREF": Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
-	<variable id="comment-fixme">Es befinden sich noch 'FIXME' Kommentare im Element &lt;@NAME&gt; - ersetzen Sie sie durch den angeforderten Inhalt. &#xA;&#xA;PARAM1</variable>
-	<variable id="comment-todo">Es befinden sich noch 'TODO' Kommentare im Element &lt;@NAME&gt; - ersetzen Sie sie durch den angeforderten Inhalt. &#xA;&#xA;PARAM1</variable>
+	<variable id="conref-not-lower-case">conref=&quot;@CONREF&quot;: Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
+	<variable id="comment-fixme">Es befinden sich noch 'FIXME' Kommentare im Element &lt;@NAME&gt; - ersetzen Sie sie durch den angeforderten Inhalt. 
+
+PARAM1</variable>
+	<variable id="comment-todo">Es befinden sich noch 'TODO' Kommentare im Element &lt;@NAME&gt; - ersetzen Sie sie durch den angeforderten Inhalt. 
+
+PARAM1</variable>
 	<variable id="fig-id-invalid">ID-Werte in &lt;@NAME&gt; Elementen müssen ein führendes 'fig-' enthalten.</variable>
 	<variable id="fig-title-missing">Geben Sie in &lt;@NAME&gt;-Elementen immer einen Title-Wert an.</variable>
 	<variable id="file-not-lower-case">Die Datei 'PARAM1' hat einen ungültigen Namen. Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
-	<variable id="href-not-lower-case">Ungültige Spezifikation von href="@HREF". Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
-	<variable id="href-file-not-found">Die unter href="@HREF" verknüpfte Datei ist nicht vorhanden.</variable>
-	<variable id="id-not-lower-case">Ungültige Spezifikation von id="@ID". Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
+	<variable id="href-not-lower-case">Ungültige Spezifikation von href=&quot;@HREF&quot;. Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
+	<variable id="href-file-not-found">Die unter href=&quot;@HREF&quot; verknüpfte Datei ist nicht vorhanden.</variable>
+	<variable id="id-not-lower-case">Ungültige Spezifikation von id=&quot;@ID&quot;. Vermeiden Sie Großbuchstaben, Zahlen und Sonderzeichen, trennen Sie mit '-'.</variable>
 	<variable id="id-not-unique">Der ID-Wert '@ID' kommt mehr als einmal in dieser Datei vor. Stellen Sie sicher, dass alle ID-Werte eindeutig sind.</variable>
+	<variable id="incorrect-capitalization">Die Groß- und Kleinschreibung des Worts 'PARAM1' ist nicht korrekt in folgendem Text: 
 
-	<variable id="incorrect-capitalization">Die Groß- und Kleinschreibung des Worts 'PARAM1' ist nicht korrekt in folgendem Text: &#xA;&#xA;PARAM2.</variable>
-	<variable id="image-file-type-not-supported">Die unter href="@HREF" verknüpfte Bilddatei hat ein nicht unterstütztes Format, erlaubt sind: *.jpg, *.jpeg und *.png.</variable>
-  <variable id="image-href-ref-file-not-found">Die verknüpfte Bilddatei ist nicht vorhanden. Überprüfen Sie das graphics-Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie die Verknüpfung und der Dateiname korrekt angegeben haben.</variable>
-	<variable id="image-product-filtered-not-included">Mit &lt;@NAME product="PARAM1"&gt; ist &lt;@PARENT&gt; leer. Ergänzen Sie die entsprechenden Produktattribute für die fehlenden Dokumentvarianten.</variable>
-	<variable id="list-all-li-filtered">In &lt;@PARENT&gt; gibt es nur &lt;row product="PARAM1"&gt; Elemente. Deshalb ist &lt;@PARENT&gt; leer in anderen Dokumentvarianten. Fügen Sie entweder weitere product-Attribute für die fehlenden Dokumentvarianten hinzu oder setzen Sie ausgewählte Listelemente auf &lt;@PARENT product="PARAM1"&gt;.</variable>
+PARAM2.</variable>
+	<variable id="image-file-type-not-supported">Die unter href=&quot;@HREF&quot; verknüpfte Bilddatei hat ein nicht unterstütztes Format, erlaubt sind: *.jpg, *.jpeg und *.png.</variable>
+	<variable id="image-href-ref-file-not-found">Die verknüpfte Bilddatei ist nicht vorhanden. Überprüfen Sie das graphics-Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie die Verknüpfung und der Dateiname korrekt angegeben haben.</variable>
+	<variable id="image-product-filtered-not-included">Mit &lt;@NAME product=&quot;PARAM1&quot;&gt; ist &lt;@PARENT&gt; leer. Ergänzen Sie die entsprechenden Produktattribute für die fehlenden Dokumentvarianten.</variable>
+	<variable id="list-all-li-filtered">In &lt;@PARENT&gt; gibt es nur &lt;row product=&quot;PARAM1&quot;&gt; Elemente. Deshalb ist &lt;@PARENT&gt; leer in anderen Dokumentvarianten. Fügen Sie entweder weitere product-Attribute für die fehlenden Dokumentvarianten hinzu oder setzen Sie ausgewählte Listelemente auf &lt;@PARENT product=&quot;PARAM1&quot;&gt;.</variable>
 	<variable id="notices-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer href-Attribute an.</variable>
 	<variable id="notices-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer ein href-Attribut an.</variable>
 	<variable id="rowsep-invalid">Geben Sie in allen &lt;@NAME&gt; Elementen für rowsep Werte entweder 0 oder 1 an.</variable>
-	<variable id="running-text-fixme">Im folgenden Text des &lt;@NAME&gt; Elements gibt es 'FIXME'-Kommentare - ersetzen Sie sie durch den angeforderten Inhalt. &#xA;&#xA;PARAM1</variable>
-	<variable id="running-text-lorem-ipsum">In diesem &lt;@NAME&gt; Element gibt es Blindtext, entfernen oder ersetzen Sie ihn durch zulässigen Inhalt. &#xA;&#xA;PARAM1</variable>
-	<variable id="running-text-todo">Im Text dieses &lt;@NAME&gt; Elements gibt es 'TODO'-Kommentare - ersetzen Sie sie durch den angeforderten Inhalt. &#xA;&#xA;PARAM1</variable>
+	<variable id="running-text-fixme">Im folgenden Text des &lt;@NAME&gt; Elements gibt es 'FIXME'-Kommentare - ersetzen Sie sie durch den angeforderten Inhalt. 
+
+PARAM1</variable>
+	<variable id="running-text-lorem-ipsum">In diesem &lt;@NAME&gt; Element gibt es Blindtext, entfernen oder ersetzen Sie ihn durch zulässigen Inhalt. 
+
+PARAM1</variable>
+	<variable id="running-text-todo">Im Text dieses &lt;@NAME&gt; Elements gibt es 'TODO'-Kommentare - ersetzen Sie sie durch den angeforderten Inhalt. 
+
+PARAM1</variable>
 	<variable id="schematron-line-numbers">Zeile</variable>
 	<variable id="section-id-missing">Geben Sie in &lt;@NAME&gt;-Elementen immer einen ID-Wert an.</variable>
 	<variable id="section-title-missing">Geben Sie in &lt;@NAME&gt;-Elementen immer einen Title-Wert an.</variable>
 	<variable id="table-id-invalid">In &lt;@NAME&gt; Elementen müssen ID-Werte immer mit 'table-' beginnen.</variable>
-	<variable id="table-all-rows-filtered">In &lt;tbody&gt; gibt es nur &lt;row product="PARAM1"&gt; Elemente. Deshalb ist &lt;tbody&gt; leer in anderen Dokumentvarianten. Fügen Sie entweder weitere product-Attribute für die fehlenden Dokumentvarianten hinzu oder setzen Sie ausgewählte Tabellenzeilen auf &lt;tgroup cols="PARAM2"&gt;. Passen Sie den cols-Wert an die Anzahl der &lt;colspec&gt; Elemente an.</variable>
-	<variable id="tgroup-cols-colspec-mismatch">The number of PARAM1 &lt;colspec&gt; elements defined do not match the parent &lt;tgroup cols="PARAM2"&gt; attribute. Make sure the number of &lt;colspec&gt; elements corresponds with the cols value.</variable>
-	<variable id="tgroup-cols-entry-mismatch">PARAM1 &lt;entry&gt; Elemente entsprechen nicht der Tabellenspezifikation &lt;tgroup cols="PARAM2"&gt;. Passen sie den cols-Wert an die Anzahl der &lt;entry&gt; Elemente an.</variable>
-	<variable id="topic-file-mismatch">id="@ID" entspricht nicht dem Dateinamen: PARAM1</variable>
+	<variable id="table-all-rows-filtered">In &lt;tbody&gt; gibt es nur &lt;row product=&quot;PARAM1&quot;&gt; Elemente. Deshalb ist &lt;tbody&gt; leer in anderen Dokumentvarianten. Fügen Sie entweder weitere product-Attribute für die fehlenden Dokumentvarianten hinzu oder setzen Sie ausgewählte Tabellenzeilen auf &lt;tgroup cols=&quot;PARAM2&quot;&gt;. Passen Sie den cols-Wert an die Anzahl der &lt;colspec&gt; Elemente an.</variable>
+	<variable id="tgroup-cols-colspec-mismatch">The number of PARAM1 &lt;colspec&gt; elements defined do not match the parent &lt;tgroup cols=&quot;PARAM2&quot;&gt; attribute. Make sure the number of &lt;colspec&gt; elements corresponds with the cols value.</variable>
+	<variable id="tgroup-cols-entry-mismatch">PARAM1 &lt;entry&gt; Elemente entsprechen nicht der Tabellenspezifikation &lt;tgroup cols=&quot;PARAM2&quot;&gt;. Passen sie den cols-Wert an die Anzahl der &lt;entry&gt; Elemente an.</variable>
+	<variable id="topic-file-mismatch">id=&quot;@ID&quot; entspricht nicht dem Dateinamen: PARAM1</variable>
 	<variable id="topicref-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer ein href-Attribut an.</variable>
-	<variable id="xref-external-file-not-found">Die in &lt;@NAME href="@HREF"&gt; spezifizierte Datei ist nicht vorhanden. Überprüfen Sie das entsprechende Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie den Verzeichnispfad und den Dateinamen korrekt angegeben haben.</variable>
-	<variable id="xref-external-id-not-found">Der &lt;@NAME href="@HREF"&gt; referenzierte ID-Wert ist in der verknüpften Datei nicht vorhanden. Stellen Sie sicher, dass Sie den ID-Wert korrekt angegeben haben.</variable>
-	<variable id="xref-external-path-not-found">Der in referenzierte &lt;@NAME href="@HREF"&gt; Pfad ist nicht vorhanden. Stellen Sie sicher, dass Sie den Pfad korrekt angegeben haben.</variable>
-	<variable id="xref-internal-id-not-found">Die in &lt;@NAME href="@HREF"&gt; referenzierte ID ist nicht vorhanden. Stellen Sie sicher, dass Sie den ID-Wert korrekt angegeben haben.</variable>
-	<variable id="xref-internal-path-not-found">Der in referenzierte &lt;@NAME href="@HREF"&gt; Pfad ist nicht vorhanden. Stellen Sie sicher, dass Sie den Pfad korrekt angegeben haben.</variable>
-	<variable id="xref-no-format">Geben Sie in &lt;@NAME&gt; Elementen immer ein format-Attribut an, zum Beispiel format="dita" oder format="html".</variable>
-	<variable id="xref-www-format-invalid">&lt;@NAME href="@HREF" format="dita"&gt; ist eine externe Verknüpfung und darf nicht format="dita" enthalten. Ändern Sie den format-Wert zum Beispiel zu "html"</variable>
-	<variable id="xref-www-scope-invalid">&lt;@NAME href="@HREF"&gt; ist eine externe Verknüpfung und muss scope="external" enthalten.</variable>
+	<variable id="xref-external-file-not-found">Die in &lt;@NAME href=&quot;@HREF&quot;&gt; spezifizierte Datei ist nicht vorhanden. Überprüfen Sie das entsprechende Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie den Verzeichnispfad und den Dateinamen korrekt angegeben haben.</variable>
+	<variable id="xref-external-id-not-found">Der &lt;@NAME href=&quot;@HREF&quot;&gt; referenzierte ID-Wert ist in der verknüpften Datei nicht vorhanden. Stellen Sie sicher, dass Sie den ID-Wert korrekt angegeben haben.</variable>
+	<variable id="xref-external-path-not-found">Der in referenzierte &lt;@NAME href=&quot;@HREF&quot;&gt; Pfad ist nicht vorhanden. Stellen Sie sicher, dass Sie den Pfad korrekt angegeben haben.</variable>
+	<variable id="xref-internal-id-not-found">Die in &lt;@NAME href=&quot;@HREF&quot;&gt; referenzierte ID ist nicht vorhanden. Stellen Sie sicher, dass Sie den ID-Wert korrekt angegeben haben.</variable>
+	<variable id="xref-internal-path-not-found">Der in referenzierte &lt;@NAME href=&quot;@HREF&quot;&gt; Pfad ist nicht vorhanden. Stellen Sie sicher, dass Sie den Pfad korrekt angegeben haben.</variable>
+	<variable id="xref-no-format">Geben Sie in &lt;@NAME&gt; Elementen immer ein format-Attribut an, zum Beispiel format=&quot;dita&quot; oder format=&quot;html&quot;.</variable>
+	<variable id="xref-www-format-invalid">&lt;@NAME href=&quot;@HREF&quot; format=&quot;dita&quot;&gt; ist eine externe Verknüpfung und darf nicht format=&quot;dita&quot; enthalten. Ändern Sie den format-Wert zum Beispiel zu &quot;html&quot;</variable>
+	<variable id="xref-www-scope-invalid">&lt;@NAME href=&quot;@HREF&quot;&gt; ist eine externe Verknüpfung und muss scope=&quot;external&quot; enthalten.</variable>
 </vars>

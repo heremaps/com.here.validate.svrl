@@ -5,12 +5,14 @@
 -->
 <vars>
 	<variable id="appendices-href-missing">Pour les éléments &lt;@NAME&gt;, il faut un attribut href.</variable>
-	<variable id="blacklisted-word">The word 'PARAM1' is a spelling mistake in the running text below: &#xA;&#xA;PARAM2.</variable>
+	<variable id="blacklisted-word">The word 'PARAM1' is a spelling mistake in the running text below: 
+
+PARAM2.</variable>
 	<variable id="chapter-href-missing">Pour les éléments &lt;@NAME&gt;, il faut un attribut href.</variable>
-	<variable id="codeblock-outputclass-missing">Il faut un attribut outputclass (par exemple, ajoutez outputclass="language-javascript").</variable>
-	<variable id="codeblock-scale-missing">The scale attribute is mandatory for &lt;@NAME&gt; elements (hint: as default, add scale="80").</variable>
+	<variable id="codeblock-outputclass-missing">Il faut un attribut outputclass (par exemple, ajoutez outputclass=&quot;language-javascript&quot;).</variable>
+	<variable id="codeblock-scale-missing">The scale attribute is mandatory for &lt;@NAME&gt; elements (hint: as default, add scale=&quot;80&quot;).</variable>
 	<variable id="coderef-href-ref-file-not-found">The source file linked to does not exist. Check the related folder for a missing file and make sure the file name is correct.</variable>
-	<variable id="colspec-colnum-not-unique">The value colnum="PARAM1" is not unique. Make sure there are no duplicates.</variable>
+	<variable id="colspec-colnum-not-unique">The value colnum=&quot;PARAM1&quot; is not unique. Make sure there are no duplicates.</variable>
 	<variable id="colsep-invalid">colsep values must be either 0 or 1 in any &lt;@NAME&gt; elements.</variable>
 	<variable id="conref-external-file-not-found">The file linked to does not exist. Check the related folder for a missing file and make sure the file name is correct.</variable>
 	<variable id="conref-external-id-mismatch">The conref source &lt;PARAM2&gt; and the destination &lt;@NAME&gt; are not of the same type.</variable>
@@ -20,42 +22,54 @@
 	<variable id="conref-internal-id-not-found">The ID linked to within the file does not exist. Make sure the ID value specified is correct.</variable>
 	<variable id="conref-internal-path-mismatch">The conref source &lt;PARAM1&gt; and the destination &lt;@NAME&gt; are not of the same type.</variable>
 	<variable id="conref-internal-path-not-found">The path linked to within the file does not exist.</variable>
-	<variable id="conref-not-lower-case">The specification of conref="@CONREF" is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</variable>
-	<variable id="comment-fixme">Found 'FIXME' comments within this &lt;@NAME&gt; element - fix as requested and delete the comment.&#xA;&#xA;PARAM1</variable>
-	<variable id="comment-todo">Found 'TODO' comments found within the running text of this &lt;@NAME&gt; element - please fix as requested and delete the comment.&#xA;&#xA;PARAM1</variable>
+	<variable id="conref-not-lower-case">The specification of conref=&quot;@CONREF&quot; is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</variable>
+	<variable id="comment-fixme">Found 'FIXME' comments within this &lt;@NAME&gt; element - fix as requested and delete the comment.
+
+PARAM1</variable>
+	<variable id="comment-todo">Found 'TODO' comments found within the running text of this &lt;@NAME&gt; element - please fix as requested and delete the comment.
+
+PARAM1</variable>
 	<variable id="fig-id-invalid">Values of ID must start with 'fig-' for &lt;@NAME&gt; elements.</variable>
 	<variable id="fig-title-missing">Always provide a title attribute in &lt;@NAME&gt; elements.</variable>
 	<variable id="file-not-lower-case">Found file 'PARAM1' with invalid name, allowed characters in file names are: lowercase, a-z only, words separated by hyphens.</variable>
-	<variable id="href-not-lower-case">The specification of href="@HREF" is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</variable>
-	<variable id="href-file-not-found">href="@HREF" links to a non-existant file.</variable>
-	<variable id="id-not-lower-case">The specification of id="@ID" is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</variable>
+	<variable id="href-not-lower-case">The specification of href=&quot;@HREF&quot; is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</variable>
+	<variable id="href-file-not-found">href=&quot;@HREF&quot; links to a non-existant file.</variable>
+	<variable id="id-not-lower-case">The specification of id=&quot;@ID&quot; is invalid, allowed characters are: lower case, a-z only, words separated by hyphens.</variable>
 	<variable id="id-not-unique">Found a duplicate ID with value '@ID', ID values must be unique within a file.</variable>
-	<variable id="incorrect-capitalization">The word 'PARAM1' is incorrectly capitalized in the running text below: &#xA;&#xA;PARAM2.</variable>
-	<variable id="image-file-type-not-supported">href="@HREF" links to an unsupported file format (only *.jpg, *.jpeg or *.png are allowed).</variable>
-  <variable id="image-href-ref-file-not-found">The image file linked to does not exist. Check the graphics folder for a missing file and make sure the link and file name specified are correct.</variable>
-	<variable id="image-product-filtered-not-included">Found &lt;@NAME product="PARAM1"&gt;. Add this element to includes.dita and use a conref to reference it.</variable>
-	<variable id="list-all-li-filtered">Found only &lt;li product="PARAM1"&gt; elements in &lt;@PARENT&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Either add additional product attributes for the missing variants or mark the list up as &lt;@PARENT product="PARAM1"&gt;</variable>
+	<variable id="incorrect-capitalization">The word 'PARAM1' is incorrectly capitalized in the running text below: 
+
+PARAM2.</variable>
+	<variable id="image-file-type-not-supported">href=&quot;@HREF&quot; links to an unsupported file format (only *.jpg, *.jpeg or *.png are allowed).</variable>
+	<variable id="image-href-ref-file-not-found">The image file linked to does not exist. Check the graphics folder for a missing file and make sure the link and file name specified are correct.</variable>
+	<variable id="image-product-filtered-not-included">Found &lt;@NAME product=&quot;PARAM1&quot;&gt;. Add this element to includes.dita and use a conref to reference it.</variable>
+	<variable id="list-all-li-filtered">Found only &lt;li product=&quot;PARAM1&quot;&gt; elements in &lt;@PARENT&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Either add additional product attributes for the missing variants or mark the list up as &lt;@PARENT product=&quot;PARAM1&quot;&gt;</variable>
 	<variable id="notices-href-missing">Pour &lt;@NAME&gt; elements, an href attribute is mandatory.</variable>
 	<variable id="notices-href-missing">For &lt;@NAME&gt; elements, an href attribute is mandatory.</variable>
 	<variable id="rowsep-invalid">rowsep values must be either 0 or 1 in any &lt;@NAME&gt; elements.</variable>
-	<variable id="running-text-fixme">Found 'FIXME' comments within the running text of this &lt;@NAME&gt; element - fix as requested and delete the comment. &#xA;&#xA;PARAM1</variable>
-	<variable id="running-text-lorem-ipsum">Found dummy text within this &lt;@NAME&gt; element, remove or replace with valid content. &#xA;&#xA;PARAM1</variable>
-	<variable id="running-text-todo">Found 'TODO' comments within the running text of this &lt;@NAME&gt; element - fix as requested and delete the comment. &#xA;&#xA;PARAM1</variable>
+	<variable id="running-text-fixme">Found 'FIXME' comments within the running text of this &lt;@NAME&gt; element - fix as requested and delete the comment. 
+
+PARAM1</variable>
+	<variable id="running-text-lorem-ipsum">Found dummy text within this &lt;@NAME&gt; element, remove or replace with valid content. 
+
+PARAM1</variable>
+	<variable id="running-text-todo">Found 'TODO' comments within the running text of this &lt;@NAME&gt; element - fix as requested and delete the comment. 
+
+PARAM1</variable>
 	<variable id="schematron-line-numbers">Line</variable>
 	<variable id="section-id-missing">Specifying ID is mandatory for &lt;@NAME&gt; elements.</variable>
 	<variable id="section-title-missing">Always provide a title attribute in &lt;@NAME&gt; elements.</variable>
 	<variable id="table-id-invalid">Values of ID must start with 'table-' for &lt;@NAME&gt; elements.</variable>
-	<variable id="table-all-rows-filtered">Found only &lt;row product="PARAM1"&gt; elements in &lt;tbody&gt;. This results in an empty &lt;tbody&gt; for other variants. Either add additional product attributes for the missing variants or mark the table up as &lt;table product="PARAM1"&gt;</variable>
-	<variable id="tgroup-cols-colspec-mismatch">PARAM1 &lt;colspec&gt; elements defined do not match the parent &lt;tgroup cols="PARAM2"&gt;. Align the cols value with the number of &lt;colspec&gt; elements.</variable>
-	<variable id="tgroup-cols-entry-mismatch">PARAM1 &lt;entry&gt; elements found do not match the parent &lt;tgroup cols="PARAM2"&gt;. Align the cols value with the number of &lt;entry&gt; elements.</variable>
-	<variable id="topic-file-mismatch">The specification of id="@ID" does not match the file name: PARAM1</variable>
+	<variable id="table-all-rows-filtered">Found only &lt;row product=&quot;PARAM1&quot;&gt; elements in &lt;tbody&gt;. This results in an empty &lt;tbody&gt; for other variants. Either add additional product attributes for the missing variants or mark the table up as &lt;table product=&quot;PARAM1&quot;&gt;</variable>
+	<variable id="tgroup-cols-colspec-mismatch">PARAM1 &lt;colspec&gt; elements defined do not match the parent &lt;tgroup cols=&quot;PARAM2&quot;&gt;. Align the cols value with the number of &lt;colspec&gt; elements.</variable>
+	<variable id="tgroup-cols-entry-mismatch">PARAM1 &lt;entry&gt; elements found do not match the parent &lt;tgroup cols=&quot;PARAM2&quot;&gt;. Align the cols value with the number of &lt;entry&gt; elements.</variable>
+	<variable id="topic-file-mismatch">The specification of id=&quot;@ID&quot; does not match the file name: PARAM1</variable>
 	<variable id="topicref-href-missing">For les éléments &lt;@NAME&gt;, il faut un attribut href.</variable>
-	<variable id="xref-external-file-not-found">&lt;@NAME href="@HREF"&gt; the file linked to does not exist. Check the related folder for a missing file and make sure the link and file name specified are correct.</variable>
-	<variable id="xref-external-id-not-found">&lt;@NAME href="@HREF"&gt; the ID within the file linked to does not exist. Make sure the ID value specified is correct.</variable>
-	<variable id="xref-external-path-not-found">&lt;@NAME href="@HREF"&gt; the path within the file linked to does not exist. Make sure the path specified is correct.</variable>
-	<variable id="xref-internal-id-not-found">&lt;@NAME href="@HREF"&gt; - the ID linked to within the file does not exist. Make sure the ID value specified is correct.</variable>
-	<variable id="xref-internal-path-not-found">&lt;@NAME href="@HREF"&gt; - the path linked to within the file does not exist. Make sure the path is correct.</variable>
-	<variable id="xref-no-format">Specifying a format attribute is mandatory for &lt;@NAME&gt; elements, such as format="dita" or format="html".</variable>
-	<variable id="xref-www-format-invalid">&lt;@NAME href="@HREF" format="dita"&gt; links externally and cannot have the attribute specification format="dita".</variable>
-	<variable id="xref-www-scope-invalid">&lt;@NAME href="@HREF"&gt; links externally and must have the attribute specification scope="external".</variable>
+	<variable id="xref-external-file-not-found">&lt;@NAME href=&quot;@HREF&quot;&gt; the file linked to does not exist. Check the related folder for a missing file and make sure the link and file name specified are correct.</variable>
+	<variable id="xref-external-id-not-found">&lt;@NAME href=&quot;@HREF&quot;&gt; the ID within the file linked to does not exist. Make sure the ID value specified is correct.</variable>
+	<variable id="xref-external-path-not-found">&lt;@NAME href=&quot;@HREF&quot;&gt; the path within the file linked to does not exist. Make sure the path specified is correct.</variable>
+	<variable id="xref-internal-id-not-found">&lt;@NAME href=&quot;@HREF&quot;&gt; - the ID linked to within the file does not exist. Make sure the ID value specified is correct.</variable>
+	<variable id="xref-internal-path-not-found">&lt;@NAME href=&quot;@HREF&quot;&gt; - the path linked to within the file does not exist. Make sure the path is correct.</variable>
+	<variable id="xref-no-format">Specifying a format attribute is mandatory for &lt;@NAME&gt; elements, such as format=&quot;dita&quot; or format=&quot;html&quot;.</variable>
+	<variable id="xref-www-format-invalid">&lt;@NAME href=&quot;@HREF&quot; format=&quot;dita&quot;&gt; links externally and cannot have the attribute specification format=&quot;dita&quot;.</variable>
+	<variable id="xref-www-scope-invalid">&lt;@NAME href=&quot;@HREF&quot;&gt; links externally and must have the attribute specification scope=&quot;external&quot;.</variable>
 </vars>
