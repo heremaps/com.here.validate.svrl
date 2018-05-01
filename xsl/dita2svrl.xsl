@@ -18,6 +18,8 @@
 <xsl:stylesheet exclude-result-prefixes="java saxon" version="2.0" xmlns:java="http://www.java.com/" xmlns:saxon="http://saxon.sf.net/" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Import XSL template that holds a function to some basic SVRL generation functions. -->
 	<xsl:import href="schematron.xsl"/>
+	<!-- Import XSL template that holds a function to accertain that a file exists using the Java Library. -->
+	<xsl:import href="file-exists.xsl"/>
 	<!--PROLOG-->
 	<xsl:param as="xs:string" name="IGNORE_RULES"/>
 	<xsl:param as="xs:string" name="OUTPUT_RULE-ID" select="true"/>

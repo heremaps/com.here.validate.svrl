@@ -3,12 +3,7 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet xmlns:xhtml="http://www.w3.org/1999/xhtml"
-   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-   xmlns:saxon="http://saxon.sf.net/"
-   xmlns:java="http://www.java.com/"
-   exclude-result-prefixes="java saxon"
-   version="2.0">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <!--
 	Common DITA Spelling Rules - Typographic errors within the running text, not codeph or codeblock
   -->

@@ -3,9 +3,8 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet exclude-result-prefixes="java saxon dita-ot" version="2.0" xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot" xmlns:java="http://www.java.com/" xmlns:saxon="http://saxon.sf.net/" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- Import XSL template that holds a function to accertain that a file exists using the Java Library. -->
-	<xsl:import href="file-exists.xsl"/>
+<xsl:stylesheet exclude-result-prefixes="saxon dita-ot" version="2.0" xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot" xmlns:saxon="http://saxon.sf.net/"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
 	<xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
 	<xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
 	<!-- These come from the base plug-in -->
