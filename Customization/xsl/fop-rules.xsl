@@ -6,19 +6,21 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Apply Rules which apply to a selection of nodes which can result in an invalid PDF	-->
 	<xsl:template match="*" mode="fop-pattern">
+		<!-- structure rules -->
 		<xsl:if test="(//row[@product])|(//li[@product])|(//tgroup)">
-			<active-pattern name="fop-structure-rules" role="fop">
-				<xsl:apply-templates mode="row-fop-rules" select="//row[@product]"/>
-				<xsl:apply-templates mode="li-fop-rules" select="//li[@product]"/>
-				<xsl:apply-templates mode="tgroup-fop-rules" select="//tgroup"/>
-			</active-pattern>
+			<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">fop</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+			<xsl:apply-templates mode="row-fop-rules" select="//row[@product]"/>
+			<xsl:apply-templates mode="li-fop-rules" select="//li[@product]"/>
+			<xsl:apply-templates mode="tgroup-fop-rules" select="//tgroup"/>
 		</xsl:if>
 	</xsl:template>
 	<!--
     FOP <tgroup>Structure Rules - invalid table structures.
   -->
 	<xsl:template match="tgroup" mode="tgroup-fop-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="cols" select="@cols"/>
 		<xsl:variable name="cols-count" select="count(./colspec)"/>
 		<xsl:variable name="conref-cols-count" select="count(./colspec[@conref])"/>
@@ -69,7 +71,6 @@
     	FOP <row>Structure Rules - empty tables
 	-->
 	<xsl:template match="row" mode="row-fop-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="product-id" select="@product"/>
 		<xsl:variable name="table-row-count" select="count(../row)"/>
 		<xsl:variable name="external-row-count" select="count(../row[not(@audience='internal')])"/>
@@ -91,7 +92,6 @@
 		FOP <li>Structure Rules - empty filtered lists
 	-->
 	<xsl:template match="li" mode="li-fop-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="product-id" select="@product"/>
 		<xsl:variable name="list-li-count" select="count(../li)"/>
 		<xsl:variable name="external-li-count" select="count(../li[not(@audience='internal')])"/>

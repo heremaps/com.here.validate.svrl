@@ -43,14 +43,20 @@
 	<xsl:template match="/">
 		<!--SCHEMA SETUP-->
 		<schematron-output schemaVersion="1.5" title="Dita Validation" xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+			<xsl:call-template name="active-pattern"/> 
+			<xsl:apply-templates mode="common-pattern"/>
+			<xsl:apply-templates mode="codeblock-pattern"/>
+			<xsl:apply-templates mode="coderef-pattern"/>
+
 			<xsl:apply-templates mode="topic-pattern"/>
 			<xsl:apply-templates mode="figure-pattern"/>
 			<xsl:apply-templates mode="section-pattern"/>
-			<xsl:apply-templates mode="codeblock-pattern"/>
+			
 			<xsl:apply-templates mode="image-pattern"/>
 			<xsl:apply-templates mode="xref-pattern"/>
-			<xsl:apply-templates mode="common-pattern"/>
+			
 			<xsl:apply-templates mode="fop-pattern"/>
 		</schematron-output>
 	</xsl:template>
+
 </xsl:stylesheet>

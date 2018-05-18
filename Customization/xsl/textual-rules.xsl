@@ -8,7 +8,6 @@
 	Common DITA Spelling Rules - Typographic errors within the running text, not codeph or codeblock
   -->
 	<xsl:template match="*[not(self::draft-comment or self::codeph or self::codeblock or ancestor::codeblock)]" mode="common-textual-rules">
-		<xsl:call-template name="fired-rule"/>
 		<!-- Running text checks-->
 		<xsl:variable name="running-text">
 			<xsl:value-of select="text()" />

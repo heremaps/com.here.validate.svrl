@@ -12,8 +12,6 @@
     <fired-rule context="p[id=&quot;href&quot;]"></fired-rule>
     <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
     <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="b"></fired-rule>
     <fired-rule context="topic[id=&quot;conref-internal-id-not-found&quot;]"></fired-rule>
     <fired-rule context="title"></fired-rule>
     <fired-rule context="body"></fired-rule>
@@ -23,11 +21,14 @@
     <fired-rule context="p[id=&quot;href&quot;]"></fired-rule>
     <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
     <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="b"></fired-rule>
   </active-pattern>
   <active-pattern name="common-structure-rules" role="structure">
     <fired-rule context="p[conref=&quot;#href&quot;]"></fired-rule>
+    <fired-rule context="p[id=&quot;bad-conref&quot; and conref=&quot;#no-href&quot;]"></fired-rule>
+    <failed-assert location="//conref-internal-id-not-found-no-exists.dita" role="fatal">
+      <diagnostic-reference diagnostic="conref-internal-id-not-found">Line 22: p[id="bad-conref" and conref="#no-href"] - [conref-internal-id-not-found] 
+The referenced ID does not exist in this file. Make sure the ID value specified is correct.</diagnostic-reference>
+    </failed-assert>
   </active-pattern>
   <active-pattern name="common-style-rules" role="style">
     <fired-rule context="topic[id=&quot;conref-internal-id-not-found&quot;]"></fired-rule>
@@ -41,8 +42,7 @@
     <fired-rule context="p[conref=&quot;#href&quot;]"></fired-rule>
     <fired-rule context="section[id=&quot;bad&quot;]"></fired-rule>
     <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="b"></fired-rule>
+    <fired-rule context="p[id=&quot;bad-conref&quot; and conref=&quot;#no-href&quot;]"></fired-rule>
   </active-pattern>
   <active-pattern name="ditamap-structure-rules" role="structure">
     <fired-rule context="topicref"></fired-rule>

@@ -6,18 +6,27 @@
 <xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Apply Rules which	apply to codeblock nodes only -->
 	<xsl:template match="codeblock" mode="codeblock-pattern">
-		<active-pattern name="codeblock-rules" role="style">
-			<xsl:call-template name="codeblock-style-rules"/>
-			<xsl:for-each select="coderef">
-				<xsl:call-template name="coderef-structure-rules"/>
-			</xsl:for-each>
-		</active-pattern>
+		<!-- style rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">codeblock</xsl:with-param>
+			<xsl:with-param name="role">style</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="codeblock-style-rules"/>
+	</xsl:template>
+
+	<!-- Apply Rules which	apply to coderef nodes only -->
+	<xsl:template match="coderef" mode="coderef-pattern">
+		<!-- structure rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">coderef</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="coderef-structure-rules"/>
 	</xsl:template>
 	<!--
 		Special Style Rules for <codeblock>elements
 	-->
 	<xsl:template name="codeblock-style-rules">
-		<xsl:call-template name="fired-rule"/>
 		<!--
 			codeblock-scale-missing <codeblock> must have a scale attribute
 		-->
@@ -41,7 +50,6 @@
 		Special Structural Rules for <coderef> elements (e.g. missing links)
 	-->
 	<xsl:template name="coderef-structure-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="filePath" select="resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
 		<xsl:variable name="isCodeRefAndFileExists" select="java:file-exists($filePath, base-uri())"/>
 		<!--

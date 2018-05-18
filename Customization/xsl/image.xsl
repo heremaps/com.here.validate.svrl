@@ -6,18 +6,23 @@
 <xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Apply Rules which	apply to image nodes only -->
 	<xsl:template match="image" mode="image-pattern">
-		<active-pattern name="image-rules" role="style">
-			<xsl:call-template name="image-style-rules"/>
-		</active-pattern>
-		<active-pattern name="image-rules" role="structure">
-			<xsl:call-template name="image-structure-rules"/>
-		</active-pattern>
+		<!-- style rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">image</xsl:with-param>
+			<xsl:with-param name="role">style</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="image-style-rules"/>
+		<!-- structure rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">image</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="image-structure-rules"/>
 	</xsl:template>
 	<!--
 		Special Style Rules for <image>elements
 	-->
 	<xsl:template name="image-style-rules">
-		<xsl:call-template name="fired-rule"/>
 		<!--
 			image-file-type-not-supported - <image>- invalid file extension (only *.jpg, *.jpeg or *.png are allowed)
 		-->
@@ -32,9 +37,7 @@
 		Special Structural Rules for <image>elements (e.g. missing links)
 	-->
 	<xsl:template name="image-structure-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="filePath" select="resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
-		<xsl:variable name="file" select="tokenize($filePath, '/')[last()]"/>
 		<xsl:variable name="isImageRefAndFileExists" select="java:file-exists($filePath, base-uri())"/>
 		<!--
 			image-href-ref-file-not-found - <image>- the file linked to must exist

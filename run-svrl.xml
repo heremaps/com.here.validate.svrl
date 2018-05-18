@@ -37,6 +37,8 @@
 			<param expression="${ruleset.fatal}" name="FATAL_RULESET"/>
 			<param expression="${ruleset.error}" name="ERROR_RULESET"/>
 			<param expression="${ruleset.warning}" name="WARNING_RULESET"/>
+			<param expression="ditamap" name="PATTERN_ROLE"/>
+			
 			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.ditamap"/>
 			</fileset>
@@ -72,6 +74,7 @@
 			<param expression="${ruleset.fatal}" name="FATAL_RULESET"/>
 			<param expression="${ruleset.error}" name="ERROR_RULESET"/>
 			<param expression="${ruleset.warning}" name="WARNING_RULESET"/>
+			<param expression="dita" name="PATTERN_ROLE"/>
 			<fileset dir="${dita.temp.dir}/dita">
 				<include name="**/*.dita"/>
 				<modified update="true">

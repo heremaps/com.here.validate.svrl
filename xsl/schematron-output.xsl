@@ -74,7 +74,7 @@
 		<xsl:param name="role"/>
 		<xsl:value-of select="$role"/>
 		<xsl:text>[</xsl:text>
-		<xsl:value-of select="@location"/>
+		<xsl:value-of select="preceding-sibling::active-pattern[1]/@name"/>
 		<xsl:text>]&#xa;  </xsl:text>
 		<xsl:value-of select="./diagnostic-reference/text()"/>
 		<xsl:text>&#xa;</xsl:text>
@@ -85,8 +85,6 @@
 		its contents of the node and prints in a specific format to the console
 	-->
 	<xsl:template match="*" mode="print">
-		<!-- Store the line number of where in the file validation issue was detected in a variable -->
-		<xsl:variable name="location"><xsl:value-of select="@location"/></xsl:variable>
 		<!-- Convert the value of variable $r, holding type of validation issue to uppercase -->
 		<xsl:variable name="r" select="translate(@role, 'WARNING FATAL INFORMATION ERROR', 'warning fatal information error')"/>
 		<!-- Set variable role with validation type message depending on the type of the validation issue -->

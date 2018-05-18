@@ -6,15 +6,17 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Apply Rules which	apply to topic nodes only -->
 	<xsl:template match="topic" mode="topic-pattern">
-		<active-pattern name="topic-rules" role="style">
-			<xsl:call-template name="topic-style-rules"/>
-		</active-pattern>
+		<!-- style rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">topic</xsl:with-param>
+			<xsl:with-param name="role">style</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="topic-style-rules"/>
 	</xsl:template>
 	<!--
 		Special Style Rules for <topic>elements
 	-->
 	<xsl:template name="topic-style-rules">
-		<xsl:call-template name="fired-rule"/>
 		<!-- For the root <topic>element only -->
 		<xsl:if test="not(ancestor::topic)">
 			<xsl:variable name="fileName" select="tokenize(base-uri(), '/')[last()]"/>

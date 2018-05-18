@@ -20,15 +20,19 @@
 	<xsl:import href="plugin:com.here.validate.svrl:xsl/ditamap2svrl.xsl"/>
 	<!-- Start running the rules across all the base node of the *.ditamap -->
 	<xsl:template match="*" mode="ditamap-pattern">
-		<active-pattern name="ditamap-structure-rules" role="structure">
-			<!--
+		<xsl:call-template name="active-pattern"/>
+		<!-- structure rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">common</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+		<!--
 			To include a set of rules, uncomment one or more of the rule groups defined below
 			see the com.here.validate.svrl.override plugin for an example usage.
 		-->
-			<!--xsl:for-each select="//chapter"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
-			<!--xsl:for-each select="//notices"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
-			<!--xsl:for-each select="//topicref"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
-			<!--xsl:for-each select="//appendices"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
-		</active-pattern>
+		<!--xsl:for-each select="//chapter"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
+		<!--xsl:for-each select="//notices"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
+		<!--xsl:for-each select="//topicref"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
+		<!--xsl:for-each select="//appendices"><xsl:call-template name="ditamap-structure-rules" /></xsl:for-each-->
 	</xsl:template>
 </xsl:stylesheet>

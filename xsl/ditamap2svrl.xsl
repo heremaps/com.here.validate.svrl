@@ -22,27 +22,32 @@
 	<xsl:import href="file-exists.xsl"/>
 	<!-- Start running the rules across all the base node of the *.ditamap -->
 	<xsl:template match="*" mode="ditamap-pattern">
-		<active-pattern name="ditamap-structure-rules" role="structure">
-			<!-- Apply Rules across all appendices, chapters, notices and topicrefs only -->
-			<xsl:for-each select="//appendices">
-				<xsl:call-template name="ditamap-structure-rules"/>
-			</xsl:for-each>
-			<xsl:for-each select="//chapter">
-				<xsl:call-template name="ditamap-structure-rules"/>
-			</xsl:for-each>
-			<xsl:for-each select="//notices">
-				<xsl:call-template name="ditamap-structure-rules"/>
-			</xsl:for-each>
-			<xsl:for-each select="//topicref">
-				<xsl:call-template name="ditamap-structure-rules"/>
-			</xsl:for-each>
-		</active-pattern>
+		<xsl:call-template name="active-pattern"/>
+		<!-- structure rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">common</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+		
+		<!-- Apply Rules across all appendices, chapters, notices and topicrefs only -->
+		<xsl:for-each select="//appendices">
+			<xsl:call-template name="ditamap-structure-rules"/>
+		</xsl:for-each>
+		<xsl:for-each select="//chapter">
+			<xsl:call-template name="ditamap-structure-rules"/>
+		</xsl:for-each>
+		<xsl:for-each select="//notices">
+			<xsl:call-template name="ditamap-structure-rules"/>
+		</xsl:for-each>
+		<xsl:for-each select="//topicref">
+			<xsl:call-template name="ditamap-structure-rules"/>
+		</xsl:for-each>
+
 	</xsl:template>
 	<!--
 		Common ditamap structure Rules - missing hrefs and titles for elements
 	-->
 	<xsl:template match="*" name="ditamap-structure-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:choose>
 			<!-- Wherever href	exist-->
 			<xsl:when test="@href">

@@ -15,6 +15,7 @@
 	<xsl:param name="FATAL_RULESET">a^</xsl:param>
 	<xsl:param name="ERROR_RULESET">a^</xsl:param>
 	<xsl:param name="WARNING_RULESET">a^</xsl:param>
+	<xsl:param name="PATTERN_ROLE">dita</xsl:param>
 	<xsl:variable name="msgprefix">DOTX</xsl:variable>
 	<xsl:variable name="SOURCEPATH" select="replace($SOURCE, '\\', '/')"/>
 	<xsl:variable name="document-uri">
@@ -67,10 +68,10 @@
 		<xsl:choose>
 			<xsl:when test="matches ($rule-id, $FATAL_RULESET)">
 				<failed-assert>
-					<xsl:attribute name="location">
-						<xsl:value-of select="$document-uri"/>
-					</xsl:attribute>
 					<xsl:attribute name="role">fatal</xsl:attribute>
+					<xsl:attribute name="location">
+						<xsl:value-of select="saxon:path()"/>
+					</xsl:attribute>
 					<diagnostic-reference>
 						<xsl:attribute name="diagnostic">
 							<xsl:value-of select="$rule-id"/>
@@ -112,8 +113,10 @@
 			<xsl:when test="matches ($rule-id, $ERROR_RULESET)">
 				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-errors')])">
 					<failed-assert>
-						<xsl:attribute name="location"><xsl:value-of select="$document-uri"/></xsl:attribute>
 						<xsl:attribute name="role">error</xsl:attribute>
+						<xsl:attribute name="location">
+							<xsl:value-of select="saxon:path()"/>
+						</xsl:attribute>
 						<diagnostic-reference>
 							<xsl:attribute name="diagnostic"><xsl:value-of select="$rule-id"/></xsl:attribute>
 							<xsl:call-template name="getVariable">
@@ -154,11 +157,11 @@
 			<xsl:when test="matches ($rule-id, $WARNING_RULESET)">
 				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-warnings')])">
 					<failed-assert>
-						<xsl:attribute name="location">
-							<xsl:value-of select="$document-uri"/>
-						</xsl:attribute>
 						<xsl:attribute name="role">warning</xsl:attribute>
-						<diagnostic-reference>
+						<xsl:attribute name="location">
+							<xsl:value-of select="saxon:path()"/>
+						</xsl:attribute>
+						<diagnostic-reference>	
 							<xsl:attribute name="diagnostic">
 								<xsl:value-of select="$rule-id"/>
 							</xsl:attribute>
@@ -215,9 +218,6 @@
 		<xsl:param name="human-text" select="''"/>
 		<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])">
 			<successful-report>
-				<xsl:attribute name="location">
-					<xsl:value-of select="$document-uri"/>
-				</xsl:attribute>
 				<xsl:attribute name="role">
 					<xsl:value-of select="$role"/>
 				</xsl:attribute>
@@ -246,13 +246,35 @@
 		Creates a <fired-rule>element consistent with Schematron Validation Report Language definitions
 	-->
 	<xsl:template name="fired-rule">
-		<xsl:param name="node"/>
+		<xsl:param name="context" select="''" />
+		<xsl:param name="role" select="''" />
 		<fired-rule>
 			<xsl:attribute name="context">
-				<xsl:call-template name="dita-element-context"/>
+				<xsl:value-of select="$context"/>
+			</xsl:attribute>
+			<xsl:attribute name="role">
+				<xsl:value-of select="$role"/>
 			</xsl:attribute>
 		</fired-rule>
 	</xsl:template>
+
+	<!--
+		Creates a <active-pattern> element consistent with Schematron Validation Report Language definitions
+	-->
+	<xsl:template name="active-pattern">
+		<xsl:param name="node"/>
+		<active-pattern>
+			<xsl:attribute name="role">
+				<xsl:value-of select="$PATTERN_ROLE"/>
+			</xsl:attribute>
+			<xsl:attribute name="name">
+				<xsl:value-of select="$document-uri"/>
+			</xsl:attribute>
+		</active-pattern>
+	</xsl:template>
+
+
+
 	<!--
 		Describes the DITA element under test
 	-->

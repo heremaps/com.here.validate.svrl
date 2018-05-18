@@ -6,18 +6,23 @@
 <xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Apply Rules which	apply to xref nodes only -->
 	<xsl:template match="xref" mode="xref-pattern">
-		<active-pattern name="xref-rules" role="style">
-			<xsl:call-template name="xref-style-rules"/>
-		</active-pattern>
-		<active-pattern name="xref-rules" role="structure">
-			<xsl:call-template name="xref-structure-rules"/>
-		</active-pattern>
+		<!-- style rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">xref</xsl:with-param>
+			<xsl:with-param name="role">style</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="xref-style-rules"/>
+		<!-- structure rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">xref</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+		<xsl:call-template name="xref-structure-rules"/>
 	</xsl:template>
 	<!--
 		Special Style Rules for <xref>elements
 	-->
 	<xsl:template name="xref-style-rules">
-		<xsl:call-template name="fired-rule"/>
 		<!--
 			xref-no-format - <xref> Any xref referencing a URL should have a format property
 							 <xref> Any file reference should have a format property
@@ -34,7 +39,6 @@
 		Special Structural Rules for <xref> elements (e.g. missing links)
 	-->
 	<xsl:template name="xref-structure-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="isIdRef" select="starts-with(@href, '#') and not(contains(@href, '/'))"/>
 		<xsl:variable name="isIdIdRef" select="starts-with(@href, '#') and contains(@href, '/')"/>
 		<xsl:variable name="isWWWRef" select="starts-with(@href, 'http://') or starts-with(@href, 'https://')"/>

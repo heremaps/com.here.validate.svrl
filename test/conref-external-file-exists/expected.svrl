@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/topic/body[1]/section[1]/p[1]" role="fatal">
+    <diagnostic-reference diagnostic="conref-external-file-not-found">Line 11: p[conref="./conref-internal-id-not-found.dita#href"] - [conref-external-file-not-found] 
+The linked file does not exist. Check the related folder for the missing file and make sure the file name is correct.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

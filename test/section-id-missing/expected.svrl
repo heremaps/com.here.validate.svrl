@@ -1,52 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-  <active-pattern name="common-content-rules" role="content">
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="section"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="section"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-  </active-pattern>
-  <active-pattern name="common-style-rules" role="style">
-    <fired-rule context="topic[id=&quot;section-id-missing&quot;]"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="body"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-    <fired-rule context="section"></fired-rule>
-    <fired-rule context="section"></fired-rule>
-    <failed-assert location="/section-id-missing.dita" role="error">
-      <diagnostic-reference diagnostic="section-id-missing">Line 16: section - [section-id-missing] 
+  <failed-assert location="/topic/body[1]/section[2]" role="error">
+    <diagnostic-reference diagnostic="section-id-missing">Line 16: section - [section-id-missing] 
 Always provide an ID attribute in &lt;section&gt; elements.</diagnostic-reference>
-    </failed-assert>
-    <fired-rule context="title"></fired-rule>
-    <fired-rule context="p"></fired-rule>
-  </active-pattern>
-  <active-pattern name="ditamap-structure-rules" role="structure">
-    <fired-rule context="topicref"></fired-rule>
-  </active-pattern>
-  <active-pattern name="section-rules" role="style">
-    <fired-rule context="section[id=&quot;good&quot;]"></fired-rule>
-  </active-pattern>
-  <active-pattern name="section-rules" role="style">
-    <fired-rule context="section"></fired-rule>
-  </active-pattern>
-  <active-pattern name="topic-rules" role="style">
-    <fired-rule context="topic[id=&quot;section-id-missing&quot;]"></fired-rule>
-  </active-pattern>
+  </failed-assert>
 </svrl:schematron-output>
 

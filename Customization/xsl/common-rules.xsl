@@ -3,150 +3,43 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!-- Apply Rules which	apply to all nodes  -->
 	<xsl:template match="*" mode="common-pattern">
-		<active-pattern name="common-style-rules" role="style">
-			<xsl:apply-templates mode="common-style-rules" select="//*"/>
-		</active-pattern>
-		<active-pattern name="common-content-rules" role="content">
-			<xsl:apply-templates mode="common-content-rules" select="//*[text()]"/>
-			<xsl:apply-templates mode="common-comment-rules" select="//*[comment()]"/>
-			<xsl:apply-templates mode="common-textual-rules" select="//*[text()]"/>
-		</active-pattern>
-		<xsl:if test="//*[@conref]">
-			<active-pattern name="common-structure-rules" role="structure">
-				<xsl:apply-templates mode="conref-structure-rules" select="//*[@conref]"/>
-			</active-pattern>
-		</xsl:if>
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">common</xsl:with-param>
+			<xsl:with-param name="role">content</xsl:with-param>
+		</xsl:call-template>
+		<xsl:apply-templates mode="common-content-rules" select="//*[text()]"/>
+		<xsl:apply-templates mode="common-comment-rules" select="//*[comment()]"/>
+		<xsl:apply-templates mode="common-textual-rules" select="//*[text()]"/>
+
+		<!-- structure rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">common</xsl:with-param>
+			<xsl:with-param name="role">structure</xsl:with-param>
+		</xsl:call-template>
+		<xsl:apply-templates mode="conref-structure-rules" select="//*[@conref]"/>
+		
+		<!-- style rules -->
+		<xsl:call-template name="fired-rule">
+			<xsl:with-param name="context">common</xsl:with-param>
+			<xsl:with-param name="role">style</xsl:with-param>
+		</xsl:call-template>
+		<xsl:apply-templates mode="colsep-style-rules" select="//*[@colsep]"/>
+		<xsl:apply-templates mode="conref-style-rules" select="//*[@conref]"/>
+		<xsl:apply-templates mode="href-style-rules" select="//*[@href]"/>
+		<xsl:apply-templates mode="id-style-rules" select="//*"/>
+		<xsl:apply-templates mode="rowsep-style-rules" select="//*[@rowsep]"/>
 	</xsl:template>
-	<!--
-		Common DITA Style Rules - attribute values, casing and required attributes
-	-->
-	<xsl:template match="*[not(self::keyword)]" mode="common-style-rules">
-		<xsl:call-template name="fired-rule"/>
-		<!-- Wherever ids	exist-->
-		<xsl:if test="@id">
-			<!--
-				id-not-lower-case - For all elements, @id where it exists, must be lower case and dash separated.
-			-->
-			<xsl:if test="matches(@id, '[A-Z_]+')">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">id-not-lower-case</xsl:with-param>
-					<xsl:with-param name="test">matches(@id, '[A-Z_]+')</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-			<!--
-				id-not-unique - For all elements, @id where it exists, must be unique.
-			-->
-			<xsl:if test="@id = preceding:: */@id">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">id-not-unique</xsl:with-param>
-					<xsl:with-param name="test">@id = preceding:: */@id</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-			<!--
-				fig-id-invalid - For <fig>elements, ID for a	must start "fig-''
-			-->
-			<xsl:if test="(name() = 'fig') and not(starts-with(@id, 'fig-'))">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">fig-id-invalid</xsl:with-param>
-					<xsl:with-param name="test">(name() = 'table') and not(starts-with(@id, 'fig-'))</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-			<!--
-				table-id-invalid - For <table>elements, ID must start "table-''
-			-->
-			<xsl:if test="(name() = 'table') and not(starts-with(@id, 'table-'))">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">table-id-invalid</xsl:with-param>
-					<xsl:with-param name="test">(name() = 'table') and not(starts-with(@id, 'table-'))</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:if>
-		<!--
-			Checks for mandatory ID attributes - only applies to certain types of element.
-		-->
-		<xsl:if test="not(@id)">
-			<xsl:apply-templates mode="common-mandatory-id" select="."/>
-		</xsl:if>
-		<!--
-			colsep-invalid - For all elements, @colsep where it exists, must be 1 or 0.
-		-->
-		<xsl:if test="@colsep">
-			<xsl:if test="not(matches(@colsep, '^[0|1]$'))">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">colsep-invalid</xsl:with-param>
-					<xsl:with-param name="test">not(matches(@colsep, '^[0|1]$'))</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:if>
-		<!--
-			conref-not-lower-case - For all elements, @conref where it exists, filename must be lower case dash and separated.
-		-->
-		<xsl:if test="@conref">
-			<xsl:variable name="isFileRef" select="not(starts-with(@conref, '#'))"/>
-			<xsl:variable name="filePath" select="if (contains(@conref, '#'))  then resolve-uri(substring-before(@conref, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@conref, resolve-uri('.', document-uri(/)))"/>
-			<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
-			<xsl:if test="matches($file, '[A-Z_]+')">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">conref-not-lower-case</xsl:with-param>
-					<xsl:with-param name="test">matches(@conref, '[A-Z_]+')</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:if>
-		<!--
-			href-not-lower-case - For all elements, @href where it exists, filename must be lower case dash and separated.
-		-->
-		<xsl:if test="@href">
-			<xsl:variable name="isWWWRef" select="starts-with(@href, 'http://') or starts-with(@href, 'https://')"/>
-			<xsl:variable name="isFileRef" select="not($isWWWRef) and not(starts-with(@href, '#')) and not(contains(@href, 'file:/')) and not(contains(@href, 'mailto'))"/>
-			<xsl:variable name="filePath" select="if (contains(@href, '#'))  then resolve-uri(substring-before(@href, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
-			<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
-			<xsl:if test="matches($file, '[A-Z_]+')">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">href-not-lower-case</xsl:with-param>
-					<xsl:with-param name="test">matches(@href, '[A-Z_]+')</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:if>
-		<!--
-			rowsep-invalid - For all elements, @rowsep where it exists, must be 1 or 0.
-		-->
-		<xsl:if test="@rowsep">
-			<xsl:if test="not(matches(@rowsep, '^[0|1]$'))">
-				<xsl:call-template name="failed-assert">
-					<xsl:with-param name="rule-id">rowsep-invalid</xsl:with-param>
-					<xsl:with-param name="test">not(matches(@rowsep, '^[0|1]$'))</xsl:with-param>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:if>
-	</xsl:template>
-	<xsl:template match="keyword" mode="common-style-rules"/>
-	<!--
-		Common DITA Style Rules - checks for mandatory ID attributes
-	-->
-	<xsl:template match="section|topic" mode="common-mandatory-id">
-		<!--
-			*-id-missing - For <section>and <topic>elements, ID is mandatory
-		-->
-		<xsl:if test="not(@id)">
-			<xsl:call-template name="fired-rule"/>
-			<xsl:call-template name="failed-assert">
-				<xsl:with-param name="rule-id">
-					<xsl:value-of select="name()"/>-id-missing</xsl:with-param>
-				<xsl:with-param name="test">(name() = '
-					<xsl:value-of select="name()"/>
-					') and not(@id)</xsl:with-param>
-			</xsl:call-template>
-		</xsl:if>
-	</xsl:template>
-	<xsl:template match="*" mode="common-mandatory-id"/>
+
+
+
+
 	<!--
 		Common DITA Content Rules - proscribed words.
 	-->
 	<xsl:template match="*[not(self::keyword)]" mode="common-content-rules">
-		<xsl:call-template name="fired-rule"/>
 		<!-- Running text checks-->
 		<xsl:variable name="running-text">
 			<xsl:value-of select="text()"/>
@@ -189,7 +82,7 @@
 	<!--
 		Common comment Rules - FIXME and TODO in the comments.
 	-->
-	<xsl:template match="*" mode="common-comment-rules">
+	<xsl:template match="*[comment()]" mode="common-comment-rules">
 		<!-- Comment checks-->
 		<xsl:variable name="comment">
 			<xsl:value-of select="comment()"/>
@@ -221,7 +114,6 @@
 		Common conref DITA Structure Rules - missing links and ids for content references.
 	-->
 	<xsl:template match="*[@conref]" mode="conref-structure-rules">
-		<xsl:call-template name="fired-rule"/>
 		<xsl:variable name="isFileRef" select="(contains(@conref, '.dita') or contains(@conref, '.xml')) and not(contains(@conref, 'file:/'))"/>
 		<xsl:variable name="isIdRef" select="starts-with(@conref, '#') and not(contains(@conref, '/'))"/>
 		<xsl:variable name="isIdIdRef" select="starts-with(@conref, '#') and contains(@conref, '/')"/>
@@ -337,5 +229,118 @@
 			</xsl:choose>
 		</xsl:if>
 	</xsl:template>
-	<xsl:template match="*[not(@conref)]" mode="conref-structure-rules"/>
+
+	<xsl:template match="*[@conref]" mode="conref-style-rules">
+		<!--
+			conref-not-lower-case - For all elements, @conref where it exists, filename must be lower case dash and separated.
+		-->
+		<xsl:variable name="isFileRef" select="not(starts-with(@conref, '#'))"/>
+		<xsl:variable name="filePath" select="if (contains(@conref, '#'))  then resolve-uri(substring-before(@conref, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@conref, resolve-uri('.', document-uri(/)))"/>
+		<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
+		<xsl:if test="matches($file, '[A-Z_]+')">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">conref-not-lower-case</xsl:with-param>
+				<xsl:with-param name="test">matches(@conref, '[A-Z_]+')</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[@colsep]" mode="colsep-style-rules">
+		<!--
+			colsep-invalid - For all elements, @colsep where it exists, must be 1 or 0.
+		-->
+		<xsl:if test="not(matches(@colsep, '^[0|1]$'))">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">colsep-invalid</xsl:with-param>
+				<xsl:with-param name="test">not(matches(@colsep, '^[0|1]$'))</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[@href]" mode="href-style-rules">
+		<!--
+			href-not-lower-case - For all elements, @href where it exists, filename must be lower case dash and separated.
+		-->
+		<xsl:variable name="isWWWRef" select="starts-with(@href, 'http://') or starts-with(@href, 'https://')"/>
+		<xsl:variable name="isFileRef" select="not($isWWWRef) and not(starts-with(@href, '#')) and not(contains(@href, 'file:/')) and not(contains(@href, 'mailto'))"/>
+		<xsl:variable name="filePath" select="if (contains(@href, '#'))  then resolve-uri(substring-before(@href, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
+		<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
+		<xsl:if test="matches($file, '[A-Z_]+')">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">href-not-lower-case</xsl:with-param>
+				<xsl:with-param name="test">matches(@href, '[A-Z_]+')</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template match="*[@rowsep]" mode="rowsep-style-rules">
+		<!--
+			rowsep-invalid - For all elements, @rowsep where it exists, must be 1 or 0.
+		-->
+		<xsl:if test="not(matches(@rowsep, '^[0|1]$'))">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">rowsep-invalid</xsl:with-param>
+				<xsl:with-param name="test">not(matches(@rowsep, '^[0|1]$'))</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[@id]" mode="id-style-rules">
+		<!--
+			id-not-lower-case - For all elements, @id where it exists, must be lower case and dash separated.
+		-->
+		<xsl:if test="matches(@id, '[A-Z_]+')">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">id-not-lower-case</xsl:with-param>
+				<xsl:with-param name="test">matches(@id, '[A-Z_]+')</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<!--
+			id-not-unique - For all elements, @id where it exists, must be unique.
+		-->
+		<xsl:if test="@id = preceding:: */@id">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">id-not-unique</xsl:with-param>
+				<xsl:with-param name="test">@id = preceding:: */@id</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<!--
+			fig-id-invalid - For <fig>elements, ID for a	must start "fig-''
+		-->
+		<xsl:if test="(name() = 'fig') and not(starts-with(@id, 'fig-'))">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">fig-id-invalid</xsl:with-param>
+				<xsl:with-param name="test">(name() = 'table') and not(starts-with(@id, 'fig-'))</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<!--
+			table-id-invalid - For <table>elements, ID must start "table-''
+		-->
+		<xsl:if test="(name() = 'table') and not(starts-with(@id, 'table-'))">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">table-id-invalid</xsl:with-param>
+				<xsl:with-param name="test">(name() = 'table') and not(starts-with(@id, 'table-'))</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<!--
+		Common DITA Style Rules - checks for mandatory ID attributes
+	-->
+	<xsl:template match="*[not(@id)]" mode="id-style-rules">
+		<xsl:apply-templates mode="id-mandatory" select="."/>
+	</xsl:template>
+	<xsl:template match="section|topic" mode="id-mandatory">
+		<!--
+			*-id-missing - For <section>and <topic>elements, ID is mandatory
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">
+				<xsl:value-of select="name()"/>-id-missing</xsl:with-param>
+			<xsl:with-param name="test">(name() = '
+				<xsl:value-of select="name()"/>
+				') and not(@id)</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="*" mode="id-mandatory"/>
+
 </xsl:stylesheet>
