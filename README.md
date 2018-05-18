@@ -134,20 +134,24 @@ Once the command has run, an SVRL file is created
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <svrl:schematron-output>
-	<active-pattern name="common-content-rules" role="content">
-		<fired-rule context="title"/>
-		<fired-rule context="p"/>
-		<fired-rule context="section[id=&#34;good&#34;]"/>
-		<fired-rule context="title"/>
-		<fired-rule context="section[id=&#34;bad&#34;]"/>
-		<fired-rule context="title"/>
-		<failed-assert location="/topics/comment-fixme.dita" role="warning">
-			<diagnostic-reference diagnostic="comment-fixme">Line 15: section[id="bad"] - [comment-fixme]
-				Found 'FIXME' comments within the &lt;section&gt; element - fix as requested and delete the comment.
-				FIXME 61) This comment requires action
-			</diagnostic-reference>
+	<active-pattern role="dita" name="/running-text-fixme.dita"/>
+	<fired-rule context="common" role="content"/>
+	<failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
+		<diagnostic-reference diagnostic="running-text-fixme">
+			Line 20: p - [running-text-fixme] 
+			Found 'FIXME' comments in the following text in this &lt;p&gt; element - 
+			fix as requested and delete the comment. 
+
+			FIXME This needs to be fixed
+		</diagnostic-reference>
 		</failed-assert>
-	</active-pattern>
+	<fired-rule context="common" role="structure"/>
+	<fired-rule context="common" role="style"/>
+	<fired-rule context="topic" role="style"/>
+	<fired-rule context="section" role="style"/>
+	<fired-rule context="section" role="style"/>
+	<active-pattern role="ditamap" name="/document.ditamap"/>
+	<fired-rule context="common" role="structure"/>
 </svrl:schematron-output>
 ```
 
@@ -168,7 +172,7 @@ Once the command has run, all errors and warnings are echoed to the command line
  Line 15: section[id="bad"] - [comment-fixme]
 Found 'FIXME' comments within the <section> element - fix as requested and delete the comment.
 
-FIXME 61) This comment requires action
+FIXME This comment requires action
 
 Found 0 Errors 1 Warnings
 ```
