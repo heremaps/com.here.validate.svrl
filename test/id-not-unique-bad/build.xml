@@ -6,7 +6,6 @@
 	</description>
 	<target name="unit-test">
 		<exec-svrl/>
-		<compare-output suffix=".svrl" os="unix"/>
-		<compare-output suffix=".svrl" expectation="expected.svrl.win" os="windows"/>
+		<compare-output suffix=".svrl"/>
 	</target>
 </project>
