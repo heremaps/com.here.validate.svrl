@@ -119,14 +119,14 @@ A test document can be found within the plug-in at `PATH_TO_DITA_OT/plugins/com.
 
 ### Creating an SVRL file
 
-To create an SVRL file use the `svrl` transform.
+To create an SVRL file use the `svrl` transform with the `--args.validate.mode=report` parameter.
 
 -  From a terminal prompt move to the directory holding the document to validate
 
 -  SVRL file creation (`svrl`) can be run like any other DITA-OT transform:
 
 ```console
-PATH_TO_DITA_OT/bin/dita -f svrl -o out -i document.ditamap
+PATH_TO_DITA_OT/bin/dita -f svrl --args.validate.mode=report -o out -i document.ditamap
 ```
 
 Once the command has run, an SVRL file is created
@@ -157,12 +157,12 @@ Once the command has run, an SVRL file is created
 
 ### Echoing results to the command line
 
-To echo results to the command line use the `svrl-echo` transform.
+To echo results to the command line use the `svrl` transform without specifying a `report`
 
--  Document validation (`svrl-echo`) can be run like any other DITA-OT transform:
+-  Document validation (`svrl`) can be run like any other DITA-OT transform:
 
 ```console
-PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap
+PATH_TO_DITA_OT/bin/dita -f svrl -i document.ditamap
 ```
 
 Once the command has run, all errors and warnings are echoed to the command line
@@ -206,6 +206,7 @@ PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=
 	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
 	- `default` - Outputs both warnings and errors. Fails on errors only
 	- `lax`		- Ignores all warnings and outputs errors only. Fails on Errors only
+	- `report`	- Creates an SVRL file
 - `svrl.customization.dir` - Specifies the customization directory
 - `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity levels will be used.
 - `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not present, the default echo output format will be used.

@@ -9,7 +9,7 @@
 	-->
 	<feature extension="package.support.name" value="APF team"/>
 	<feature extension="package.support.email" value="I_APF_SUPPORT@here.com"/>
-	<feature extension="package.version" value="1.1.0"/>
+	<feature extension="package.version" value="2.0.0"/>
 	<!--
 		Add new value to list of valid transformation type names.
 
@@ -19,7 +19,7 @@
 	<feature extension="dita.conductor.transtype.check" value="svrl-echo"/>
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
 	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
-	<transtype abstract="false" desc="Schematron Validation Report Language" name="svrl">
+	<transtype abstract="false" desc="DITA Validation" name="svrl">
 		<param desc="Specifies the customization directory." name="svrl.customization.dir" type="dir"/>
 		<param desc="Specifies the ruleset file to use." name="svrl.ruleset.file" type="file"/>
 		<param desc="Specifies the location of the XSL file used to echo output" name="svrl.filter.file" type="file"/>
@@ -27,20 +27,12 @@
 		<param desc="Comma separated list of rules not to be enforced" name="args.validate.ignore.rules" type="string"/>
 		<param desc="Comma separated list of words not to be present in the running text" name="args.validate.blacklist" type="string"/>
 		<param desc="Comma separated list of words which have a specified capitalization" name="args.validate.check.case" type="string"/>
-	</transtype>
-	<transtype abstract="false" desc="Filters SVRL validation and echoes the results to Standard output (stdout)" name="svrl-echo">
-		<param desc="Specifies the customization directory." name="svrl.customization.dir" type="dir"/>
-		<param desc="Specifies the ruleset file to use." name="svrl.ruleset.file" type="file"/>
-		<param desc="Specifies the location of the XSL file used to echo output" name="svrl.filter.file" type="file"/>
-		<param desc="Specifies the location a cache file to be used" name="args.validate.cachefile" type="file"/>
-		<param desc="Comma separated list of rules not to be enforced" name="args.validate.ignore.rules" type="string"/>
-		<param desc="Comma separated list of words not to be present in the running text" name="args.validate.blacklist" type="string"/>
-		<param desc="Comma separated list of words which have a specified capitalization" name="args.validate.check.case" type="string"/>
-		<param desc="Validation reporting mode" name="args.validate.mode" type="enum">
+		<param desc="Validation Mode" name="args.validate.mode" type="enum">
 			<val desc="Outputs errors and warnings. Fails on errors and warnings.">strict</val>
 			<val default="true" desc="Outputs errors and warnings. Fails on errors only">default</val>
 			<val desc="Outputs errors only. Fails on Errors only">lax</val>
-			<val desc="Report all errors at warning level. Never fail">report-only</val>
+			<val desc="SVRL Report only.">report</val>
+			<val desc="Run Automatic error fix command">fix-dita</val>
 		</param>
 		<param desc="Whether to colorize the validation output" name="args.validate.color" type="enum">
 			<val default="true" desc="Output highlights errors and warnings using ANSI color codes">true</val>

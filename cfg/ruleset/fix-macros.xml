@@ -1,0 +1,524 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="com.here.validate.svrl">
+	<!--
+		colsep-invalid - For all elements, @colsep where it exists, must be 1 or 0.
+	-->
+	<macrodef name="colsep-invalid">	
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		rowsep-invalid - For all elements, @rowsep where it exists, must be 1 or 0.
+	-->
+	<macrodef name="rowsep-invalid">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		conref-not-lower-case - For all elements, @conref where it exists, 
+		must be lower case and dash separated.
+	-->
+	<macrodef name="conref-not-lower-case">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="fig-id-invalid">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		id-not-lower-case - For all elements, @id where it exists, 
+		must be lower case and dash separated.
+	-->
+	<macrodef name="file-not-lower-case">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		href-not-lower-case - For all elements, @href where it exists, 
+		must be lower case and dash separated.
+	-->
+	<macrodef name="href-not-lower-case">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		id-not-lower-case - For all elements, @id where it exists, 
+		must be lower case and dash separated.
+	-->
+	<macrodef name="id-not-lower-case">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="table-id-invalid">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="xref-no-format">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="xref-www-format-invalid">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="xref-www-scope-invalid">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		boolean-deprecated - The boolean element is deprecated
+	-->
+	<macrodef name="boolean-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		chunk-to-navigation-deprecated - The value to-navigation
+			is deprecated on chunk attributes
+	-->
+	<macrodef name="chunk-to-navigation-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="codeblock-outputclass-missing">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="codeblock-scale-missing">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="image-alt-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="image-longdescref-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		indextermref-deprecated - The indextermref element is deprecated
+	-->
+	<macrodef name="indextermref-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="linklist-collection-type-tree-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="linkpool-collection-type-tree-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<macrodef name="lq-type-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		map-title-deprecated - The title attribute is deprecated on map elements
+	-->
+	<macrodef name="map-title-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		navref-keyref-deprecated - The keyref element is deprecated on navref elements
+	-->
+	<macrodef name="navref-keyref-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		navtitle-deprecated - The navtitle attribute is deprecated
+	-->
+	<macrodef name="navtitle-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		print-deprecated - The print attribute is deprecated
+	-->
+	<macrodef name="print-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		query-deprecated - The query attribute is deprecated
+	-->
+	<macrodef name="query-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		refcols-deprecated - The refcols attribute is deprecated
+	-->
+	<macrodef name="refcols-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		relcolspec-collection-type-deprecated - The collection-type
+		attribute the relcolspec element is deprecated
+	-->
+	<macrodef name="relcolspec-collection-type-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		reltable-collection-type-deprecated - The collection-type
+		attribute the reltable element is deprecated
+	-->
+	<macrodef name="reltable-collection-type-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		role-external-deprecated - role=external
+		is deprecated
+	-->
+	<macrodef name="role-external-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		role-sample-deprecated - role=sample
+		is deprecated
+	-->
+	<macrodef name="role-sample-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		topic-file-mismatch - the root topic should match
+		the file name
+	-->
+	<macrodef name="topic-file-mismatch">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		topichead-locktitle-deprecated - The locktitle element is 
+		deprecated on topichead elements
+	-->
+	<macrodef name="topichead-locktitle-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	<!--
+		topicgroup-locktitle-deprecated - The locktitle element is 
+		deprecated on topicgroup elements
+	-->
+	<macrodef name="topicgroup-locktitle-deprecated">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="path">
+					<actions>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+</project>

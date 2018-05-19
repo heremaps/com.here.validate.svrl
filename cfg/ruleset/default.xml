@@ -75,6 +75,8 @@
 		<rule>refcols-deprecated</rule>
 		<rule>relcolspec-collection-type-deprecated</rule>
 		<rule>reltable-collection-type-deprecated</rule>
+		<rule>role-external-deprecated</rule>
+		<rule>role-sample-deprecated</rule>
 		<rule>running-text-fixme</rule>
 		<rule>running-text-lorem-ipsum</rule>
 		<rule>running-text-todo</rule>

@@ -4,6 +4,17 @@
 	See the accompanying LICENSE file for applicable licenses.
 -->
 <antlib xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+	<macrodef name="get-fixable-rules">
+		<attribute default="${svrl.customization.dir}/../cfg/ruleset/fix-macros.xml" name="file"/>
+		<attribute name="fixable"/>
+		<sequential>
+			<local name="fixable.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fixable.ruleset"/>
+			<xslt classpathref="dost.class.path" in="@{file}" out="${fixable.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/macros2regex.xsl"/>
+			<loadfile failonerror="true" property="@{fixable}" srcfile="${fixable.ruleset}"/>
+		</sequential>
+	</macrodef>
 	<!--
 		Extract a list of rules to apply at each level
 

@@ -25,6 +25,7 @@
 		<xsl:apply-templates mode="boolean-structure-rules" select="//boolean"/>
 		<xsl:apply-templates mode="indextermref-structure-rules" select="//indextermref"/>
 		<xsl:apply-templates mode="lq-structure-rules" select="//lq[@type]"/>
+		<xsl:apply-templates mode="role-structure-rules" select="//*[@role]"/>
 		
 		<!-- style rules -->
 		<xsl:call-template name="fired-rule">
@@ -334,6 +335,21 @@
 			<xsl:with-param name="rule-id">refcols-deprecated</xsl:with-param>
 			<xsl:with-param name="test">@refcols</xsl:with-param>
 		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="*[@role]" mode="role-structure-rules">
+		<xsl:if test="@role='sample'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">role-sample-deprecated</xsl:with-param>
+				<xsl:with-param name="test">@role='sample''</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="@role='external'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">role-external-deprecated</xsl:with-param>
+				<xsl:with-param name="test">@role='external'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="*[@rowsep]" mode="rowsep-style-rules">
