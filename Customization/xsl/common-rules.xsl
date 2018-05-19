@@ -21,6 +21,7 @@
 		</xsl:call-template>
 		<xsl:apply-templates mode="conref-structure-rules" select="//*[@conref]"/>
 		<xsl:apply-templates mode="collection-type-structure-rules" select="//*[@collection-type]"/>
+		<xsl:apply-templates mode="refcols-structure-rules" select="//*[@refcols]"/>
 		<xsl:apply-templates mode="boolean-structure-rules" select="//boolean"/>
 		<xsl:apply-templates mode="indextermref-structure-rules" select="//indextermref"/>
 		
@@ -136,18 +137,6 @@
 
 
 	<xsl:template match="*[@collection-type]" mode="collection-type-structure-rules">
-		<xsl:if test="name() = 'reltable'">
-			<xsl:call-template name="failed-assert">
-				<xsl:with-param name="rule-id">reltable-collection-type-deprecated</xsl:with-param>
-				<xsl:with-param name="test">name() = 'reltable'</xsl:with-param>
-			</xsl:call-template>
-		</xsl:if>
-		<xsl:if test="name() = 'relcolspec'">
-			<xsl:call-template name="failed-assert">
-				<xsl:with-param name="rule-id">relcolspec-collection-type-deprecated</xsl:with-param>
-				<xsl:with-param name="test">name() = 'relcolspec'</xsl:with-param>
-			</xsl:call-template>
-		</xsl:if>
 		<xsl:if test="name() = 'linkpool' and @collection-type='tree'">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">linkpool-collection-type-tree-deprecated</xsl:with-param>
@@ -324,6 +313,17 @@
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
+
+	<xsl:template match="*[@refcols]" mode="refcols-structure-rules">
+		<!--
+			refcols-deprecated - The refcols attribute is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">refcols-deprecated</xsl:with-param>
+			<xsl:with-param name="test">@refcols</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
 	<xsl:template match="*[@rowsep]" mode="rowsep-style-rules">
 		<!--
 			rowsep-invalid - For all elements, @rowsep where it exists, must be 1 or 0.

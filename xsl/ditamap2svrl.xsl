@@ -28,12 +28,11 @@
 			<xsl:with-param name="context">common</xsl:with-param>
 			<xsl:with-param name="role">structure</xsl:with-param>
 		</xsl:call-template>
+		<xsl:apply-templates mode="collection-type-structure-rules" select="//*[@collection-type]"/>
 		<xsl:apply-templates mode="href-structure-rules" select="//*[@href]"/>
 		<xsl:apply-templates mode="navtitle-structure-rules" select="//*[@navtitle]"/>
 		<xsl:apply-templates mode="print-structure-rules" select="//*[@print]"/>
 		<xsl:apply-templates mode="query-structure-rules" select="//*[@query]"/>
-		<xsl:apply-templates mode="refcols-structure-rules" select="//*[@refcols]"/>
-
 
 		<xsl:apply-templates mode="keyref-structure-rules" select="//navref[@keyref]"/>
 		<xsl:apply-templates mode="locktitle-structure-rules" select="//topichead[@locktitle]"/>
@@ -54,6 +53,32 @@
 
 	</xsl:template>
 
+	<xsl:template match="*[@collection-type]" mode="collection-type-structure-rules">
+		<xsl:if test="name() = 'reltable'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">reltable-collection-type-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'reltable'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="name() = 'relcolspec'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">relcolspec-collection-type-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'relcolspec'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="name() = 'linkpool' and @collection-type='tree'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">linkpool-collection-type-tree-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'linkpool'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="name() = 'linklist' and @collection-type='tree'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">linklist-collection-type-tree-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'linklist'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 
 	<xsl:template match="navref[@keyref]" mode="keyref-structure-rules">
 		<!--
@@ -114,18 +139,6 @@
 			<xsl:with-param name="test">@query</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
-
-	<xsl:template match="*[@refcols]" mode="refcols-structure-rules">
-		<!--
-			refcols-deprecated - The refcols attribute is deprecated
-		-->
-		<xsl:call-template name="failed-assert">
-			<xsl:with-param name="rule-id">refcols-deprecated</xsl:with-param>
-			<xsl:with-param name="test">@refcols</xsl:with-param>
-		</xsl:call-template>
-	</xsl:template>
-
-
 
 	<xsl:template match="*[@href]" mode="href-style-rules">
 		<xsl:variable name="file" select="if (contains(@href, '/')) then tokenize(@href, '/')[last()] else @href"/>
