@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/bookmap/chapter[1]" role="fatal">
+    <diagnostic-reference diagnostic="chapter-href-missing">Line 5: chapter - [chapter-href-missing] 
+Always provide an href attribute in &lt;chapter&gt; elements.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

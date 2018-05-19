@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/bookmap/appendices[1]" role="fatal">
+    <diagnostic-reference diagnostic="appendices-href-missing">Line 5: appendices - [appendices-href-missing] 
+Always provide an href attribute in &lt;appendices&gt; elements.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="unit-test">
+	<import file="../bootstrap.xml"/>
+	<description>
+		Expect that an appendices element with no href attribute is a validation error
+	</description>
+	<target name="unit-test">
+		<exec-svrl/>
+		<compare-output suffix=".svrl"/>
+	</target>
+</project>
