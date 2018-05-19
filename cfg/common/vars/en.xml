@@ -5,6 +5,7 @@
 -->
 <vars>
 	<variable id="appendices-href-missing">Always provide an href attribute in &lt;@NAME&gt; elements.</variable>
+	<variable id="boolean-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Replace the &lt;@NAME&gt; element with a &lt;state&gt; element.</variable>
 	<variable id="blacklisted-word">The word 'PARAM1' is a spelling mistake in the following text: 
 
 PARAM2.</variable>

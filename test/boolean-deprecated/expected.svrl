@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/topic/body[1]/section[2]/p[1]/boolean[1]" role="warning">
+    <diagnostic-reference diagnostic="boolean-deprecated">Line 21: boolean - [boolean-deprecated] 
+The &lt;boolean&gt; element will no longer be supported in DITA 2.0. Replace the &lt;boolean&gt; element with a &lt;state&gt; element.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

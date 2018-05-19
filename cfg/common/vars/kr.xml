@@ -6,6 +6,7 @@
 <vars>
 	<variable id="appendices-href-missing">For &lt;@NAME&gt; elements an href attribute is mandatory.</variable>
 	<variable id="blacklisted-word">The word 'PARAM1' is a spelling mistake in the running text below: &#xA;&#xA;PARAM2.</variable>
+	<variable id="boolean-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Replace the &lt;@NAME&gt; element with a &lt;state&gt; element.</variable>
 	<variable id="chapter-href-missing">For &lt;@NAME&gt; elements an href attribute is mandatory.</variable>
 	<variable id="codeblock-outputclass-missing">The outputclass attribute is mandatory (hint: as default, add outputclass="language-javascript").</variable>
 	<variable id="codeblock-scale-missing">The scale attribute is mandatory for &lt;@NAME&gt; elements (hint: as default, add scale="80").</variable>

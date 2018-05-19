@@ -53,6 +53,7 @@
 	<level id="warning">
 		<!-- Warning rules will display a warning on validation (can be overriden)-->
 		<rule>blacklisted-word</rule>
+		<rule>boolean-deprecated</rule>
 		<rule>codeblock-outputclass-missing</rule>
 		<rule>codeblock-scale-missing</rule>
 		<rule>comment-fixme</rule>

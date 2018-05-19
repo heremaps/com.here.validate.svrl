@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="boolean-deprecated">
+	<title>boolean-deprecated</title>
+	<body>
+		<p>
+			The <codeph>&lt;boolean&gt;</codeph> element will no longer be supported in DITA 2.0.
+		</p>
+     <section id="good">
+      <title>Good boolean</title>
+
+       <p>
+        "She said <state name="answer" value="yes"/> when I asked her to marry me!"
+      </p>
+
+    </section>
+    <section id="bad">
+      <title>Bad boolean</title>
+
+      <p>
+        She said "<boolean state="yes"/>" when I asked her to marry me!
+      </p>
+    </section>
+	</body>
+</topic>

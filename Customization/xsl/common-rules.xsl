@@ -20,6 +20,7 @@
 			<xsl:with-param name="role">structure</xsl:with-param>
 		</xsl:call-template>
 		<xsl:apply-templates mode="conref-structure-rules" select="//*[@conref]"/>
+		<xsl:apply-templates mode="boolean-structure-rules" select="//boolean"/>
 		
 		<!-- style rules -->
 		<xsl:call-template name="fired-rule">
@@ -109,6 +110,16 @@
 				<xsl:with-param name="param1" select="$comment"/>
 			</xsl:call-template>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="boolean" mode="boolean-structure-rules">
+		<!--
+			boolean-deprecated - The boolean element is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">boolean-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='boolean'</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 	<!--
 		Common conref DITA Structure Rules - missing links and ids for content references.

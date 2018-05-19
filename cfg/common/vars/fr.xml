@@ -8,6 +8,7 @@
 	<variable id="blacklisted-word">The word 'PARAM1' is a spelling mistake in the running text below: 
 
 PARAM2.</variable>
+	<variable id="boolean-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Replace the &lt;@NAME&gt; element with a &lt;state&gt; element.</variable>
 	<variable id="chapter-href-missing">Pour les éléments &lt;@NAME&gt;, il faut un attribut href.</variable>
 	<variable id="codeblock-outputclass-missing">Il faut un attribut outputclass (par exemple, ajoutez outputclass=&quot;language-javascript&quot;).</variable>
 	<variable id="codeblock-scale-missing">The scale attribute is mandatory for &lt;@NAME&gt; elements (hint: as default, add scale=&quot;80&quot;).</variable>
