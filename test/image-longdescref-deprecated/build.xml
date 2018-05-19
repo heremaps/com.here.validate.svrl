@@ -2,7 +2,7 @@
 <project basedir="." default="unit-test">
 	<import file="../bootstrap.xml"/>
 	<description>
-		Expect that an image linked to an unsupportted file type is a validation error
+		Expect that an image with a longdescref attribute is a validation warning
 	</description>
 	<target name="unit-test">
 		<exec-svrl/>
