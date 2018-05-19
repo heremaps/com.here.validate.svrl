@@ -2,6 +2,6 @@
 
 <!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd">
 <bookmap>
-   <topicref format="dita" href="id-blacklisted.dita" type="topic"></topicref>
+   <topicref format="dita" href="boolean-deprecated.dita" type="topic"></topicref>
 </bookmap>
 
