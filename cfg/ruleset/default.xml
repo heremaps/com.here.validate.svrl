@@ -54,6 +54,7 @@
 		<!-- Warning rules will display a warning on validation (can be overriden)-->
 		<rule>blacklisted-word</rule>
 		<rule>boolean-deprecated</rule>
+		<rule>chunk-to-navigation-deprecated</rule>
 		<rule>codeblock-outputclass-missing</rule>
 		<rule>codeblock-scale-missing</rule>
 		<rule>comment-fixme</rule>
@@ -65,6 +66,8 @@
 		<rule>incorrect-capitalization</rule>
 		<rule>linklist-collection-type-tree-deprecated</rule>
 		<rule>linkpool-collection-type-tree-deprecated</rule>
+		<rule>lq-type-deprecated</rule>
+		<rule>map-title-deprecated</rule>
 		<rule>navref-keyref-deprecated</rule>
 		<rule>navtitle-deprecated</rule>
 		<rule>print-deprecated</rule>

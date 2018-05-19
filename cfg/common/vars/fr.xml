@@ -10,6 +10,7 @@
 PARAM2.</variable>
 	<variable id="boolean-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Replace the &lt;@NAME&gt; element with a &lt;state&gt; element.</variable>
 	<variable id="chapter-href-missing">Pour les éléments &lt;@NAME&gt;, il faut un attribut href.</variable>
+	<variable id="chunk-to-navigation-deprecated">chunk="to-navigation" is not supported in DITA 2.0. Replace the attribute value.</variable>
 	<variable id="codeblock-outputclass-missing">Il faut un attribut outputclass (par exemple, ajoutez outputclass=&quot;language-javascript&quot;).</variable>
 	<variable id="codeblock-scale-missing">The scale attribute is mandatory for &lt;@NAME&gt; elements (hint: as default, add scale=&quot;80&quot;).</variable>
 	<variable id="coderef-href-ref-file-not-found">The source file linked to does not exist. Check the related folder for a missing file and make sure the file name is correct.</variable>
@@ -49,6 +50,8 @@ PARAM2.</variable>
 	<variable id="linklist-collection-type-tree-deprecated">The &lt;@NAME&gt; element will no longer support collection-type="tree" in DITA 2.0. Replace the value.</variable>
 	<variable id="linkpool-collection-type-tree-deprecated">The &lt;@NAME&gt; element will no longer support collection-type="tree" in DITA 2.0. Replace the value.</variable>
 	<variable id="list-all-li-filtered">Found only &lt;li product=&quot;PARAM1&quot;&gt; elements in &lt;@PARENT&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Either add additional product attributes for the missing variants or mark the list up as &lt;@PARENT product=&quot;PARAM1&quot;&gt;</variable>
+	<variable id="lq-type-deprecated">The &lt;@NAME&gt; element will no longer support the type attribute in DITA 2.0.  Use the scope and format attributes instead.</variable>
+	<variable id="map-title-deprecated">&lt;@NAME&gt; elements will no longer support the title attribute in DITA 2.0. Replace the title attribute with an &lt;title&gt; sub-element</variable>
 	<variable id="notices-href-missing">Pour &lt;@NAME&gt; elements, an href attribute is mandatory.</variable>
 	<variable id="navref-keyref-deprecated">&lt;@NAME&gt; elements will no longer support the keyref attribute in DITA 2.0. Delete the attribute. </variable>
 	<variable id="navtitle-deprecated">&lt;@NAME&gt; elements will no longer support the navtitle attribute in DITA 2.0. Delete or replace the navtitle attribute with an &lt;navtitle&gt; sub-element</variable>

@@ -24,6 +24,7 @@
 		<xsl:apply-templates mode="refcols-structure-rules" select="//*[@refcols]"/>
 		<xsl:apply-templates mode="boolean-structure-rules" select="//boolean"/>
 		<xsl:apply-templates mode="indextermref-structure-rules" select="//indextermref"/>
+		<xsl:apply-templates mode="lq-structure-rules" select="//lq[@type]"/>
 		
 		<!-- style rules -->
 		<xsl:call-template name="fired-rule">
@@ -312,6 +313,17 @@
 				<xsl:with-param name="test">matches(@href, '[A-Z_]+')</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
+	</xsl:template>
+
+
+	<xsl:template match="lq[@type]" mode="lq-structure-rules">
+		<!--
+			lq-type-deprecated - The type attribute is deprecated on lq elements
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">lq-type-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='lq' and @type</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="*[@refcols]" mode="refcols-structure-rules">

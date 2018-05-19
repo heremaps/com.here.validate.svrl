@@ -29,6 +29,7 @@
 			<xsl:with-param name="role">structure</xsl:with-param>
 		</xsl:call-template>
 		<xsl:apply-templates mode="collection-type-structure-rules" select="//*[@collection-type]"/>
+		<xsl:apply-templates mode="chunk-structure-rules" select="//*[@chunk]"/>
 		<xsl:apply-templates mode="href-structure-rules" select="//*[@href]"/>
 		<xsl:apply-templates mode="navtitle-structure-rules" select="//*[@navtitle]"/>
 		<xsl:apply-templates mode="print-structure-rules" select="//*[@print]"/>
@@ -41,6 +42,7 @@
 
 		<xsl:apply-templates mode="appendices-structure-rules" select="//appendices"/>
 		<xsl:apply-templates mode="chapter-structure-rules" select="//chapter"/>
+		<xsl:apply-templates mode="map-structure-rules" select="//map"/>
 		<xsl:apply-templates mode="notices-structure-rules" select="//notices"/>
 		<xsl:apply-templates mode="topicref-structure-rules" select="//topicref"/>
 		
@@ -51,6 +53,19 @@
 		</xsl:call-template>
 		<xsl:apply-templates mode="href-style-rules" select="//*[@href]"/>
 
+	</xsl:template>
+
+	<xsl:template match="*[@chunk]" mode="chunk-structure-rules">
+		<xsl:if test="@chunk = 'to-navigation'">
+		<!--
+			chunk-to-navigation-deprecated - The value to-navigation
+			 is deprecated on chunk attributes
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">chunk-to-navigation-deprecated</xsl:with-param>
+			<xsl:with-param name="test">@chunk = 'to-navigation'</xsl:with-param>
+		</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="*[@collection-type]" mode="collection-type-structure-rules">
@@ -78,6 +93,16 @@
 				<xsl:with-param name="test">name() = 'linklist'</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="map[@title]" mode="map-structure-rules">
+		<!--
+			map-title-deprecated - The title attribute is deprecated on map elements
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">map-title-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='map' and @title</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="navref[@keyref]" mode="keyref-structure-rules">
