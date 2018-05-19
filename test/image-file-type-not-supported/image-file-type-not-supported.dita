@@ -8,14 +8,14 @@
     </p>
      <section id="good">
       <title>Good image file extensions</title>
-      <image href="../graphics/sample-jpg.jpg" placement="break"/>
-      <image href="../graphics/sample-jpeg.jpeg" placement="break"/>
-      <image href="../graphics/something-after.png" placement="break"/>
+      <image href="graphics/sample-jpg.jpg" placement="break"/>
+      <image href="graphics/sample-jpeg.jpeg" placement="break"/>
+      <image href="graphics/something-after.png" placement="break"/>
     </section>
     <section id="bad">
       <title>Bad image file extensions</title>
-      <image href="../graphics/sample-svg.svg" placement="break"/>
-      <image href="../graphics/sample-gif.gif" placement="break"/>
+      <image href="graphics/sample-svg.svg" placement="break"/>
+      <image href="graphics/sample-gif.gif" placement="break"/>
     </section>
   </body>
 </topic>

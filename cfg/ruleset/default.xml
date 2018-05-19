@@ -58,6 +58,8 @@
 		<rule>comment-fixme</rule>
 		<rule>comment-todo</rule>
 		<rule>fig-title-missing</rule>
+		<rule>image-alt-deprecated</rule>
+		<rule>image-longdescref-deprecated</rule>
 		<rule>incorrect-capitalization</rule>
 		<rule>running-text-fixme</rule>
 		<rule>running-text-lorem-ipsum</rule>

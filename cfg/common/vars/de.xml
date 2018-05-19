@@ -39,6 +39,8 @@ PARAM1</variable>
 	<variable id="incorrect-capitalization">Die Groß- und Kleinschreibung des Worts 'PARAM1' ist nicht korrekt in folgendem Text: 
 
 PARAM2.</variable>
+	<variable id="image-alt-deprecated">&lt;@NAME&gt; elements will no longer support the alt attribute in DITA 2.0. Replace the alt attribute with an &lt;alt&gt; sub-element.</variable>
+	<variable id="image-longdescref-deprecated">&lt;@NAME&gt; elements will no longer support the longdescref attribute in DITA 2.0. Replace the longdescref attribute with an &lt;@longdescref&gt; sub-element</variable>
 	<variable id="image-file-type-not-supported">Die unter href=&quot;@HREF&quot; verknüpfte Bilddatei hat ein nicht unterstütztes Format, erlaubt sind: *.jpg, *.jpeg und *.png.</variable>
 	<variable id="image-href-ref-file-not-found">Die verknüpfte Bilddatei ist nicht vorhanden. Überprüfen Sie das graphics-Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie die Verknüpfung und der Dateiname korrekt angegeben haben.</variable>
 	<variable id="image-product-filtered-not-included">Mit &lt;@NAME product=&quot;PARAM1&quot;&gt; ist &lt;@PARENT&gt; leer. Ergänzen Sie die entsprechenden Produktattribute für die fehlenden Dokumentvarianten.</variable>

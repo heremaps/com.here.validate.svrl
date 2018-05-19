@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="image-alt-deprecated">
+  <title>image-alt-deprecated</title>
+  <body>
+    <p>
+      &lt;image&gt; - the <codeph>alt</codeph> attribute is deprecated on image elements
+    </p>
+     <section id="good">
+      <title>Good image alt</title>
+      <image href="graphics/sample-jpg.jpg" placement="break">
+        <alt>Some alt text</alt>
+      </image>
+    </section>
+    <section id="bad">
+      <title>Bad image alt</title>
+      <image alt="Some alt text" href="graphics/sample-jpg.jpg" placement="break"/>
+    </section>
+  </body>
+</topic>
+

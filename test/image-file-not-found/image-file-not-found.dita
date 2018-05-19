@@ -8,11 +8,11 @@
     </p>
      <section id="good">
       <title>Good image</title>
-      <image href="../graphics/sample-jpg.jpg" placement="break"/>
+      <image href="graphics/sample-jpg.jpg" placement="break"/>
     </section>
     <section id="bad">
       <title>Bad image</title>
-			<image href="../graphics/non existent jpg" placement="break"/>
+			<image href="graphics/non existent jpg" placement="break"/>
     </section>
   </body>
 </topic>

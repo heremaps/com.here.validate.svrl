@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/topic/body[1]/section[2]/image[1]" role="warning">
+    <diagnostic-reference diagnostic="image-alt-deprecated">Line 17: image - [image-alt-deprecated] 
+&lt;image&gt; elements will no longer support the alt attribute in DITA 2.0. Replace the alt attribute with an &lt;alt&gt; sub-element.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

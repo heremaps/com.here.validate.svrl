@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="image-longdescref-deprecated">
+  <title>image-longdescref-deprecated</title>
+  <body>
+    <p>
+      &lt;image&gt; - the <codeph>longdescref</codeph> attribute is deprecated on image elements
+    </p>
+     <section id="good">
+      <title>Good image longdescref</title>
+     <image href="graphics/sample-jpg.jpg" placement="break">
+        <longdescref href="http:example.com/desc.html"/>
+      </image>
+    </section>
+    <section id="bad">
+      <title>Bad image longdescref</title>
+      <image href="graphics/sample-jpg.jpg" placement="break" longdescref="http:example.com/desc.html"/>
+    </section>
+  </body>
+</topic>

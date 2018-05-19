@@ -45,8 +45,34 @@
 		<xsl:if test="not($isImageRefAndFileExists)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">image-href-ref-file-not-found</xsl:with-param>
-				<xsl:with-param name="test">&quot;not($isImageRefAndFileExist)</xsl:with-param>
+				<xsl:with-param name="test">not($isImageRefAndFileExist)</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
+
+		<!--
+			image-alt-deprecated- The alt attribute is deprecated on image elements
+		-->
+		<xsl:if test="@alt">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">image-alt-deprecated</xsl:with-param>
+				<xsl:with-param name="test">@alt</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+
+			<!--
+			image-longdescref-deprecated- The longdescref attribute is deprecated on image elements
+		-->
+		<xsl:if test="@longdescref">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">image-longdescref-deprecated</xsl:with-param>
+				<xsl:with-param name="test">@longdescref</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+
+
+		
+		
+
+
 	</xsl:template>
 </xsl:stylesheet>

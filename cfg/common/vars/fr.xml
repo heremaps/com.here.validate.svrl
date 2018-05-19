@@ -39,6 +39,8 @@ PARAM1</variable>
 	<variable id="incorrect-capitalization">The word 'PARAM1' is incorrectly capitalized in the running text below: 
 
 PARAM2.</variable>
+	<variable id="image-alt-deprecated">&lt;@NAME&gt; elements will no longer support the alt attribute in DITA 2.0. Replace the alt attribute with an &lt;alt&gt; sub-element.</variable>
+	<variable id="image-longdescref-deprecated">&lt;@NAME&gt; elements will no longer support the longdescref attribute in DITA 2.0. Replace the longdescref attribute with an &lt;@longdescref&gt; sub-element</variable>
 	<variable id="image-file-type-not-supported">href=&quot;@HREF&quot; links to an unsupported file format (only *.jpg, *.jpeg or *.png are allowed).</variable>
 	<variable id="image-href-ref-file-not-found">The image file linked to does not exist. Check the graphics folder for a missing file and make sure the link and file name specified are correct.</variable>
 	<variable id="image-product-filtered-not-included">Found &lt;@NAME product=&quot;PARAM1&quot;&gt;. Add this element to includes.dita and use a conref to reference it.</variable>

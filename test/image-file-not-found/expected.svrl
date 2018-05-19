@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-  <failed-assert location="/topic/body[1]/section[1]/image[1]" role="fatal">
-    <diagnostic-reference diagnostic="image-href-ref-file-not-found">Line 11: image - [image-href-ref-file-not-found] 
-The linked image file does not exist. Check the graphics folder for the missing file and make sure the link and file name specified are correct.</diagnostic-reference>
-  </failed-assert>
   <failed-assert location="/topic/body[1]/section[2]/image[1]" role="error">
     <diagnostic-reference diagnostic="image-file-type-not-supported">Line 15: image - [image-file-type-not-supported] 
-The value provided in href="../graphics/non existent jpg" specifies an unsupported file format (only *.jpg, *.jpeg or *.png are allowed). Change the format of the linked file.</diagnostic-reference>
+The value provided in href="graphics/non existent jpg" specifies an unsupported file format (only *.jpg, *.jpeg or *.png are allowed). Change the format of the linked file.</diagnostic-reference>
   </failed-assert>
   <failed-assert location="/topic/body[1]/section[2]/image[1]" role="fatal">
     <diagnostic-reference diagnostic="image-href-ref-file-not-found">Line 15: image - [image-href-ref-file-not-found] 
