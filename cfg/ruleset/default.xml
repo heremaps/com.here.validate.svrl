@@ -63,10 +63,21 @@
 		<rule>image-longdescref-deprecated</rule>
 		<rule>indextermref-deprecated</rule>
 		<rule>incorrect-capitalization</rule>
+		<rule>linklist-collection-type-tree-deprecated</rule>
+		<rule>linkpool-collection-type-tree-deprecated</rule>
+		<rule>navref-keyref-deprecated</rule>
+		<rule>navtitle-deprecated</rule>
+		<rule>print-deprecated</rule>
+		<rule>query-deprecated</rule>
+		<rule>refcols-deprecated</rule>
+		<rule>relcolspec-collection-type-deprecated</rule>
+		<rule>reltable-collection-type-deprecated</rule>
 		<rule>running-text-fixme</rule>
 		<rule>running-text-lorem-ipsum</rule>
 		<rule>running-text-todo</rule>
 		<rule>topic-file-mismatch</rule>
+		<rule>topichead-locktitle-deprecated</rule>
+		<rule>topicgroup-locktitle-deprecated</rule>
 	</level>
 	<level id="inactive">
 		<!-- Inactive rules will never be applied -->

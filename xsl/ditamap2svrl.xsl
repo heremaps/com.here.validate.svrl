@@ -28,7 +28,18 @@
 			<xsl:with-param name="context">common</xsl:with-param>
 			<xsl:with-param name="role">structure</xsl:with-param>
 		</xsl:call-template>
-		<xsl:apply-templates mode="href-structure-rules-rules" select="//*[@href]"/>
+		<xsl:apply-templates mode="href-structure-rules" select="//*[@href]"/>
+		<xsl:apply-templates mode="navtitle-structure-rules" select="//*[@navtitle]"/>
+		<xsl:apply-templates mode="print-structure-rules" select="//*[@print]"/>
+		<xsl:apply-templates mode="query-structure-rules" select="//*[@query]"/>
+		<xsl:apply-templates mode="refcols-structure-rules" select="//*[@refcols]"/>
+
+
+		<xsl:apply-templates mode="keyref-structure-rules" select="//navref[@keyref]"/>
+		<xsl:apply-templates mode="locktitle-structure-rules" select="//topichead[@locktitle]"/>
+		<xsl:apply-templates mode="locktitle-structure-rules" select="//topicgroup[@locktitle]"/>
+
+
 		<xsl:apply-templates mode="appendices-structure-rules" select="//appendices"/>
 		<xsl:apply-templates mode="chapter-structure-rules" select="//chapter"/>
 		<xsl:apply-templates mode="notices-structure-rules" select="//notices"/>
@@ -41,6 +52,77 @@
 		</xsl:call-template>
 		<xsl:apply-templates mode="href-style-rules" select="//*[@href]"/>
 
+	</xsl:template>
+
+
+	<xsl:template match="navref[@keyref]" mode="keyref-structure-rules">
+		<!--
+			navref-keyref-deprecated - The keyref element is deprecated on navref elements
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">navref-keyref-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='navref' and @keyref</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="topichead[@locktitle]" mode="locktitle-structure-rules">
+		<!--
+			topichead-locktitle-deprecated - The locktitle element is deprecated on topichead elements
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">topichead-locktitle-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='topichead' and @locktitle</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="topicgroup[@locktitle]" mode="locktitle-structure-rules">
+		<!--
+			topicgroup-locktitle-deprecated - The locktitle element is deprecated on topicgroup elements
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">topicgroup-locktitle-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='topicgroup' and @locktitle</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="*[@navtitle]" mode="navtitle-structure-rules">
+		<!--
+			navtitle-deprecated - The navtitle attribute is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">navtitle-deprecated</xsl:with-param>
+			<xsl:with-param name="test">@navtitle</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="*[@print]" mode="print-structure-rules">
+		<!--
+			print-deprecated - The print attribute is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">print-deprecated</xsl:with-param>
+			<xsl:with-param name="test">@print</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="*[@query]" mode="query-structure-rules">
+		<!--
+			query-deprecated - The query attribute is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">query-deprecated</xsl:with-param>
+			<xsl:with-param name="test">@query</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="*[@refcols]" mode="refcols-structure-rules">
+		<!--
+			refcols-deprecated - The refcols attribute is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">refcols-deprecated</xsl:with-param>
+			<xsl:with-param name="test">@refcols</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 
 
@@ -59,16 +141,20 @@
 	</xsl:template>
 
 	<xsl:template match="*[@href]" mode="href-structure-rules">
-		<xsl:variable name="filePath" select="resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
-		<xsl:variable name="fileExists" select="java:file-exists($filePath, base-uri())"/>
-		<!--
-				href-file-not-found - @href - the file linked to must exist
-		-->
-		<xsl:if test="not($fileExists)">
-			<xsl:call-template name="failed-assert">
-				<xsl:with-param name="rule-id">href-file-not-found</xsl:with-param>
-				<xsl:with-param name="test">not($fileExists)</xsl:with-param>
-			</xsl:call-template>
+		<xsl:variable name="isWWWRef" select="starts-with(@href, 'http://') or starts-with(@href, 'https://')"/>
+
+		<xsl:if test="not($isWWWRef)">
+			<xsl:variable name="filePath" select="resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
+			<xsl:variable name="fileExists" select="java:file-exists($filePath, base-uri())"/>
+			<!--
+					href-file-not-found - @href - the file linked to must exist
+			-->
+			<xsl:if test="not($fileExists)">
+				<xsl:call-template name="failed-assert">
+					<xsl:with-param name="rule-id">href-file-not-found</xsl:with-param>
+					<xsl:with-param name="test">not($fileExists)</xsl:with-param>
+				</xsl:call-template>
+			</xsl:if>
 		</xsl:if>
 	</xsl:template>
 

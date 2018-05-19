@@ -41,14 +41,22 @@ PARAM1</variable>
 
 PARAM2.</variable>
 	<variable id="image-alt-deprecated">&lt;@NAME&gt; elements will no longer support the alt attribute in DITA 2.0. Replace the alt attribute with an &lt;alt&gt; sub-element.</variable>
-	<variable id="image-longdescref-deprecated">&lt;@NAME&gt; elements will no longer support the longdescref attribute in DITA 2.0. Replace the longdescref attribute with an &lt;@longdescref&gt; sub-element</variable>
+	<variable id="image-longdescref-deprecated">&lt;@NAME&gt; elements will no longer support the longdescref attribute in DITA 2.0. Replace the longdescref attribute with an &lt;longdescref&gt; sub-element</variable>
 	<variable id="image-file-type-not-supported">The value provided in href=&quot;@HREF&quot; specifies an unsupported file format (only *.jpg, *.jpeg or *.png are allowed). Change the format of the linked file.</variable>
 	<variable id="image-href-ref-file-not-found">The linked image file does not exist. Check the graphics folder for the missing file and make sure the link and file name specified are correct.</variable>
 	<variable id="image-product-filtered-not-included">Found &lt;@NAME product=&quot;PARAM1&quot;&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Add additional product attributes for the missing variants.</variable>
 	<variable id="indextermref-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Delete the element.</variable>
+	<variable id="linklist-collection-type-tree-deprecated">The &lt;@NAME&gt; element will no longer support collection-type="tree" in DITA 2.0. Replace the value.</variable>
+	<variable id="linkpool-collection-type-tree-deprecated">The &lt;@NAME&gt; element will no longer support collection-type="tree" in DITA 2.0. Replace the value.</variable>
 	<variable id="list-all-li-filtered">Found only &lt;li product=&quot;PARAM1&quot;&gt; elements in &lt;@PARENT&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Either add additional product attributes for the missing variants or add &lt;@PARENT product=&quot;PARAM1&quot;&gt; to the appropriate list elements.</variable>
 	<variable id="notices-href-missing">Always provide an href attribute in &lt;@NAME&gt; elements.</variable>
-	<variable id="notices-href-missing">Always provide an href attribute in &lt;@NAME&gt; elements.</variable>
+	<variable id="navref-keyref-deprecated">&lt;@NAME&gt; elements will no longer support the keyref attribute in DITA 2.0. Delete the attribute. </variable>
+	<variable id="navtitle-deprecated">&lt;@NAME&gt; elements will no longer support the navtitle attribute in DITA 2.0. Delete or replace the navtitle attribute with an &lt;navtitle&gt; sub-element</variable>
+	<variable id="print-deprecated">&lt;@NAME&gt; elements will no longer support the print attribute in DITA 2.0. Replace the print attribute with a deliveryTarget attribute and a appropriate value.</variable>
+	<variable id="query-deprecated">&lt;@NAME&gt; elements will no longer support the query attribute in DITA 2.0. Delete the attribute.</variable>
+	<variable id="refcols-deprecated">&lt;@NAME&gt; elements will no longer support the refcols attribute in DITA 2.0. Delete the attribute.</variable>
+	<variable id="relcolspec-collection-type-deprecated">&lt;@NAME&gt; elements will no longer support the collection-type attribute in DITA 2.0. Delete the attribute</variable>
+	<variable id="reltable-collection-type-deprecated">&lt;@NAME&gt; elements will no longer support the collection-type attribute in DITA 2.0. Delete the attribute</variable>
 	<variable id="rowsep-invalid">rowsep values must be either 0 or 1 in any &lt;@NAME&gt; elements.</variable>
 	<variable id="running-text-fixme">Found 'FIXME' comments in the following text in this &lt;@NAME&gt; element - fix as requested and delete the comment. 
 
@@ -67,6 +75,8 @@ PARAM1</variable>
 	<variable id="tgroup-cols-colspec-mismatch">The number of PARAM1 &lt;colspec&gt; elements defined do not match the parent &lt;tgroup cols=&quot;PARAM2&quot;&gt; attribute. Make sure the number of &lt;colspec&gt; elements corresponds with the cols value.</variable>
 	<variable id="tgroup-cols-entry-mismatch">The number of PARAM1 &lt;entry&gt; elements found do not match the parent &lt;tgroup cols=&quot;PARAM2&quot;&gt; attribute. Make sure the number of &lt;entry&gt; elements corresponds with the cols value.</variable>
 	<variable id="topic-file-mismatch">The value specified in id=&quot;@ID&quot; does not match the file name: PARAM1. Make sure the ID value and the file name are the same.</variable>
+	<variable id="topichead-locktitle-deprecated">&lt;@NAME&gt; elements will no longer support the locktitle attribute in DITA 2.0. Delete the attribute.</variable>
+	<variable id="topicgroup-locktitle-deprecated">&lt;@NAME&gt; elements will no longer support the locktitle attribute in DITA 2.0. Delete the attribute.</variable>
 	<variable id="topicref-href-missing">Always provide an href attribute in &lt;@NAME&gt; elements.</variable>
 	<variable id="xref-external-file-not-found">The file specified in &lt;@NAME href=&quot;@HREF&quot;&gt; does not exist. Check the related folder for the missing file and make sure the link and file name specified are correct.</variable>
 	<variable id="xref-external-id-not-found">The referenced ID in &lt;@NAME href=&quot;@HREF&quot;&gt; does not exist. Make sure the ID value specified is correct.</variable>

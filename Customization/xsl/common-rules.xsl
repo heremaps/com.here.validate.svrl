@@ -20,6 +20,7 @@
 			<xsl:with-param name="role">structure</xsl:with-param>
 		</xsl:call-template>
 		<xsl:apply-templates mode="conref-structure-rules" select="//*[@conref]"/>
+		<xsl:apply-templates mode="collection-type-structure-rules" select="//*[@collection-type]"/>
 		<xsl:apply-templates mode="boolean-structure-rules" select="//boolean"/>
 		<xsl:apply-templates mode="indextermref-structure-rules" select="//indextermref"/>
 		
@@ -132,6 +133,35 @@
 			<xsl:with-param name="test">name() ='indextermref'</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+
+
+	<xsl:template match="*[@collection-type]" mode="collection-type-structure-rules">
+		<xsl:if test="name() = 'reltable'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">reltable-collection-type-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'reltable'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="name() = 'relcolspec'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">relcolspec-collection-type-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'relcolspec'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="name() = 'linkpool' and @collection-type='tree'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">linkpool-collection-type-tree-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'linkpool'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="name() = 'linklist' and @collection-type='tree'">
+			<xsl:call-template name="failed-assert">
+				<xsl:with-param name="rule-id">linklist-collection-type-tree-deprecated</xsl:with-param>
+				<xsl:with-param name="test">name() = 'linklist'</xsl:with-param>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
 	<!--
 		Common conref DITA Structure Rules - missing links and ids for content references.
 	-->
