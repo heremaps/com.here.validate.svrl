@@ -45,6 +45,7 @@ PARAM2.</variable>
 	<variable id="image-file-type-not-supported">Die unter href=&quot;@HREF&quot; verknüpfte Bilddatei hat ein nicht unterstütztes Format, erlaubt sind: *.jpg, *.jpeg und *.png.</variable>
 	<variable id="image-href-ref-file-not-found">Die verknüpfte Bilddatei ist nicht vorhanden. Überprüfen Sie das graphics-Verzeichnis auf die fehlende Datei und stellen Sie sicher, dass Sie die Verknüpfung und der Dateiname korrekt angegeben haben.</variable>
 	<variable id="image-product-filtered-not-included">Mit &lt;@NAME product=&quot;PARAM1&quot;&gt; ist &lt;@PARENT&gt; leer. Ergänzen Sie die entsprechenden Produktattribute für die fehlenden Dokumentvarianten.</variable>
+	<variable id="indextermref-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Delete the element.</variable>
 	<variable id="list-all-li-filtered">In &lt;@PARENT&gt; gibt es nur &lt;row product=&quot;PARAM1&quot;&gt; Elemente. Deshalb ist &lt;@PARENT&gt; leer in anderen Dokumentvarianten. Fügen Sie entweder weitere product-Attribute für die fehlenden Dokumentvarianten hinzu oder setzen Sie ausgewählte Listelemente auf &lt;@PARENT product=&quot;PARAM1&quot;&gt;.</variable>
 	<variable id="notices-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer href-Attribute an.</variable>
 	<variable id="notices-href-missing">Geben Sie in &lt;@NAME&gt; Elementen immer ein href-Attribut an.</variable>

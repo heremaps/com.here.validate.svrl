@@ -21,6 +21,7 @@
 		</xsl:call-template>
 		<xsl:apply-templates mode="conref-structure-rules" select="//*[@conref]"/>
 		<xsl:apply-templates mode="boolean-structure-rules" select="//boolean"/>
+		<xsl:apply-templates mode="indextermref-structure-rules" select="//indextermref"/>
 		
 		<!-- style rules -->
 		<xsl:call-template name="fired-rule">
@@ -119,6 +120,16 @@
 		<xsl:call-template name="failed-assert">
 			<xsl:with-param name="rule-id">boolean-deprecated</xsl:with-param>
 			<xsl:with-param name="test">name() ='boolean'</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="indextermref" mode="indextermref-structure-rules">
+		<!--
+			indextermref-deprecated - The indextermref element is deprecated
+		-->
+		<xsl:call-template name="failed-assert">
+			<xsl:with-param name="rule-id">indextermref-deprecated</xsl:with-param>
+			<xsl:with-param name="test">name() ='indextermref'</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 	<!--

@@ -45,6 +45,7 @@ PARAM2.</variable>
 	<variable id="image-file-type-not-supported">href=&quot;@HREF&quot; links to an unsupported file format (only *.jpg, *.jpeg or *.png are allowed).</variable>
 	<variable id="image-href-ref-file-not-found">The image file linked to does not exist. Check the graphics folder for a missing file and make sure the link and file name specified are correct.</variable>
 	<variable id="image-product-filtered-not-included">Found &lt;@NAME product=&quot;PARAM1&quot;&gt;. Add this element to includes.dita and use a conref to reference it.</variable>
+	<variable id="indextermref-deprecated">The &lt;@NAME&gt; element will no longer be supported in DITA 2.0. Delete the element.</variable>
 	<variable id="list-all-li-filtered">Found only &lt;li product=&quot;PARAM1&quot;&gt; elements in &lt;@PARENT&gt;. This results in an empty &lt;@PARENT&gt; for other variants. Either add additional product attributes for the missing variants or mark the list up as &lt;@PARENT product=&quot;PARAM1&quot;&gt;</variable>
 	<variable id="notices-href-missing">Pour &lt;@NAME&gt; elements, an href attribute is mandatory.</variable>
 	<variable id="notices-href-missing">For &lt;@NAME&gt; elements, an href attribute is mandatory.</variable>
