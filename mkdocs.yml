@@ -1,0 +1,15 @@
+site_name: DITA Validator for DITA-OT
+
+repo_url: https://github.com/jason-fox/com.here.validate.svrl
+repo_name: GitHub
+
+pages:
+    -  Home: index.md
+    - 'Background' : 'background.md'
+    - 'Install' : 'install.md'
+    - 'Usage' : 'usage.md'
+    - 'Validator Customization' : 'customizing-the-validator.md'
+    - 'DITA Fixer Customization' : 'customizing-the-dita-fixer.md'
+    - 'Validator Error Messages' : 'error-messages.md'
+
+theme: readthedocs

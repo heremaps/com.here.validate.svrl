@@ -253,7 +253,7 @@ An ANT build file is supplied in the same directory as the sample document. The 
 		<arg value="-output"/>
 		<arg value="${dita.dir}/out/svrl"/>
 		<arg value="-format"/>
-		<arg value="svrl-echo"/>
+		<arg value="svrl"/>
 		<!-- validation transform specific parameters -->
 		<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
 		<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
@@ -262,7 +262,7 @@ An ANT build file is supplied in the same directory as the sample document. The 
 	<!-- For Windows run from a DOS command -->
 	<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
 		<arg value="/C"/>
-		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl-echo -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
+		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
 	</exec>	
 </target>
 ```
