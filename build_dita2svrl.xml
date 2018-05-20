@@ -148,14 +148,14 @@
 		</xmlvalidate>
 	</target>
 
-		<!--
+	<!--
 		Runs a simple find and replace regex over errors that have been discovered.
 	-->
 	<target if="svrl.fix.output" name="svrl.fix-dita">
 		<svrl-log id="SVRL002I" level="info" message="Auto correcting document"/>
 
-		<!--tempfile destdir="${dita.temp.dir}"  property="auto-correct.xml" suffix=".xml" deleteonexit="true"/-->
-		<property name="auto-correct.xml" value="${svrl.report.file}.xml"/>
+		<tempfile destdir="${dita.temp.dir}" property="auto-correct.xml" suffix=".xml" deleteonexit="true"/>
+		<!--property name="auto-correct.xml" value="${svrl.report.file}.xml"/-->
 
 		<get-fixable-rules file="${svrl.fixable.file}" fixable="fixable.rules"/>
 		<xslt basedir="${svrl.dir}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/auto-correct-output.xsl" in="${svrl.report.file}" out="${auto-correct.xml}" classpathref="dost.class.path">
@@ -165,9 +165,9 @@
 			<param expression="${fixable.rules}" name="FIXABLE_RULESET"/>
 		</xslt>
 
-		<!--ant antfile="${auto-correct.xml}">
+		<ant antfile="${auto-correct.xml}">
 			<property name="dir" value="${args.input.dir}"/>
-		</ant-->
+		</ant>
 	</target>
 	<!--
 		Creates a set of SVRL files based on the rule set.

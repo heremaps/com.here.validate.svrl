@@ -8,7 +8,12 @@ DITA Validator for DITA-OT
 
 The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure, style and content checker for DITA documents. The plug-in returns information about the compliance of the document against a **modifiable** series of validator rules. The plug-in also supports standard XML validation
 
-The plug-in supports two transtypes - it can either echo results to the command line or return a report in *Schematron Validation Report Language* (`SVRL`) format. More information about SVRL can be found at [www.schematron.com](http://www.schematron.com/validators.html)
+The plug-in consists of a single transform which can do the following:
+* Echo validation results to the command line
+* Automatically fix common validation errors within the document.
+* Return a report in *Schematron Validation Report Language* (`SVRL`) format. 
+  More information about SVRL can be found at [www.schematron.com](http://www.schematron.com/validators.html)
+
 
 Table of Contents
 =================
@@ -23,6 +28,7 @@ Table of Contents
   * [Validating a document from the Command line](#validating-a-document-from-the-command-line)
     + [Creating an SVRL file](#creating-an-svrl-file)
     + [Echoing results to the command line](#echoing-results-to-the-command-line)
+    + [Fix common errors automatically](#fix-common-errors-automatically)
     + [Parameter Reference](#parameter-reference)
   * [Validating a document using ANT](#validating-a-document-using-ant)
 - [Customizing the Validator](#customizing-the-validator)
@@ -34,6 +40,9 @@ Table of Contents
     + [Ignoring a specific instance of a validator rule](#ignoring-a-specific-instance-of-a-validator-rule)
     + [Ignoring all warnings within a block](#ignoring-all-warnings-within-a-block)
     + [Ignoring all errors within a block](#ignoring-all-errors-within-a-block)
+- [Customizing the DITA Fixer](#customizing-the-dita-fixer)
+  * [Adding a new fixable rule](#adding-a-new-fixable-rule)
+  * [Amending a fixable rule](#amending-a-fixable-rule)
 - [Sample Document](#sample-document)
 - [Validator Error Messages](#validator-error-messages)
   * [Content Validation](#content-validation)
@@ -194,6 +203,17 @@ Optionally, the output can be highlighed using ANSI color codes by adding the `a
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
 ```
 
+### Fix common errors automatically 
+
+To run the  auto-fix command from the command line use the `svrl` transform with the `--args.validate.mode=fix-dita` parameter.
+
+```console
+PATH_TO_DITA_OT/bin/dita -f svrl -i document.ditamap --args.validate.mode=fix-dita
+```
+
+Once the command has run, the DITA files are updated and fixable errors and warnings are
+no longer present.
+
 
 ### Parameter Reference
 
@@ -203,10 +223,11 @@ PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=
 - `args.validate.check.case` - Comma separated list of words which have a specified capitalization
 - `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
 - `args.validate.mode` - Validation reporting mode. The following values are supported:
-	- `strict`	- Outputs both warnings and errors. Fails on errors and warnings.
-	- `default` - Outputs both warnings and errors. Fails on errors only
-	- `lax`		- Ignores all warnings and outputs errors only. Fails on Errors only
-	- `report`	- Creates an SVRL file
+	- `strict`	 - Outputs both warnings and errors. Fails on errors and warnings.
+	- `default`  - Outputs both warnings and errors. Fails on errors only
+	- `lax`		 - Ignores all warnings and outputs errors only. Fails on Errors only
+	- `report`	 - Creates an SVRL file
+	- `fix-dita` - Updates existing DITA files and automatically fixes as many errors as possible
 - `svrl.customization.dir` - Specifies the customization directory
 - `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity levels will be used.
 - `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not present, the default echo output format will be used.
@@ -374,6 +395,45 @@ A block of DITA can be excluded from firing all rules at **ERROR** level by addi
 Rules set at **FATAL** level cannot be ignored.
 
 
+Customizing the DITA Fixer
+==========================
+
+Adding a new fixable rule
+-------------------------
+
+An editable macrofile can be found in `cfg/rulesset/fix-macros.xml`. If a rule can be auto fixed, 
+a macro should be added to the file in the following format:
+
+```
+<macrodef name="rowsep-invalid">
+	<attribute name="file"/>
+	<attribute name="path"/>
+	<sequential>
+		<delete-attribute file="@{file}" path="@{path}" attr="rowsep"/>
+	</sequential>
+</macrodef>
+```
+Where the `name` of the macro matches the rule `id`. The `file` attribute supplies name of the
+file to be updated and the `path` attribute supplies the XPath to the invalid element.
+The DITA file can be updated using [XMLTask](http://www.oopsconsultancy.com/software/xmltask/) 
+which has been supplied as a library. The following convenience functions are also available
+by default:
+
+
+* `delete-attribute`
+* `delete-element`
+* `get-attribute-value`
+* `lower-case-attribute`
+* `put-attribute-value`
+* `replace-with-subelement`
+
+Amending a fixable rule
+-----------------------
+
+The default functionality applied to fix a broken rule can be amended by altering the macro.
+If a rule is inactive within the ruleset it will not be fixed.  
+
+
 Sample Document
 ===============
 
@@ -482,5 +542,6 @@ The Program includes the following additional software components which were obt
 
 * Saxon-9.1.0.8.jar - http://saxon.sourceforge.net/  - **Mozilla Public license 1.0**
 * Saxon-9.1.0.8-dom.jar - http://saxon.sourceforge.net/  - **Mozilla Public license 1.0**
+* xmltask.jar - http://www.oopsconsultancy.com/software/xmltask/ - **Apache 1.1 license**
 
 

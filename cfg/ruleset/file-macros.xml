@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
-<project name="com.here.validate.svrl">
+<project name="com.here.validate.svrl.file-fixes">
 	<!--
 		file-not-lower-case - For all elements, @id where it exists, 
 		must be lower case and dash separated.
@@ -19,4 +19,4 @@
 
 		</sequential>
 	</macrodef>
-</project
+</project>

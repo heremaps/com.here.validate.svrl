@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
-<project name="com.here.validate.svrl">
+<project name="com.here.validate.svrl.dita-fixes">
 	<!--
 		colsep-invalid - For all elements, @colsep where it exists, must be 1 or 0.
 	-->
@@ -72,31 +72,37 @@
 			<put-attribute-value file="@{file}" path="@{path}" attr="id" value="table-${value}"/>
 		</sequential>
 	</macrodef>
+
+	<!--
+			xref-no-format - <xref> Any xref referencing a URL should have a format property
+							 <xref> Any file reference should have a format property
+							 <xref> Any other element using a href should have a format property
+	-->
 	<macrodef name="xref-no-format">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<local name="value"/>
-			<get-attribute-value file="@{file}" path="@{path}" attr="href" property="value"/>
 			<put-attribute-value file="@{file}" path="@{path}" attr="format" value="dita"/>
 		</sequential>
 	</macrodef>
+	<!--
+		xref-www-format-invalid <xref>A link to an external URL outside of the document cannot have format="dita"
+	-->
 	<macrodef name="xref-www-format-invalid">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<local name="value"/>
-			<get-attribute-value file="@{file}" path="@{path}" attr="href" property="value"/>
-			<put-attribute-value file="@{file}" path="@{path}" attr="format" value="dita"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="format" value="html"/>
 		</sequential>
 	</macrodef>
+	<!--
+		xref-www-scope-invalid  <xref>A link to an external URL outside of the document requires scope="external"
+	-->
 	<macrodef name="xref-www-scope-invalid">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<local name="value"/>
-			<get-attribute-value file="@{file}" path="@{path}" attr="href" property="value"/>
-			<put-attribute-value file="@{file}" path="@{path}" attr="scope" value="internal"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="scope" value="external"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -145,7 +151,15 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<replace-with-subelement file="@{file}" path="@{path}" attr="longdescref"/>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="longdescref" property="value"/>
+			<delete-attribute file="@{file}" path="@{path}" attr="longdescref"/>
+
+			<xmltask preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<insert path="@{path}" xml="&lt;longdescref href='${value}'/&gt;${line.separator}"/>
+			</xmltask>
+			<reinsert-entities file="@file"/>
 		</sequential>
 	</macrodef>
 	<!--

@@ -63,7 +63,7 @@
 		<!--
 			appendices-href-missing - For <appendices>elements, href is mandatory
 		-->
-		<xsl:if test="not(@navtitle) and not(@href)">
+		<xsl:if test="not(@navtitle) and not(navtitle) and not(@href)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">appendices-href-missing</xsl:with-param>
 				<xsl:with-param name="test">(name() = 'appendices') and not(@href)</xsl:with-param>
@@ -75,7 +75,7 @@
 		<!--
 			chapter-href-missing - For <chapter>elements, href is mandatory
 		-->
-		<xsl:if test="not(@navtitle) and not(@href)">
+		<xsl:if test="not(@navtitle) and not(navtitle) and not(@href)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">chapter-href-missing</xsl:with-param>
 				<xsl:with-param name="test">(name() = 'chapter') and not(@href)</xsl:with-param>
@@ -87,7 +87,7 @@
 		<!--
 			notices-href-missing - For <notices>elements, href is mandatory
 		-->
-		<xsl:if test="not(@navtitle) and not(@href)">
+		<xsl:if test="not(@navtitle) and not(navtitle) and not(@href)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">notices-href-missing</xsl:with-param>
 				<xsl:with-param name="test">(name() = 'notices') and not(@href)</xsl:with-param>
@@ -99,7 +99,7 @@
 		<!--
 			topicref-href-missing - For <topicref>elements, href is mandatory
 		-->
-		<xsl:if test="not(@navtitle) and not(@href)">
+		<xsl:if test="not(@navtitle) and not(navtitle) and not(@href)">
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">topicref-href-missing</xsl:with-param>
 				<xsl:with-param name="test">(name() = 'topicref') and not(@href)</xsl:with-param>
