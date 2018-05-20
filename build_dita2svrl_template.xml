@@ -166,7 +166,8 @@
 			 out="${auto-correct.xml}"
 			 classpathref="dost.class.path">
 
-			 <param expression="${args.input.dir}" name="SOURCE"/>
+			<param expression="${dita.dir}" name="DITA_DIR"/>
+			<param expression="${args.input.dir}" name="SOURCE"/>
 			<param expression="${fixable.rules}" name="FIXABLE_RULESET"/>
 		</xslt>
 

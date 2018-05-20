@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<antlib xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+	<taskdef classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${dita.dir}/plugins/com.here.validate.svrl/lib/xmltask.jar" name="xmltask"/>
+
+	<!--
+		Initialisation of the library - defines a fake DTD for XMLTask operations
+	-->
+	<macrodef name="init">
+		<sequential>
+
+			<property name="com.here.validate.svrl.dir" value="
+				${dita.dir}/plugins/com.here.validate.svrl/"/>
+
+			<xmlcatalog id="fake.dita.catalog">
+				<dtd publicId="-//OASIS//DTD DITA Topic//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+				<dtd publicId="-//OASIS//DTD DITA Map//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+				<dtd publicId="-//OASIS//DTD DITA DITAVAL//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+				<dtd publicId="-//OASIS//DTD DITA Concept//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+				<dtd publicId="-//OASIS//DTD DITA Task//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+			</xmlcatalog>
+		</sequential>
+	</macrodef>
+	<!--
+		Deletes an attribute from an XML element in a given file
+
+		@param  file -   The file to update
+		@param  path -   The path of the element holding the attribute to delete
+		@param  attr -   The attribute to delete
+	-->
+	<macrodef name="delete-attribute">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<attribute name="attr"/>
+		<sequential>
+			<xmltask preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<attr path="@{path}" attr="@{attr}" remove="true"/>
+			</xmltask>
+			<reinsert-entities file="@file"/>
+		</sequential>
+	</macrodef>
+
+	<!--
+		Deletes an element from a given file
+
+		@param  file -   The file to update
+		@param  path -   The path of the element to delete
+	-->
+	<macrodef name="delete-element">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<xmltask  preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<remove path="@{path}"/>
+			</xmltask>
+			<reinsert-entities file="@file"/>
+		</sequential>
+	</macrodef>
+	<!--
+		Reads an attribute value  from an XML element in a given file
+
+		@param  file -   The file to read from
+		@param  path -   The path of the element holding the attribute to read
+		@param  attr -   The attribute to read
+		@param  property -  The property to set
+	-->
+	<macrodef name="get-attribute-value">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<attribute name="attr"/>
+		<attribute name="property"/>
+		<sequential>
+			<local name="attribute"/>
+			<property name="attribute" value="@{attr}"/>
+			<xmltask source="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<call path="@{path}">
+					<param name="value" path="@${attribute}" default=""/>
+					<actions>
+						<property name="@{property}" value="@{value}"/>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+
+
+	<!--
+		Converts a value to lower case
+
+		@param  string -   The value to convert
+		@param  to -  The property to set
+	-->
+	<scriptdef language="javascript" name="lower-case">
+		<attribute name="string" />
+		<attribute name="to" />
+		project.setProperty(attributes.get("to"),attributes.get("string").toLowerCase());
+	</scriptdef>
+
+	<!--
+		Amends an attribute value in a given file to lower-case
+
+		@param  file -   The file to update
+		@param  path -   The path of the element to update
+		@param  attr -   The attribute to set to lower-case
+	-->
+	<macrodef name="lower-case-attribute">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<attribute name="attr"/>
+		<sequential>
+			<local name="value"/>
+			<local name="lower-value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="@{attr}" property="value"/>
+			<lower-case string="${value}" to="${lower-value}"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="@{attr}" value="${lower-value}"/>
+		</sequential>
+	</macrodef>
+
+	<!--
+		Updates an attribute value in a given file
+
+		@param  file -   The file to update
+		@param  path -   The path of the element to update
+		@param  attr -   The attribute to update
+		@param  value -  The value to set
+	-->
+	<macrodef name="put-attribute-value">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<attribute name="attr"/>
+		<attribute name="value"/>
+		<sequential>
+			<local name="attribute"/>
+			<property name="attribute" value="@{attr}"/>
+			<xmltask preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<attr path="@{path}" attr="@${attribute}" value="@{value}"/>
+			</xmltask>
+			<reinsert-entities file="@file"/>
+		</sequential>
+	</macrodef>
+
+	<!--
+		Deletes an attribute from an XML element in a given file
+		and replaces it as a sub-element
+
+		@param  file -   The file to update
+		@param  name -   The path of the element to update
+		@param  attr -   The attribute to convert to a sub-element
+	-->
+	<macrodef name="replace-with-subelement">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<attribute name="attr"/>
+		<sequential>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="@{attr}" property="value"/>
+			<delete-attribute file="@{file}" path="@{path}" attr="@{attr}"/>
+
+			<xmltask preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
+				<xmlcatalog refid="fake.dita.catalog"/>
+				<insert path="@{path}" xml="&lt;@{attr}&gt;${value}&lt;/@{attr}&gt;${line.separator}"/>
+			</xmltask>
+			<reinsert-entities file="@file"/>
+		</sequential>
+	</macrodef>
+	<!--
+		Macro to ensure specified entities are encoded in the text. This reverts the tendency of XMLTask
+		to remove them
+
+		@param  file -   The location of the topic file to update
+		@param  token -  The string to replace
+		@param  value -  The value to use to replace the string
+	-->
+    <macrodef name="replace-entity">
+		<attribute name="file"/>
+		<attribute name="token"/>
+		<attribute name="value"/>
+		<sequential>
+			<local name="contains.value"/>
+			<condition property="contains.value">
+				<resourcecontains resource="@{file}" substring="@{token}"/>
+			</condition>
+
+			<replace if:set="contains.value" file="@{file}">
+				<replacetoken>@{token}</replacetoken>
+				<replacevalue>@{value}</replacevalue>
+			</replace>
+
+		</sequential>
+	</macrodef>
+
+	<!--
+		Macro to ensure specified entities are encoded in the text. This reverts the tendency of XMLTask
+		to remove them
+
+		@param  file - The location of the topic file to update
+	-->
+	<macrodef name="reinsert-entities">
+		<attribute name="file"/>
+		
+		<sequential>
+			<!-- non-breaking space -->
+			<replace-entity file="@{file}" token="&amp;nbsp;" value="&amp;#xa0;"/>
+			<!-- m-dash -->
+			<replace-entity file="@{file}" token="—" value="&amp;#x2014;"/>
+			<!-- n-dash -->
+			<replace-entity file="@{file}" token="–" value="&amp;#x2013;"/>
+		</sequential>
+	</macrodef>
+</antlib>

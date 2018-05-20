@@ -8,13 +8,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="colsep"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -24,13 +18,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="rowsep"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -41,26 +29,16 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<lower-case-attribute file="@{file}" path="@{path}" attr="conref"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="fig-id-invalid">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="id" property="value"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="id" value="fig-${value}"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -71,13 +49,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<fail/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -88,13 +60,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<lower-case-attribute file="@{file}" path="@{path}" attr="href"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -105,65 +71,43 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<lower-case-attribute file="@{file}" path="@{path}" attr="id"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="table-id-invalid">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="id" property="value"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="id" value="table-${value}"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="xref-no-format">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="href" property="value"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="format" value="dita"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="xref-www-format-invalid">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="href" property="value"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="format" value="dita"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="xref-www-scope-invalid">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<local name="value"/>
+			<get-attribute-value file="@{file}" path="@{path}" attr="href" property="value"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="scope" value="internal"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -173,13 +117,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-element file="@{file}" path="@{path}"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -190,65 +128,35 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="chunk"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="codeblock-outputclass-missing">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<put-attribute-value file="@{file}" path="@{path}" attr="outputclass" value="language-javascript"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="codeblock-scale-missing">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<put-attribute-value file="@{file}" path="@{path}" attr="scale" value="80"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="image-alt-deprecated">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<replace-with-subelement file="@{file}" path="@{path}" attr="alt"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="image-longdescref-deprecated">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<replace-with-subelement file="@{file}" path="@{path}" attr="longdescref"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -258,52 +166,28 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-element file="@{file}" path="@{path}"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="linklist-collection-type-tree-deprecated">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="collection-type"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="linkpool-collection-type-tree-deprecated">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="collection-type"/>
 		</sequential>
 	</macrodef>
 	<macrodef name="lq-type-deprecated">
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="type"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -313,13 +197,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<replace-with-subelement file="@{file}" path="@{path}" attr="title"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -329,13 +207,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="keyref"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -345,13 +217,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<replace-with-subelement file="@{file}" path="@{path}" attr="navtitle"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -361,13 +227,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="print"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -377,13 +237,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="query"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -393,13 +247,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="refcols"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -410,13 +258,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="collection-type"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -427,13 +269,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="collection-type"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -444,13 +280,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="role"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -461,13 +291,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="role"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -478,13 +302,9 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<local name="value"/>
+			<basename property="value" file="@{file}"/>
+			<put-attribute-value file="@{file}" path="@{path}" attr="id" value="${value}"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -495,13 +315,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="locktitle"/>
 		</sequential>
 	</macrodef>
 	<!--
@@ -512,13 +326,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask source="@{file}">
-				<xmlcatalog refid="fake.dita.catalog"/>
-				<call path="path">
-					<actions>
-					</actions>
-				</call>
-			</xmltask>
+			<delete-attribute file="@{file}" path="@{path}" attr="locktitle"/>
 		</sequential>
 	</macrodef>
 </project>

@@ -160,7 +160,8 @@
 		<get-fixable-rules file="${svrl.fixable.file}" fixable="fixable.rules"/>
 		<xslt basedir="${svrl.dir}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/auto-correct-output.xsl" in="${svrl.report.file}" out="${auto-correct.xml}" classpathref="dost.class.path">
 
-			 <param expression="${args.input.dir}" name="SOURCE"/>
+			<param expression="${dita.dir}" name="DITA_DIR"/>
+			<param expression="${args.input.dir}" name="SOURCE"/>
 			<param expression="${fixable.rules}" name="FIXABLE_RULESET"/>
 		</xslt>
 
