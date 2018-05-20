@@ -16,6 +16,7 @@
 			<xmlcatalog id="fake.dita.catalog">
 				<dtd publicId="-//OASIS//DTD DITA Topic//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
 				<dtd publicId="-//OASIS//DTD DITA Map//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+				<dtd publicId="-//OASIS//DTD DITA BookMap//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
 				<dtd publicId="-//OASIS//DTD DITA DITAVAL//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
 				<dtd publicId="-//OASIS//DTD DITA Concept//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
 				<dtd publicId="-//OASIS//DTD DITA Task//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
@@ -115,7 +116,7 @@
 			<local name="value"/>
 			<local name="lower-value"/>
 			<get-attribute-value file="@{file}" path="@{path}" attr="@{attr}" property="value"/>
-			<lower-case string="${value}" to="${lower-value}"/>
+			<lower-case string="${value}" to="lower-value"/>
 			<put-attribute-value file="@{file}" path="@{path}" attr="@{attr}" value="${lower-value}"/>
 		</sequential>
 	</macrodef>
@@ -138,7 +139,7 @@
 			<property name="attribute" value="@{attr}"/>
 			<xmltask preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
 				<xmlcatalog refid="fake.dita.catalog"/>
-				<attr path="@{path}" attr="@${attribute}" value="@{value}"/>
+				<attr path="@{path}" attr="${attribute}" value="@{value}"/>
 			</xmltask>
 			<reinsert-entities file="@file"/>
 		</sequential>

@@ -49,7 +49,15 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<fail/>
+			<local name="lower-file.name"/>
+			<local name="file.path"/>
+			<local name="file.name"/>
+			<basename property="file.name" file="@{file}"/>
+			<dirname property="file.path" file="@{file}"/>
+			<lower-case string="${file.name}" to="lower-file.name"/>
+			<echo message="${file.path}/${lower-file.name}" level="info"/>
+			<!--move file="@{file}" tofile="${file.path}/${lower-file.name}"/-->
+
 		</sequential>
 	</macrodef>
 	<!--
