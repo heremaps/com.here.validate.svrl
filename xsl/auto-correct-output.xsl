@@ -44,22 +44,58 @@
 					<xsl:text>${com.here.validate.svrl.dir}/cfg/ruleset/fix-macros.xml</xsl:text>
 				</xsl:attribute>
 			</xsl:element>
+			<xsl:element name="import">
+				<xsl:attribute name="file">
+					<xsl:text>${com.here.validate.svrl.dir}/cfg/ruleset/file-macros.xml</xsl:text>
+				</xsl:attribute>
+			</xsl:element>
 
 
 	
 			<target name="auto-correct">
 				<init/>
-				<xsl:apply-templates mode="stuff" select="//failed-assert"/>
+				<xsl:apply-templates mode="fix-dita" select="//failed-assert"/>
+				<xsl:apply-templates mode="fix-files" select="//failed-assert"/>
 			</target>
 		</project>
 	</xsl:template>
 	<!--
 		Template to add each error found as a replaceregex entry.
 	-->
-	<xsl:template match="*" mode="stuff">
+	<xsl:template match="*" mode="fix-dita">
 		<xsl:variable name="macro"><xsl:value-of select="./diagnostic-reference/@diagnostic"/>
 		</xsl:variable>
 		<xsl:if test="matches ($macro, $FIXABLE_RULESET)">
+			<xsl:element name="echo">
+				<xsl:attribute name="message">
+					<xsl:text>Rule: </xsl:text><xsl:value-of select="$macro"/>	
+				</xsl:attribute>
+				<xsl:attribute name="level">
+					<xsl:text>info</xsl:text>
+				</xsl:attribute>
+				<xsl:attribute name="taskname">
+					<xsl:text>FIX</xsl:text>
+				</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="{$macro}">
+				<xsl:attribute name="file">
+					<xsl:value-of select="$SOURCE"/>
+					<xsl:value-of select="preceding-sibling::active-pattern[1]/@name"/>		
+				</xsl:attribute>
+				<xsl:attribute name="path">
+					<xsl:value-of select="@location"/>
+				</xsl:attribute>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
+
+	<!--
+		Check for mismatched files.
+	-->
+	<xsl:template match="*" mode="fix-files">
+		<xsl:variable name="macro"><xsl:value-of select="./diagnostic-reference/@diagnostic"/>
+		</xsl:variable>
+		<xsl:if test="matches ($macro, 'file-not-lower-case')">
 			<xsl:element name="echo">
 				<xsl:attribute name="message">
 					<xsl:text>Rule: </xsl:text><xsl:value-of select="$macro"/>	

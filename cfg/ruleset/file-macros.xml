@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="com.here.validate.svrl">
+	<!--
+		file-not-lower-case - For all elements, @id where it exists, 
+		must be lower case and dash separated.
+	-->
+	<macrodef name="file-not-lower-case">
+		<attribute name="file"/>
+		<attribute name="path"/>
+		<sequential>
+			<local name="lower-file.name"/>
+			<local name="file.path"/>
+			<local name="file.name"/>
+			<basename property="file.name" file="@{file}"/>
+			<dirname property="file.path" file="@{file}"/>
+			<lower-case string="${file.name}" to="lower-file.name"/>
+			<move file="@{file}" tofile="${file.path}/${lower-file.name}"/>
+
+		</sequential>
+	</macrodef>
+</project
