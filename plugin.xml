@@ -16,7 +16,6 @@
 		See also: http://www.dita-ot.org/2.2/dev_ref/plugin-newtranstype.html
 	-->
 	<feature extension="dita.conductor.transtype.check" value="svrl"/>
-	<feature extension="dita.conductor.transtype.check" value="svrl-echo"/>
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
 	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
 	<transtype abstract="false" desc="DITA Validation" name="svrl">

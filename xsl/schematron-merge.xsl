@@ -52,8 +52,14 @@
 			<xsl:copy-of select="@*"/>
 			<xsl:for-each select="collection($path)">
 				<!-- xsl:copy-of copies nodes and all their descendants -->
-				<xsl:copy-of select="document(document-uri(.))/schematron-output/*"/>
+				<xsl:apply-templates select="document(document-uri(.))/schematron-output/node()" mode="schematron-output"/>
 			</xsl:for-each>
 		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="node()|@*" mode="schematron-output">
+		 <xsl:copy>
+            <xsl:apply-templates select="node()|@*" mode="schematron-output"/>
+        </xsl:copy>
 	</xsl:template>
 </xsl:stylesheet>
