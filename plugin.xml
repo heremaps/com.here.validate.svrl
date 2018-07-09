@@ -9,7 +9,7 @@
 	-->
 	<feature extension="package.support.name" value="APF team"/>
 	<feature extension="package.support.email" value="I_APF_SUPPORT@here.com"/>
-	<feature extension="package.version" value="2.0.0"/>
+	<feature extension="package.version" value="2.0.1"/>
 	<!--
 		Add new value to list of valid transformation type names.
 
