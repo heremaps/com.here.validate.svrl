@@ -7,6 +7,7 @@
 	Stylesheet that prints merged .svrl result file with validation issues onto the console
 -->
 <xsl:stylesheet version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<!-- @ignore-instrument -->
 	<xsl:param as="xs:string" name="MODE" select="'default'"/>
 	<!-- Defining that this .xsl generates plain text file -->
 	<xsl:output indent="yes" method="text" omit-xml-declaration="yes"/>

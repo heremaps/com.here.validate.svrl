@@ -6,6 +6,7 @@
 <xsl:stylesheet version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output indent="no" method="text" omit-xml-declaration="yes"/>
 	<xsl:template match="/">
+		<!-- @ignore-instrument -->
 		<xsl:choose>
 			<xsl:when test="//macrodef">
 				<xsl:text>^(</xsl:text>

@@ -11,6 +11,7 @@
 	<!-- Defining that this .xsl generates plain text file -->
 	<xsl:output indent="yes" method="text" omit-xml-declaration="yes"/>
 	<xsl:template match="/">
+		<!-- @ignore-instrument -->
 		<xsl:choose>
 			<xsl:when test="$MODE = 'report-only'">
 				<xsl:text>0</xsl:text>
