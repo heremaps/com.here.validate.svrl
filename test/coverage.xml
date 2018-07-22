@@ -3,60 +3,64 @@
   This file is part of the DITA validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<rules>
-	 <!-- Fatal rules will fail validation (cannot be overriden)-->
-	<text>appendices-href-missing</text>
-	<text>chapter-href-missing</text>
-	<text>coderef-href-ref-file-not-found</text>
-	<text>colsep-invalid</text>
-	<text>colspec-colnum-not-unique</text>
-	<text>conref-external-file-not-found</text>
-	<text>conref-external-id-mismatch</text>
-	<text>conref-external-id-not-found</text>
-	<text>conref-external-path-not-found</text>
-	<text>conref-external-path-mismatch</text>
-	<text>conref-internal-id-not-found</text>
-	<text>conref-internal-path-mismatch</text>
-	<text>conref-internal-path-not-found</text>
-	<text>href-file-not-found</text>
-	<text>id-not-unique</text>
-	<text>image-href-ref-file-not-found</text>
-	<text>list-all-li-filtered</text>
-	<text>notices-href-missing</text>
-	<text>rowsep-invalid</text>
-	<text>table-all-rows-filtered</text>
-	<text>tgroup-cols-colspec-mismatch</text>
-	<text>tgroup-cols-entry-mismatch</text>
-	<text>topicref-href-missing</text>
-	<text>xref-external-file-not-found</text>
-	<text>xref-external-id-not-found</text>
-	<text>xref-external-path-not-found</text>
-	<text>xref-internal-id-not-found</text>
-	<text>xref-internal-path-not-found</text>
-	<!-- Error rules will fail validation (can be overriden)-->
-	<text>conref-not-lower-case</text>
-	<text>fig-id-invalid</text>
-	<text>fig-id-missing</text>
-	<text>file-not-lower-case</text>
-	<text>href-not-lower-case</text>
-	<text>id-not-lower-case</text>
-	<text>image-file-type-not-supported</text>
-	<text>section-id-missing</text>
-	<text>section-title-missing</text>
-	<text>table-id-invalid</text>
-	<text>xref-no-format</text>
-	<text>xref-www-format-invalid</text>
-	<text>xref-www-scope-invalid</text>
-	<!-- Warning rules will display a warning on validation (can be overriden)-->
-	<text>blacklisted-word</text>
-	<text>codeblock-outputclass-missing</text>
-	<text>codeblock-scale-missing</text>
-	<text>comment-fixme</text>
-	<text>comment-todo</text>
-	<text>fig-title-missing</text>
-	<text>incorrect-capitalization</text>
-	<text>running-text-fixme</text>
-	<text>running-text-lorem-ipsum</text>
-	<text>running-text-todo</text>
-	<text>topic-file-mismatch</text>
-</rules>
+
+<package name="com.here.validate.svrl">
+	<lines>
+		 <!-- Fatal rules will fail validation (cannot be overriden)-->
+		<line id="1">appendices-href-missing</line>
+		<line id="2">chapter-href-missing</line>
+		<line id="3">coderef-href-ref-file-not-found</line>
+		<line id="4">colsep-invalid</line>
+		<line id="5">colspec-colnum-not-unique</line>
+		<line id="6">conref-external-file-not-found</line>
+		<line id="7">conref-external-id-mismatch</line>
+		<line id="8">conref-external-id-not-found</line>
+		<line id="9">conref-external-path-not-found</line>
+		<line id="10">conref-external-path-mismatch</line>
+		<line id="11">conref-internal-id-not-found</line>
+		<line id="12">conref-internal-path-mismatch</line>
+		<line id="13">conref-internal-path-not-found</line>
+		<line id="14">href-file-not-found</line>
+		<line id="15">id-not-unique</line>
+		<line id="16">image-href-ref-file-not-found</line>
+		<line id="17">list-all-li-filtered</line>
+		<line id="18">notices-href-missing</line>
+		<line id="19">rowsep-invalid</line>
+		<line id="20">table-all-rows-filtered</line>
+		<line id="21">tgroup-cols-colspec-mismatch</line>
+		<line id="22">tgroup-cols-entry-mismatch</line>
+		<line id="23">topicref-href-missing</line>
+		<line id="24">xref-external-file-not-found</line>
+		<line id="25">xref-external-id-not-found</line>
+		<line id="26">xref-external-path-not-found</line>
+		<line id="27">xref-internal-id-not-found</line>
+		<line id="28">xref-internal-path-not-found</line>
+		<!-- Error rules will fail validation (can be overriden)-->
+		<line id="29">conref-not-lower-case</line>
+		<line id="30">fig-id-invalid</line>
+		<line id="31">fig-id-missing</line>
+		<line id="32">file-not-lower-case</line>
+		<line id="33">href-not-lower-case</line>
+		<line id="34">id-not-lower-case</line>
+		<line id="35">image-file-type-not-supported</line>
+		<line id="36">section-id-missing</line>
+		<line id="37">section-title-missing</line>
+		<line id="38">table-id-invalid</line>
+		<line id="38">xref-no-format</line>
+		<line id="40">xref-www-format-invalid</line>
+		<line id="41">xref-www-scope-invalid</line>
+		<!-- Warning rules will display a warning on validation (can be overriden)-->
+		<line id="42">blacklisted-word</line>
+		<line id="43">codeblock-outputclass-missing</line>
+		<line id="44">codeblock-scale-missing</line>
+		<line id="45">comment-fixme</line>
+		<line id="46">comment-todo</line>
+		<line id="47">fig-title-missing</line>
+		<line id="48">incorrect-capitalization</line>
+		<line id="49">running-text-fixme</line>
+		<line id="50">running-text-lorem-ipsum</line>
+		<line id="51">running-text-todo</line>
+		<line id="52">topic-file-mismatch</line>
+	</lines>
+</package>
+

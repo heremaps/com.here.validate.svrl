@@ -10,6 +10,10 @@ before_script:
   - unzip -q dita-ot-$DITA_OT.zip
   - chmod +x dita-ot-$DITA_OT/bin/dita
   - dita-ot-$DITA_OT/bin/dita --install https://github.com/jason-fox/fox.jason.unit-test/archive/master.zip
-  - dita-ot-$DITA_OT/bin/dita --install com.here.validate.svrl.zip 
+  - dita-ot-$DITA_OT/bin/dita --install com.here.validate.svrl.zip
+  - dita-ot-$DITA_OT/bin/dita --input dita-ot-$DITA_OT/plugins/com.here.validate.svrl -f xsl-instrument
 script:
   - travis_wait 30 dita-ot-$DITA_OT/bin/dita --input dita-ot-$DITA_OT/plugins/com.here.validate.svrl -f unit-test -v
+after_success:
+  - cp dita-ot-$DITA_OT/plugins/fox.jason.unit-test/resource/pom.xml pom.xml
+  - mvn clean org.eluder.coveralls:coveralls-maven-plugin:report  

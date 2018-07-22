@@ -4,6 +4,7 @@ DITA Validator for DITA-OT
 [![DITA-OT 3.1](https://img.shields.io/badge/DITA--OT-3.1-blue.svg)](http://www.dita-ot.org/3.1)
 [![DITA-OT 2.5](https://img.shields.io/badge/DITA--OT-2.5-green.svg)](http://www.dita-ot.org/2.5)
 [![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
+[![Coverage Status](https://coveralls.io/repos/github/jason-fox/com.here.validate.svrl/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/com.here.validate.svrl?branch=master)
 [![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure, style and content checker for DITA documents. The plug-in returns information about the compliance of the document against a **modifiable** series of validator rules. The plug-in also supports standard XML validation
