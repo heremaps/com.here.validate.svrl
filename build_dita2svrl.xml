@@ -192,6 +192,7 @@
 			<arg value="-Druleset.error=${ruleset.error}"/>
 			<arg value="-Druleset.warning=${ruleset.warning}"/>
 			<arg value="-Dargs.validate.cachefile=${args.validate.cachefile}"/>
+			<arg value="-v"/>
 		</java>
 		<echo level="verbose" message="${svrl.output}" taskname="dita-ot"/>
 	</target>

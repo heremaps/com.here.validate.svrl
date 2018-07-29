@@ -7,7 +7,6 @@
 	<xsl:param name="LEVEL">error</xsl:param>
 	<xsl:output indent="no" method="text" omit-xml-declaration="yes"/>
 	<xsl:template match="/">
-		<!-- @ignore-instrument -->
 		<xsl:choose>
 			<xsl:when test="//ruleset/level[@id=$LEVEL]/rule">
 				<xsl:text>^(</xsl:text>
