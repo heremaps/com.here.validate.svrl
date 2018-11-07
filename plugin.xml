@@ -7,13 +7,9 @@
 	<!--
 		Define package details.
 	-->
-	<feature extension="package.support.name" value="APF team"/>
-	<feature extension="package.support.email" value="I_APF_SUPPORT@here.com"/>
-	<feature extension="package.version" value="2.0.1"/>
+	<feature extension="package.version" value="2.0.2"/>
 	<!--
 		Add new value to list of valid transformation type names.
-
-		See also: http://www.dita-ot.org/2.2/dev_ref/plugin-newtranstype.html
 	-->
 	<feature extension="dita.conductor.transtype.check" value="svrl"/>
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
