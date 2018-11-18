@@ -99,17 +99,18 @@ Installing DITA-OT
 
 The DITA Validator is a plug-in for the DITA Open Toolkit.
 
--  Install the DITA-OT distribution JAR file dependencies by running `gradle install` from your clone of the [DITA-OT repository](https://github.com/dita-ot/dita-ot).
+-  Full installation instructions for downloading DITA-OT can be found [here](https://www.dita-ot.org/3.2/topics/installing-client.html).
 
-The required dependencies are installed to a local Maven repository in your home directory under `.m2/repository/org/dita-ot/dost/`.
+    1.  Download the `dita-ot-3.2.zip` package from the project website at [dita-ot.org/download](https://www.dita-ot.org/download)
+    2.  Extract the contents of the package to the directory where you want to install DITA-OT.
+    3.  **Optional**: Add the absolute path for the `bin` directory to the _PATH_ system variable.
+This defines the necessary environment variable to run the `dita` command from the command line.
 
--  Run the Gradle distribution task to generate the plug-in distribution package:
-
-```console
-./gradlew dist
+```bash
+curl -LO https://github.com/dita-ot/dita-ot/releases/download/3.2/dita-ot-3.2.zip
+unzip -q dita-ot-3.2.zip
+rm dita-ot-3.2.zip
 ```
-
-The distribution ZIP file is generated under `build/distributions`.
 
 Installing the Plug-in
 ----------------------
