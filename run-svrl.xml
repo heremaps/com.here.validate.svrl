@@ -82,5 +82,52 @@
 				</modified>
 			</fileset>
 		</xslt>
+
+		<fileset id="markdown.fileset" dir="${dita.temp.dir}/dita" casesensitive="yes">
+  			<include name="**/*.md"/>
+  			<include name="**/*.mdita"/>
+		</fileset>
+
+		<property name="markdown.files" refid="markdown.fileset"/>
+		<validate-markdown fileset="${markdown.files}" dir="${dita.temp.dir}/dita" todir="${dita.temp.dir}/svrl/dita" />
 	</target>
+
+	<!--
+		Validate Markdown and MDITA files to ensure that they are processable by DITA-OT
+
+		@param fileset - list of files to validate
+		@param dir     - the input dir of the Markdown and MDITA files
+		@param level   - the location to output the SVRL files
+	-->
+	<scriptdef language="javascript" name="validate-markdown">
+		<attribute name="fileset"/>
+		<attribute name="dir"/>
+		<attribute name="todir"/>
+<![CDATA[
+
+var pluginDir =  project.getProperty("basedir");
+var files = attributes.get("fileset").split(';');
+var dir = attributes.get("dir");
+var toDir = attributes.get("todir");
+
+eval('' + org.apache.tools.ant.util.FileUtils.readFully(
+      new java.io.FileReader(pluginDir + '/resource/markdown.js' ) ) );
+
+
+for (var i = 0; i < files.length; i++){
+
+	if (files[i] !== "") {
+		var type = files[i].endsWith('md') ? 'markdown' : 'mdita';
+		var text = org.apache.tools.ant.util.FileUtils.readFully(
+				new java.io.FileReader(dir + '/' + files[i]));
+		var analysis = Markdown.analyseMarkup(text);
+		var svrl = Markdown.validateMarkup(files[i], analysis.headers, type);   
+
+		Markdown.writeSVRL(files[i], svrl, toDir);
+	}
+
+}
+
+]]>
+	</scriptdef>
 </project>

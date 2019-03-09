@@ -2,7 +2,7 @@ DITA Validator for DITA-OT
 ==========================
 
 [![license](https://img.shields.io/github/license/jason-fox/com.here.validate.svrl.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![DITA-OT 3.2](https://img.shields.io/badge/DITA--OT-3.2-blue.svg)](http://www.dita-ot.org/3.2)
+[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.2)
 [![DITA-OT 2.5](https://img.shields.io/badge/DITA--OT-2.5-green.svg)](http://www.dita-ot.org/2.5)
 <br/>
 [![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
@@ -14,7 +14,7 @@ The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure
 The plug-in consists of a single transform which can do the following:
 * Echo validation results to the command line
 * Automatically fix common validation errors within the document.
-* Return a report in *Schematron Validation Report Language* (`SVRL`) format. 
+* Return a report in *Schematron Validation Report Language* (`SVRL`) format.
   More information about SVRL can be found at [www.schematron.com](http://www.schematron.com/validators.html)
 
 
@@ -152,9 +152,9 @@ Once the command has run, an SVRL file is created
 	<fired-rule context="common" role="content"/>
 	<failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
 		<diagnostic-reference diagnostic="running-text-fixme">
-			Line 20: p - [running-text-fixme] 
-			Found 'FIXME' comments in the following text in this &lt;p&gt; element - 
-			fix as requested and delete the comment. 
+			Line 20: p - [running-text-fixme]
+			Found 'FIXME' comments in the following text in this &lt;p&gt; element -
+			fix as requested and delete the comment.
 
 			FIXME This needs to be fixed
 		</diagnostic-reference>
@@ -208,7 +208,7 @@ Optionally, the output can be highlighed using ANSI color codes by adding the `a
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
 ```
 
-### Fix common errors automatically 
+### Fix common errors automatically
 
 To run the  auto-fix command from the command line use the `svrl` transform with the `--args.validate.mode=fix-dita` parameter.
 
@@ -267,7 +267,7 @@ An ANT build file is supplied in the same directory as the sample document. The 
 	<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
 		<arg value="/C"/>
 		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
-	</exec>	
+	</exec>
 </target>
 ```
 
@@ -406,7 +406,7 @@ Customizing the DITA Fixer
 Adding a new fixable rule
 -------------------------
 
-An editable macrofile can be found in `cfg/rulesset/fix-macros.xml`. If a rule can be auto fixed, 
+An editable macrofile can be found in `cfg/rulesset/fix-macros.xml`. If a rule can be auto fixed,
 a macro should be added to the file in the following format:
 
 ```
@@ -420,7 +420,7 @@ a macro should be added to the file in the following format:
 ```
 Where the `name` of the macro matches the rule `id`. The `file` attribute supplies name of the
 file to be updated and the `path` attribute supplies the XPath to the invalid element.
-The DITA file can be updated using [XMLTask](http://www.oopsconsultancy.com/software/xmltask/) 
+The DITA file can be updated using [XMLTask](http://www.oopsconsultancy.com/software/xmltask/)
 which has been supplied as a library. The following convenience functions are also available
 by default:
 
@@ -436,7 +436,7 @@ Amending a fixable rule
 -----------------------
 
 The default functionality applied to fix a broken rule can be amended by altering the macro.
-If a rule is inactive within the ruleset it will not be fixed.  
+If a rule is inactive within the ruleset it will not be fixed.
 
 
 Sample Document
@@ -531,33 +531,45 @@ Structure Validation
 | :heavy_check_mark: |xref-www-format-invalid|`<xref href="..." format="dita">` The specified value points to an external file and cannot have the attribute key/value pair format="dita". Change the format value as appropriate \(for example, format="html"\).|Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
 | :heavy_check_mark: |xref-www-scope-invalid|`<xref href="...">` The specified value points to an external file. Specify the attribute key/value pair scope="external".|The `href` attribute specifies a web page or similar target, which means the `scope` attribute must have the value `external`. Change the value as required. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).|
 
+
+Structure Validation for  Markdown
+----------------------------------
+
+|Fix|Message ID|Message|Corrective Action/Comment|
+|---|----------|-------|-------------------------|
+| :x: |header-depth-invalid||Always increment each header by a single level |
+| :x: |header-depth-too-deep|h3 or deeper headers were found in an MDITA file | MDITA can only supports two levels of header, amend deeper headers to an h1 or h2 or replace with bold markup|
+|  |headers-not-found|No Headers were found within the file| Add at least one h1 header to the file|
+| :x: |text-before-header|Text was found before the first header in the file |Delete the text prior to the first header|
+
+
 Deprecated Elements
 -------------------
 
-According to the [DITA 2.0 proposal to remove deprecated markup](https://lists.oasis-open.org/archives/dita/201803/msg00024.html) certain elements, attributes and values will cease to be supported under 
+According to the [DITA 2.0 proposal to remove deprecated markup](https://lists.oasis-open.org/archives/dita/201803/msg00024.html) certain elements, attributes and values will cease to be supported under
 DITA 2.0. These structure rules are all currently set to **WARNING** level and are auto-fixable.
 
 |Fix|Message ID|Message|Corrective Action/Comment|
 |---|----------|-------|-------------------------|
-| :heavy_check_mark: |boolean-deprecated|The `<boolean>` element will no longer be supported in DITA 2.0. | Replace the `<boolean>` element with a `<state>` element.| 
-| :heavy_check_mark: |chunk-to-navigation-deprecated|`chunk="to-navigation"` is not supported in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |image-alt-deprecated|`<image>` elements will no longer support the `alt` attribute in DITA 2.0.|Replace the `alt` attribute with an `<alt>` sub-element.| 
-| :heavy_check_mark: |image-longdescref-deprecated|`<image>` elements will no longer support the `longdescref` attribute in DITA 2.0. | Replace the `longdescref` attribute with an `<longdescref>` sub-element.| 
+| :heavy_check_mark: |boolean-deprecated|The `<boolean>` element will no longer be supported in DITA 2.0. | Replace the `<boolean>` element with a `<state>` element.|
+| :heavy_check_mark: |chunk-to-navigation-deprecated|`chunk="to-navigation"` is not supported in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |image-alt-deprecated|`<image>` elements will no longer support the `alt` attribute in DITA 2.0.|Replace the `alt` attribute with an `<alt>` sub-element.|
+| :heavy_check_mark: |image-longdescref-deprecated|`<image>` elements will no longer support the `longdescref` attribute in DITA 2.0. | Replace the `longdescref` attribute with an `<longdescref>` sub-element.|
 | :heavy_check_mark: |indextermref-deprecated|The `<boolean>` element will no longer be supported in DITA 2.0.|Delete the element|
-| :heavy_check_mark: |linklist-collection-type-tree-deprecated|The `<linklist>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value| 
-| :heavy_check_mark: |linkpool-collection-type-tree-deprecated|The `<linkpool>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value| 
-| :heavy_check_mark: |lq-type-deprecated|The `<lq>` element will no longer support the `type` attribute in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |map-title-deprecated|The `<map>` element will no longer support the `title` attribute in DITA 2.0.|Replace the `title` attribute with an `<title>` sub-element.| 
-| :heavy_check_mark: |navref-keyref-deprecated|The `<navref>` element will no longer support the `keyref` attribute in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |navtitle-deprecated|The `navtitle` attribute will no longer be supported in DITA 2.0.|Replace the `navtitle` attribute with an `<navtitle>` sub-element.| 
-| :heavy_check_mark: |print-deprecated|The `print` attribute will no longer be supported in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |query-deprecated|The `query` attribute will no longer be supported in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |refcols-deprecated|The `refcols` attribute will no longer be supported in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |relcolspec-collection-type-deprecated|`<relcolspec>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |reltable-collection-type-deprecated|`<reltable>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute| 
-| :heavy_check_mark: |role-external-deprecated|`role="external"` is not supported in DITA 2.0. |Delete the attribute or replace with `scope` and `format`| 
-| :heavy_check_mark: |role-sample-deprecated|`role="sample"` is not supported in DITA 2.0.|Delete the attribute.| 
-| :heavy_check_mark: |topichead-locktitle-deprecated|`<topichead>` elements will no longer support the `locktitle` attribute in DITA 2.0.|Delete the attribute.| 
+| :heavy_check_mark: |linklist-collection-type-tree-deprecated|The `<linklist>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value|
+| :heavy_check_mark: |linkpool-collection-type-tree-deprecated|The `<linkpool>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value|
+| :heavy_check_mark: |lq-type-deprecated|The `<lq>` element will no longer support the `type` attribute in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |map-title-deprecated|The `<map>` element will no longer support the `title` attribute in DITA 2.0.|Replace the `title` attribute with an `<title>` sub-element.|
+| :heavy_check_mark: |navref-keyref-deprecated|The `<navref>` element will no longer support the `keyref` attribute in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |navtitle-deprecated|The `navtitle` attribute will no longer be supported in DITA 2.0.|Replace the `navtitle` attribute with an `<navtitle>` sub-element.|
+| :heavy_check_mark: |print-deprecated|The `print` attribute will no longer be supported in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |query-deprecated|The `query` attribute will no longer be supported in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |refcols-deprecated|The `refcols` attribute will no longer be supported in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |relcolspec-collection-type-deprecated|`<relcolspec>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |reltable-collection-type-deprecated|`<reltable>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute|
+| :heavy_check_mark: |role-external-deprecated|`role="external"` is not supported in DITA 2.0. |Delete the attribute or replace with `scope` and `format`|
+| :heavy_check_mark: |role-sample-deprecated|`role="sample"` is not supported in DITA 2.0.|Delete the attribute.|
+| :heavy_check_mark: |topichead-locktitle-deprecated|`<topichead>` elements will no longer support the `locktitle` attribute in DITA 2.0.|Delete the attribute.|
 | :heavy_check_mark: |topicgroup-locktitle-deprecated|`<topicgroup>` elements will no longer support the `locktitle` attribute in DITA 2.0.|Delete the attribute.|
 
 

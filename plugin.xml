@@ -7,7 +7,7 @@
 	<!--
 		Define package details.
 	-->
-	<feature extension="package.version" value="2.0.2"/>
+	<feature extension="package.version" value="2.1.0"/>
 	<!--
 		Add new value to list of valid transformation type names.
 	-->
