@@ -537,10 +537,10 @@ Structure Validation for  Markdown
 
 |Fix|Message ID|Message|Corrective Action/Comment|
 |---|----------|-------|-------------------------|
-| :x: |header-depth-invalid||Always increment each header by a single level |
-| :x: |header-depth-too-deep|h3 or deeper headers were found in an MDITA file | MDITA can only supports two levels of header, amend deeper headers to an h1 or h2 or replace with bold markup|
-|  |headers-not-found|No Headers were found within the file| Add at least one h1 header to the file|
-| :x: |text-before-header|Text was found before the first header in the file |Delete the text prior to the first header|
+| :heavy_check_mark: |header-depth-invalid||Always increment each header by a single level |
+| :heavy_check_mark: |header-depth-too-deep|h3 or deeper headers were found in an MDITA file | MDITA can only supports two levels of header, amend deeper headers to an h1 or h2 or replace with bold markup|
+| :x: |headers-not-found|No Headers were found within the file| Add at least one h1 header to the file|
+| :heavy_check_mark: |text-before-header|Text was found before the first header in the file |Delete the text prior to the first header|
 
 
 Deprecated Elements
