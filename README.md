@@ -23,7 +23,7 @@ Table of Contents
 
 - [Background](#background)
   * [What Is Valid XML?](#what-is-valid-xml)
-  * [Validator compliant DITA](#validator-compliant-dita)
+  * [Validator compliant DITA](#what-are-valid-source-files-for-dita-ot)
 - [Install](#install)
   * [Installing DITA-OT](#installing-dita-ot)
   * [Installing the Plug-in](#installing-the-plug-in)
@@ -73,21 +73,37 @@ General XML validation rules require that:
 -	A single root element such as `<topic>`, contains all the other elements.
 -	`<topic>` within a DITA document must conform to the `topic.dtd` Document Type Defintion
 
-Validator compliant DITA
-------------------------
+What are Valid source files for DITA-OT?
+----------------------------------------
 
-The DITA Validator extends the concept of XML validation to run a series of structure and style compliance rules.
+The DITA Validator extends the concept of XML validation to run a series of structure and style compliance rules over
+the source files used by the DITA Open Toolkit.
+
+### Valid DITA for DITA-OT
+
 Sample rules include:
 
--	Whether the source files for	`<image>` and `<codeblock>` elements exist
+-	Whether the source files for `<image>` and `<codeblock>` elements exist
 -	Whether `conref` attributes are linking to missing elements
--	Whether every	`<section>` or `<fig>` element in the document has a meaningful `id`
+-	Whether every `<section>` or `<fig>` element in the document has a meaningful `id`
 -	Whether every `<section>` element has a title
 -	If an `<xref>` refers to a location on the web, both the `scope="external"` and `format="html"` attributes must be set
 -	Whether all `id` attributes are lower case and dash separated
 -	Whether any blacklisted words are found within the document.
 -	Whether the document will be unable to render as PDF due to empty `<table>` elements
+-       Whether the DITA files use any deprecated markup which will be invalid for DITA 2.0
 
+### Valid Markdown for DITA-OT
+
+-	Whether the markdown files have at least one header element
+-	Whether the headers increment properly across the markdown file
+-	Whether preamble text can be found before the first header
+
+### Valid MDITA for DITA-OT
+
+-	Whether the markdown files have at least one header element
+-	Whether any deep headers can be found within the MDITA markup
+-	Whether preamble text can be found before the first header
 
 Install
 =======
